@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vendor extends Model
+class ProductVariantItem extends Model
 {
     use HasFactory;
 
-    public function products()
+    public function productVariant()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(ProductVariant::class);
     }
 }
