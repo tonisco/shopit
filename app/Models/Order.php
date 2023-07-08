@@ -41,4 +41,9 @@ class Order extends Model
     {
         return $this->belongsTo(ShippingMethod::class);
     }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }
