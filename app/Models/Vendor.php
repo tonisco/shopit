@@ -9,6 +9,19 @@ class Vendor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'image',
+        'email',
+        'phone',
+        'address',
+        'description',
+        'fb_link',
+        'tw_link',
+        'insta_link',
+        'user_id',
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class);

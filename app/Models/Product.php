@@ -9,6 +9,24 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'image',
+        'qty',
+        'price',
+        'short_description',
+        'long_description',
+        'vendor_id',
+        'discount',
+        'discount_start_date',
+        'discount_end_date',
+        'category_id',
+        'sub_category_id',
+        'brand_id',
+        'approved',
+    ];
+
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);

@@ -9,6 +9,13 @@ class ShippingMethod extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'cost',
+        'delivery_time',
+        'image',
+    ];
+
     public function orders()
     {
         return $this->hasMany(Order::class);

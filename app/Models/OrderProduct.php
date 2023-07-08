@@ -9,9 +9,15 @@ class OrderProduct extends Model
 {
     use HasFactory;
 
-    // $table->foreign('order_id')->references('id')->on('orders');
-    //         $table->foreign('product_id')->references('id')->on('products');
-    //         $table->foreign('vendor_id')->references('id')->on('vendors');
+    protected $fillable = [
+        'product_name',
+        'variants',
+        'price',
+        'qty',
+        'order_id',
+        'product_id',
+        'vendor_id',
+    ];
 
     public function order()
     {
