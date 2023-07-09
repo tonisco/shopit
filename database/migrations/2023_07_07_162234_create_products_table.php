@@ -21,9 +21,9 @@ return new class extends Migration
             $table->text('short_description');
             $table->text('long_description');
             $table->unsignedBigInteger('vendor_id');
-            $table->double('discount');
-            $table->date('discount_start_date');
-            $table->date('discount_end_date');
+            $table->double('discount')->nullable();
+            $table->date('discount_start_date')->nullable();
+            $table->date('discount_end_date')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('sub_category_id');
             $table->unsignedBigInteger('brand_id');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('status');
             $table->boolean('is_displayed');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
