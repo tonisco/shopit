@@ -16,7 +16,6 @@ class OrderProduct extends Model
         'qty',
         'order_id',
         'product_id',
-        'vendor_id',
     ];
 
     public function order()

@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
             UserAddressSeeder::class,
             ProductReviewSeeder::class,
             ShippingMethodSeeder::class,
+            OrderSeeder::class,
+            OrderProductSeeder::class,
+            WishlistSeeder::class,
+            TransactionSeeder::class,
         ]);
     }
 }
