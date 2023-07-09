@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    public static $counter = 0;
+
     /**
      * Define the model's default state.
      *
@@ -17,13 +19,52 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $data = $this->userRole();
+
+        $this::$counter += 1;
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'role' => $data['role'],
+            'image' => null,
+            'phone' => fake()->phoneNumber(),
+            'status' => 'active',
+            'email' => $data['email'],
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password;
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function userRole()
+    {
+        if ($this::$counter === 0) {
+            return [
+                'email' => 'user@mail.com',
+                'role' => 'user',
+            ];
+        } else if ($this::$counter === 1) {
+            return [
+                'email' => 'admin@mail.com',
+                'role' => 'admin',
+            ];
+        } else if ($this::$counter === 2) {
+            return [
+                'email' => 'vendor@mail.com',
+                'role' => 'vendor',
+            ];
+        } else if ($this::$counter % 2 === 0) {
+            return [
+                'email' => fake()->unique()->safeEmail(),
+                'role' => 'vendor',
+            ];
+        } else {
+            return [
+                'email' => fake()->unique()->safeEmail(),
+                'role' => 'user',
+            ];
+        }
     }
 
     /**

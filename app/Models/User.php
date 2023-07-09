@@ -49,6 +49,11 @@ class User extends Authenticatable
     ];
 
 
+    public function vendor()
+    {
+        return $this->hasOne(Vendor::class);
+    }
+
     public function addresses()
     {
         return $this->hasMany(UserAddress::class);

@@ -22,7 +22,9 @@ return new class extends Migration
             $table->text('fb_link')->nullable();
             $table->text('tw_link')->nullable();
             $table->text('insta_link')->nullable();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id')->unique();
+
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
