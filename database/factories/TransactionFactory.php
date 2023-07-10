@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Transaction>
@@ -17,7 +18,7 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'transaction_id' => md5(rand(1, 100)),
+            'transaction_id' => Str::uuid(),
             'payment_method' => 'paystack',
             'amount' => 1,
             'order_id' => 1,

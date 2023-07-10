@@ -14,7 +14,7 @@ class SubCategorySeeder extends Seeder
         'Men' => ['Clothing', 'Shoes', 'Accessories'],
         'Women' =>  ['Clothing', 'Shoes', 'Accessories'],
         'Children' =>  ['Clothing', 'Shoes', 'Accessories'],
-        "Electronics" => ['Camera', 'Laptop', 'Smart Phones'],
+        "Electronics" => ['Camera', 'Laptop', 'Smart Phones', 'Accessories'],
         "Health and Beauty" => []
     ];
     /**
