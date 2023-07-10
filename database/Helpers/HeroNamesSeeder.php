@@ -2,7 +2,7 @@
 
 return [
     [
-        'image' => 'seed/hero/hero1.jpg',
+        'image' => 'img/seed/hero/hero1.jpg',
         'position' => 1,
         'title' => "Men's fashion",
         'top_text' => 'New Arrivals',
@@ -11,7 +11,7 @@ return [
         'btn_url' => 'products?category=men',
     ],
     [
-        'image' => 'seed/hero/hero2.jpg',
+        'image' => 'img/seed/hero/hero2.jpg',
         'position' => 1,
         'title' => "Women's fashion",
         'top_text' => 'New Arrivals',
@@ -20,7 +20,7 @@ return [
         'btn_url' => 'products?category=women',
     ],
     [
-        'image' => 'seed/hero/hero3.jpg',
+        'image' => 'img/seed/hero/hero3.jpg',
         'position' => 1,
         'title' => "Children's fashion",
         'top_text' => 'New Arrivals',
