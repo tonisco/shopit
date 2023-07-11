@@ -23,6 +23,7 @@
 
 <body class="antialiased font">
     <div class="min-h-screen bg-gray-100">
+        
         @include('layouts.main')
 
         @yield('content')
@@ -31,5 +32,6 @@
 
     </div>
 </body>
+<script src="{{ asset('js/theme.js') }}"></script>
 
 </html>
