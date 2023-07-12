@@ -9,15 +9,24 @@ use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
-    public $category = ['Men', 'Women', 'Children', "Electronics", "Health and Beauty",];
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        Category::factory()
-            ->count(count($this->category))
-            ->state(new Sequence(fn (Sequence $i) => ['name' => $this->category[$i->index]]))
-            ->create();
-    }
+	public $category = [
+		['name' => 'Men', 'image' => 'icon/man.svg'],
+		['name' => 'Women', 'image' => 'icon/woman.svg'],
+		['name' => 'Children', 'image' => 'icon/children.svg'],
+		['name' => "Electronics", 'image' => 'icon/electronics.svg'],
+		['name' => "Health and Beauty", 'image' => 'icon/mortar.svg',]
+	];
+	/**
+	 * Run the database seeds.
+	 */
+	public function run(): void
+	{
+		Category::factory()
+			->count(count($this->category))
+			->state(new Sequence(fn (Sequence $i) => [
+				'name' => $this->category[$i->index]['name'],
+				'image' => $this->category[$i->index]['image']
+			]))
+			->create();
+	}
 }
