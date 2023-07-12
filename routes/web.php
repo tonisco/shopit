@@ -30,6 +30,10 @@ Route::get('/vendors', function () {
     return view('main.vendors');
 })->name('vendors');
 
+Route::get('/products', function () {
+    return view('main.products');
+})->name('products');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

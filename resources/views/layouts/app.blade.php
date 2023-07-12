@@ -22,8 +22,8 @@
 </head>
 
 <body class="antialiased font">
-    <div class="min-h-screen bg-gray-100">
-        
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+
         @include('layouts.main')
 
         @yield('content')
