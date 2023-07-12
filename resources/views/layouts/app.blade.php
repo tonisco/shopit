@@ -22,7 +22,7 @@
 </head>
 
 <body class="antialiased font">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-100 flex flex-col h-full dark:bg-gray-900">
 
         @include('layouts.main')
 
