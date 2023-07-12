@@ -13,17 +13,15 @@
             <x-layout.logo />
         </a>
 
-        <div class="!visible hidden flex-grow basis-[100%] items-center gap-2 lg:!flex lg:basis-auto"
+        <div class="hidden flex-grow basis-[100%] items-center gap-2 lg:!flex lg:basis-auto"
             id="navbarSupportedContent1" data-te-collapse-item>
 
-            <div class="mr-6 bg-red-500 dark:bg-red-700 p-2 text-white hidden lg:block cursor-pointer">
-                <x-ri-menu-fill class="h-8 w-8" />
-            </div>
+            <x-layout.megamenu />
 
             <x-layout.navlinks />
         </div>
 
-        <div class="relative gap-4 flex items-center">
+        <div class="relative gap-4 ml-2 lg:ml-0 flex items-center">
             <a
                 class="cursor-pointer relative lg:hidden text-gray-900 transition duration-200 hover:text-gray-700 hover:ease-in-out focus:text-gray-700 disabled:text-black/30 motion-reduce:transition-none dark:text-gray-200 dark:hover:text-gray-300 dark:focus:text-gray-300 [&.active]:text-black/90 dark:[&.active]:text-gray-400">
                 <x-ri-shopping-cart-line class="h-6 w-6 text-gray-200" />
