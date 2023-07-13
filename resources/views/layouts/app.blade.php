@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -29,8 +32,10 @@
 
         @include('layouts.footer')
 
+        <script src="{{ asset('js/theme.js') }}"></script>
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     </div>
 </body>
-<script src="{{ asset('js/theme.js') }}"></script>
 
 </html>
