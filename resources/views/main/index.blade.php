@@ -2,7 +2,85 @@
 
 
 @section('content')
-    <h1>Hello</h1>
+    <div class="flex-1 max-w-7xl px-4 sm:px-6 mx-auto my-4 flex-col flex gap-16">
 
-    <i class="fa-solid fa-bars"></i>
+        <div id="carousel" class="relative" data-te-carousel-init data-te-carousel-slide>
+
+            <div class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+                data-te-carousel-indicators>
+                @foreach ($sliders as $slider)
+                    <button type="button" data-te-target="#carousel" data-te-slide-to="{{ $loop->index }}"
+                        @if ($loop->first) data-te-carousel-active @endif
+                        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+                        aria-current="true"></button>
+                @endforeach
+            </div>
+
+            <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+
+                <div class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                    data-te-carousel-active data-te-carousel-item style="backface-visibility: hidden">
+                    <img src="{{ asset($sliders[0]['image']) }}" class="block w-full" alt="..." />
+                    <div class="absolute inset-y-0 h-full left-6 hidden py-5 z-[2] text-center text-black md:block">
+                        <div class="h-full flex flex-col justify-center gap-4 items-start">
+                            <p class="capitalize text-red-500 dark:text-red-700 font-medium">{{ $sliders[0]->top_text }}</p>
+                            <h1 class="font-bold text-5xl capitalize">{{ $sliders[0]['title'] }}</h1>
+                            <p class="capitalize text-red-500 dark:text-red-700 font-medium">
+                                {{ $sliders[0]->bottom_text }}
+                            </p>
+                            @if ($sliders[0]->btn_url)
+                                <a type="button" href='/{{ $sliders[0]->btn_url }}'
+                                    class="inline-block rounded-full bg-red-500 px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-red-700">
+                                    Shop Now
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                @foreach ($sliders as $slider)
+                    @if (!$loop->first)
+                        <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                            data-te-carousel-item style="backface-visibility: hidden">
+                            <img src="{{ asset($slider->image) }}" class="block w-full" alt="..." />
+                            <div class="absolute inset-y-0 z-[2] h-full left-6 hidden py-5 text-center text-black md:block">
+                                <div class="h-full flex flex-col justify-center gap-2 items-start">
+                                    <p class="capitalize text-red-500 dark:text-red-700 font-medium">{{ $slider->top_text }}
+                                    </p>
+                                    <h1 class="font-bold text-5xl capitalize">{{ $slider->title }}</h1>
+                                    <p class="capitalize text-red-500 dark:text-red-700 font-medium">
+                                        {{ $slider->bottom_text }}
+                                    </p>
+                                    @if ($slider->btn_url)
+                                        <a type="button" href='/{{ $slider->btn_url }}'
+                                            class="inline-block rounded-full bg-red-500 px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-red-700">
+                                            Shop Now
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+
+                <button
+                    class="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-80 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                    type="button" data-te-target="#carousel" data-te-slide="prev">
+                    <x-ri-arrow-left-s-line class="inline-block h-8 w-8" />
+                    <span
+                        class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
+                </button>
+
+                <button
+                    class="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-80 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                    type="button" data-te-target="#carousel" data-te-slide="next">
+                    <x-ri-arrow-right-s-line class="inline-block h-8 w-8" />
+                    <span
+                        class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
 @endsection
