@@ -81,6 +81,77 @@
             </div>
         </div>
 
+        <div class="flex flex-col gap-6" id="exclusive products">
 
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex-1 md:flex md:items-center">
+                    <p class="block text-gray-800 dark:text-gray-200 font-medium text-2xl">
+                        Exclusive Products
+                    </p>
+                </div>
+
+                <div class="md:flex md:items-center">
+                    <nav aria-label="Global" class="hidden md:block">
+                        <ul class="flex items-center gap-4 text-base">
+                            <li class="text-gray-800 dark:text-gray-200 transition hover:text-gray-500/75">
+                                New Arrival
+                            </li>
+
+                            <li class="text-gray-800 dark:text-gray-200 transition hover:text-gray-500/75">
+                                Best Seller
+                            </li>
+
+                            <li class="text-gray-800 dark:text-gray-200 transition hover:text-gray-500/75">
+                                Featured
+                            </li>
+
+                            <li class="text-gray-800 dark:text-gray-200 transition hover:text-gray-500/75">
+                                Special Offer
+                            </li>
+
+                        </ul>
+                    </nav>
+
+                    <div class="flex items-center gap-4">
+                        <div class="block relative md:hidden" data-te-dropdown-ref>
+                            <button type="button" id="dropdownMenuButton2" data-te-ripple-init data-te-dropdown-toggle-ref
+                                data-te-ripple-color="light"
+                                class="rounded bg-gray-200 p-2 text-gray-600 transition hover:text-gray-600/75">
+                                <x-ri-menu-fill class="h-5 w-5" />
+                            </button>
+                            <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-gray-800 [&[data-te-dropdown-show]]:block"
+                                aria-labelledby="dropdownMenuButton2" data-te-dropdown-menu-ref>
+                                <li class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    data-te-dropdown-item-ref>
+                                    New Arrival
+                                </li>
+                                <li class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    data-te-dropdown-item-ref>
+                                    Best Seller
+                                </li>
+                                <li class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    data-te-dropdown-item-ref>
+                                    Featured
+                                </li>
+                                <li class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                    data-te-dropdown-item-ref>
+                                    Special Offer
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{ $products[1] }}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach ($products as $product)
+                    <x-layout.productcard :product="$product" />
+                @endforeach
+            </div>
+
+        </div>
     </div>
 @endsection
