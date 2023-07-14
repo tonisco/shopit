@@ -145,8 +145,7 @@
                 </div>
             </div>
 
-            {{ $products[1] }}
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($products as $product)
                     <x-layout.productcard :product="$product" />
                 @endforeach

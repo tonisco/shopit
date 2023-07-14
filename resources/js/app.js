@@ -1,9 +1,16 @@
 import "./bootstrap";
 
 import Alpine from "alpinejs";
-import { Carousel, Collapse, Dropdown, initTE, Ripple } from "tw-elements";
+import {
+	Carousel,
+	Collapse,
+	Dropdown,
+	initTE,
+	Modal,
+	Ripple,
+} from "tw-elements";
 
-initTE({ Carousel, Collapse, Dropdown, Ripple });
+initTE({ Carousel, Collapse, Dropdown, Modal, Ripple });
 
 window.Alpine = Alpine;
 

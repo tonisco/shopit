@@ -1,16 +1,12 @@
-@php
-    $products = \App\Models\Product::where('approved', true)->paginate(4);
-@endphp
-
 <section class="flex flex-col gap-8 w-full justify-between md:flex-row">
-    <div class="flex flex-col items-start gap-3 w-full md:w-1/2">
-        <div class=" h-auto w-[550px] !ml-0 swiper">
+    <div class="flex-col items-start gap-3 w-full md:w-1/2 flex">
+        <div class=" h-auto w-full max-w-[550px] !ml-0 swiper">
             <div class="swiper-wrapper w-full h-full">
 
-                @foreach ($products as $item)
-                    <img alt="{{ $product->name }}" src="{{ asset($item->image) }}"
+                @for ($i = 0; $i < 4; $i++)
+                    <img alt="{{ $product->name }}" src="{{ asset($product->image) }}"
                         class="swiper-slide aspect-square rounded-lg object-cover" />
-                @endforeach
+                @endfor
             </div>
 
             <div class="swiper-pagination"></div>
@@ -18,15 +14,16 @@
             <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-            {{-- <div class="swiper-scrollbar"></div> --}}
         </div>
 
-        <div thumbsSlider="" class="w-[550px] h-20 aspect-square swiper1">
+
+        {{-- TODO: fix tap to change slider, thumbnail on lower screens --}}
+        <div thumbsSlider="" class="w-full max-w-[550px] h-20 aspect-square swiper1">
             <div class="swiper-wrapper">
-                @foreach ($products as $item)
-                    <img alt="{{ $item->name }}" src="{{ asset($item->image) }}"
-                        class="aspect-square h-20 w-20 rounded-lg cursor-pointer swiper-slide object-cover" />
-                @endforeach
+                @for ($i = 0; $i < 4; $i++)
+                    <img alt="{{ $product->name }}" src="{{ asset($product->image) }}"
+                        class="aspect-square h-20 w-auto rounded-lg cursor-pointer swiper-slide object-cover" />
+                @endfor
             </div>
         </div>
 
@@ -44,10 +41,10 @@
     </div>
 
     <div class="w-full md:w-1/2">
-        <div class="mt-8 flex justify-between">
+        <div class="flex gap-2 justify-between">
             <div class="max-w-[35ch] space-y-2">
                 <h1 class="text-xl font-bold sm:text-2xl text-gray-900 dark:text-gray-200">
-                    {{ $product->name }}
+                    {{ $name }}
                 </h1>
 
                 <p class="text-sm text-gray-900 dark:text-gray-200">Highest Rated Product</p>
