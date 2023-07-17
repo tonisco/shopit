@@ -9,10 +9,10 @@
 @endphp
 
 <div class="static" data-te-nav-item-ref data-te-dropdown-ref>
-    <a class="items-center mr-6 bg-red-500 dark:bg-red-700 p-2 text-gray-200 hidden lg:flex cursor-pointer whitespace-nowrap transition duration-150 ease-in-out hover:text-gray-300 dark:hover:text-gray-100 focus:text-gray-300 dark:focus:text-gray-100"
+    <a class="items-center hidden p-2 mr-6 text-gray-200 transition duration-150 ease-in-out bg-red-500 cursor-pointer dark:bg-red-700 lg:flex whitespace-nowrap hover:text-gray-300 dark:hover:text-gray-100 focus:text-gray-300 dark:focus:text-gray-100"
         href="#" data-te-ripple-init data-te-ripple-color="light" type="button" id="dropdownMenuButtonQ"
         data-te-dropdown-toggle-ref aria-expanded="false" data-te-nav-link-ref>
-        <x-ri-menu-fill class="h-8 w-8" />
+        <x-ri-menu-fill class="w-8 h-8" />
     </a>
     <div class="absolute left-0 right-0 top-full z-[1000] mt-0 hidden w-full border-none bg-gray-100 bg-clip-padding shadow-lg dark:bg-gray-900 [&[data-te-dropdown-show]]:block"
         aria-labelledby="dropdownMenuButtonY" data-te-dropdown-menu-ref>
@@ -28,10 +28,10 @@
                             @foreach ($category->subCategories as $subCategory)
                                 <a href="{{ route('products', ['category' => $category->name, 'subCategory' => $subCategory->name]) }}"
                                     aria-current="true"
-                                    class="flex gap-4 w-full items-center border-b text-gray-900 dark:text-gray-200 border-neutral-200 px-6 py-3 transition duration-150 ease-in-out hover:bg-gray-50 hover:text-gray-700 dark:border-gray-500 dark:hover:bg-gray-800 dark:hover:text-white">
+                                    class="flex items-center w-full gap-4 px-6 py-3 text-gray-900 transition duration-150 ease-in-out border-b dark:text-gray-200 border-neutral-200 hover:bg-gray-50 hover:text-gray-700 dark:border-gray-500 dark:hover:bg-gray-800 dark:hover:text-white">
                                     <div class="shrink-0">
                                         <img src="{{ asset($subCategory->image) }}"
-                                            class="w-6 h-6 rounded text-gray-900 dark:text-gray-200"
+                                            class="w-6 h-6 text-gray-900 rounded dark:text-gray-200"
                                             alt="{{ $subCategory->name }}" />
                                         {{-- <x-icons-camera class="h-7 w-7" /> --}}
 

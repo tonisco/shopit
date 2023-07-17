@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
 
@@ -23,7 +24,7 @@
 </head>
 
 <body class="antialiased font">
-    <div class="min-h-screen bg-gray-100 flex flex-col h-full dark:bg-gray-900">
+    <div class="flex flex-col h-full min-h-screen bg-gray-100 dark:bg-gray-900">
 
         @include('layouts.main')
 

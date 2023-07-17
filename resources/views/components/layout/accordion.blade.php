@@ -3,7 +3,7 @@
         @php
             $isCategory = request()->get('category') === $category->name;
         @endphp
-        <div class="rounded-t-lg py-2">
+        <div class="py-2 rounded-t-lg">
             <h2 class="mb-1" id="{{ $category->id }}">
                 <button
                     class="group relative flex w-full items-center rounded-t-[15px] text-left text-sm @if ($isCategory) text-red-500 dark:text-red-700 @else text-gray-800 dark:text-white @endif  transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none  [&:not([data-te-collapse-collapsed])]:text-red-500 dark:[&:not([data-te-collapse-collapsed])]:text-red-700"
@@ -31,8 +31,7 @@
                             @endphp
                             <a href="{{ request()->fullUrlWithQuery(['category' => $category->name, 'subCategory' => $subCategory->name, 'page' => null]) }}"
                                 class="capitalize @if ($isSubCategory) text-red-500 dark:text-red-700
-								@else
-								text-gray-800 dark:text-gray-200 @endif">{{ $subCategory->name }}</a>
+								@else text-gray-800 dark:text-gray-200 @endif">{{ $subCategory->name }}</a>
                         @endforeach
 
                     </div>

@@ -2,17 +2,32 @@
 
 @section('content')
     <x-layout.breadcrumbs heading='products' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'product']]" />
-    <div class="max-w-7xl w-full mx-auto px-2 my-10 flex gap-6">
-        <div class="hidden lg:flex flex-col gap-4 w-1/5">
-            <div class="flex flex-col gap-2 p-4 bg-white border rounded-lg border-gray-300 dark:bg-gray-800">
-                <h3 class="text-lg text-gray-800 dark:text-gray-200 font-semibold">Categories</h3>
+    <div class="flex w-full gap-6 px-2 mx-auto my-10 max-w-7xl">
+        <div class="flex-col hidden w-1/5 gap-4 lg:flex">
+            <div class="flex flex-col gap-2 p-4 bg-white border border-gray-300 rounded-lg dark:bg-gray-800">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Categories</h3>
                 <x-layout.accordion id='product-filter' :categories="$categories" />
             </div>
 
-            <x-utils.brandsfilter :brands="$brands" />
+            <div class="p-4 bg-white border border-gray-300 rounded-lg dark:bg-gray-800">
+                <form action="{{ request()->fullUrlWithQuery([]) }}" class="flex flex-col gap-4">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Price</h3>
+                    <div class="px-1">
+                        <x-input.range :min="100" :max="10000" />
+                    </div>
+                    <div class="flex gap-4 px-2">
+                        <button
+                            class="px-3 py-1 text-sm text-white capitalize bg-red-500 rounded-lg dark:bg-red-700">filter</button>
+                        <button
+                            class="px-3 py-1 text-sm text-red-500 capitalize bg-white border-2 border-red-500 rounded-lg dark:bg-red-700 dark:border-red-700">reset</button>
 
-            <div class="flex flex-col gap-2 p-4 bg-white border rounded-lg border-gray-300 dark:bg-gray-800">
-                <h3 class="text-lg text-gray-800 dark:text-gray-200 font-semibold">Ratings</h3>
+                    </div>
+                </form>
+            </div>
+
+            <x-utils.brandsfilter :brands="$brands" />
+            <div class="flex flex-col gap-2 p-4 bg-white border border-gray-300 rounded-lg dark:bg-gray-800">
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Ratings</h3>
                 <div class="flex flex-col gap-4 px-1">
                     @for ($i = 5; $i > 0; $i--)
                         @php
@@ -38,7 +53,7 @@
         <div class="w-full lg:w-4/5 ">
             <div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+            <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                 @foreach ($products as $product)
                     <x-layout.productcard :product="$product" />
                 @endforeach
@@ -46,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="max-w-7xl px-2 mx-auto my-10 w-full">
+    <div class="w-full px-2 mx-auto my-10 max-w-7xl">
         {{ $products->appends(request()->query())->links() }}
 
     </div>
