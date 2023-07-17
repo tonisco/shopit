@@ -44,22 +44,14 @@
         <div class="flex justify-between gap-2">
             <div class="max-w-[35ch] space-y-2">
                 <h1 class="text-xl font-bold text-gray-900 sm:text-2xl dark:text-gray-200">
-                    {{ $name }}
+                    {{ $product->name }}
                 </h1>
 
                 <p class="text-sm text-gray-900 dark:text-gray-200">Highest Rated Product</p>
 
-                <div class="-ms-0.5 flex">
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($product->ratings >= $i)
-                            <x-ri-star-fill class='w-5 h-5 text-yellow-500 dark:text-yellow-700' />
-                        @elseif ($product->ratings >= $i - 0.5)
-                            <x-ri-star-half-fill class='w-5 h-5 text-yellow-500 dark:text-yellow-700' />
-                        @else
-                            <x-ri-star-fill class='w-5 h-5 text-gray-500 dark:text-gray-400' />
-                        @endif
-                    @endfor
-
+                <div class="flex gap-2">
+                    <x-utils.stars :rating="$product->ratings" size="w-5 h-5" />
+                    <p class="text-gray-800 dark:text-gray-200">({{ $product->total_reviews }}) Reviews</p>
                 </div>
             </div>
 

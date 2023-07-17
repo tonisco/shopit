@@ -1,4 +1,6 @@
-<div
+{{-- TODO: fix click on icons not to navigate --}}
+
+<a href="{{ route('productsDetails', $product->id) }}"
     class="shadow-lg hover:shadow-lg lg:shadow-none mx-auto w-full group/productcard bg-white max-w-sm relative dark:bg-gray-800 cursor-pointer rounded-lg h-[460px] overflow-hidden grid grid-rows-[65%_35%]">
     <div class="w-full h-full overflow-hidden">
         <img src="{{ asset($product->image) }}"
@@ -24,13 +26,13 @@
     <p class="absolute px-2 py-1 text-xs text-white capitalize bg-red-500 rounded-full top-3 left-3 dark:bg-red-700">new
     </p>
     <div class="absolute flex flex-col items-end gap-3 top-3 right-3">
-        <p class="px-2 py-1 text-xs text-white capitalize bg-blue-500 rounded-full  dark:bg-blue-700">
+        <p class="px-2 py-1 text-xs text-white capitalize bg-blue-500 rounded-full dark:bg-blue-700">
             -10%</p>
         <p
             class="block p-1 text-xs text-blue-500 capitalize bg-transparent bg-white rounded-lg shadow opacity-100 lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block hover:text-blue-600">
             <x-ri-heart-fill class="w-6 h-6" />
-            <x-layout.modal id="{{ $product->slug }}" :product="$product">
-                <x-layout.productdetails :product="$product" :name="$product->name" :modal="true" />
+            <x-layout.modal id="{{ $product->slug }}">
+                <x-layout.productdetails :product="$product" />
             </x-layout.modal>
         </p>
         <p class="block p-1 text-xs text-red-500 capitalize bg-transparent bg-white rounded-lg shadow opacity-100 lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block dark:text-red-700 hover:text-red-600"
@@ -40,4 +42,4 @@
 
         </p>
     </div>
-</div>
+</a>

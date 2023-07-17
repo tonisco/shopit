@@ -30,6 +30,7 @@ Route::get('/vendors', function () {
 	return view('main.vendors');
 })->name('vendors');
 
+Route::get('/products/{id}', [ProductsController::class, 'detail'])->name('productsDetails');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
 
 Route::get('/dashboard', function () {

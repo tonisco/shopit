@@ -8,9 +8,10 @@ import {
 	initTE,
 	Modal,
 	Ripple,
+	Tab,
 } from "tw-elements";
 
-initTE({ Carousel, Collapse, Dropdown, Modal, Ripple });
+initTE({ Carousel, Collapse, Dropdown, Modal, Ripple, Tab });
 
 window.Alpine = Alpine;
 

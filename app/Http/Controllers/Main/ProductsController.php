@@ -34,4 +34,13 @@ class ProductsController extends Controller
 
 		return view('main.products', compact('products', 'categories', 'brands'));
 	}
+	public function detail(string $id)
+	{
+		$product = Product::with('vendor', 'productReviews')->where('id', $id)->first();
+
+		$product->ratings = round($product->productReviews->avg('rating'), 1);
+		$product->total_reviews = $product->productReviews->count();
+
+		return view('main.productDetails', compact('product'));
+	}
 }
