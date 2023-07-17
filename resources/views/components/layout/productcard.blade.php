@@ -1,5 +1,5 @@
 <div
-    class="shadow-lg hover:shadow-lg lg:shadow-none group/productcard bg-white max-w-sm relative dark:bg-gray-800 cursor-pointer rounded-lg h-[460px] overflow-hidden grid grid-rows-[65%_35%]">
+    class="shadow-lg hover:shadow-lg lg:shadow-none mx-auto w-full group/productcard bg-white max-w-sm relative dark:bg-gray-800 cursor-pointer rounded-lg h-[460px] overflow-hidden grid grid-rows-[65%_35%]">
     <div class="overflow-hidden h-full w-full">
         <img src="{{ asset($product->image) }}"
             class="h-full group-hover/productcard:scale-110 transition-all duration-500 ease-out w-full object-cover"
@@ -12,18 +12,8 @@
         </p>
         <p class="text-gray-900 dark:text-gray-200 text-sm font-semibold">{{ $product->name }}</p>
         <div class="flex gap-2">
-            <div class="flex gap-1">
-                @for ($i = 1; $i <= 5; $i++)
-                    @if ($product->ratings >= $i)
-                        <x-ri-star-fill class='h-3 w-3 text-yellow-500 dark:text-yellow-700' />
-                    @elseif ($product->ratings >= $i - 0.5)
-                        <x-ri-star-half-fill class='h-3 w-3 text-yellow-500 dark:text-yellow-700' />
-                    @else
-                        <x-ri-star-fill class='h-3 w-3 text-gray-500 dark:text-gray-400' />
-                    @endif
-                @endfor
+            <x-utils.stars :rating="$product->ratings" />
 
-            </div>
             <p class="text-xs text-gray-500 dark:text-gray-400">({{ $product->total_reviews }})
             </p>
         </div>

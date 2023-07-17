@@ -32,7 +32,7 @@
                                     <div class="shrink-0">
                                         <img src="{{ asset($subCategory->image) }}"
                                             class="w-6 h-6 rounded text-gray-900 dark:text-gray-200"
-                                            alt="Hollywood Sign on The Hill" />
+                                            alt="{{ $subCategory->name }}" />
                                         {{-- <x-icons-camera class="h-7 w-7" /> --}}
 
                                     </div>
