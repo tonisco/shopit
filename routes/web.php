@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Main\HomeController;
+use App\Http\Controllers\main\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +30,7 @@ Route::get('/vendors', function () {
 	return view('main.vendors');
 })->name('vendors');
 
-Route::get('/products', function () {
-	return view('main.products');
-})->name('products');
+Route::get('/products', [ProductsController::class, 'index'])->name('products');
 
 Route::get('/dashboard', function () {
 	return view('dashboard');
