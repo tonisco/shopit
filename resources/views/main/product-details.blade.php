@@ -60,6 +60,9 @@
                                 <x-ri-twitter-fill class="w-6 h-6" />
                             </a>
                         </div>
+                        <a class="self-start px-4 py-2 mt-2 text-white capitalize transition-all duration-300 bg-red-500 rounded-full dark:bg-red-700 hover:bg-red-600"
+                            href="{{ route('vendors-products', $product->vendor->id) }}">Visit
+                            store</a>
 
                     </div>
                 </div>

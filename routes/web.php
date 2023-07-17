@@ -27,6 +27,7 @@ Route::get('/contact', function () {
 	return view('main.contact');
 })->name('contact');
 
+Route::get('/vendors/{id}/products', [VendorController::class, 'products'])->name('vendors-products');
 Route::get('/vendors', [VendorController::class, 'all'])->name('vendors');
 
 Route::get('/products/{id}', [ProductsController::class, 'detail'])->name('productsDetails');

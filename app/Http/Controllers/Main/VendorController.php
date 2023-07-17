@@ -14,4 +14,11 @@ class VendorController extends Controller
 
 		return view('main.vendors', compact('vendors'));
 	}
+
+	public function products(string $id)
+	{
+		$vendor = Vendor::with(['products'])->first();
+
+		return view('main.vendors-store', compact('vendor'));
+	}
 }
