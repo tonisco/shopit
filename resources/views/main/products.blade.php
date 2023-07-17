@@ -25,7 +25,7 @@
                 </form>
             </div>
 
-            <x-utils.brandsfilter :brands="$brands" />
+            <x-utils.brands-filter :brands="$brands" />
             <div class="flex flex-col gap-2 p-4 bg-white border border-gray-300 rounded-lg dark:bg-gray-800">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Ratings</h3>
                 <div class="flex flex-col gap-4 px-1">
@@ -55,7 +55,7 @@
             </div>
             <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
                 @foreach ($products as $product)
-                    <x-layout.productcard :product="$product" />
+                    <x-layout.product-card :product="$product" />
                 @endforeach
 
             </div>

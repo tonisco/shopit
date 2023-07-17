@@ -4,7 +4,7 @@
     <x-layout.breadcrumbs heading='products' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'product']]" />
     <div class="w-full px-4">
         <div class="w-full p-4 mx-auto my-10 bg-white shadow-lg dark:bg-gray-800 max-w-7xl rounded-xl">
-            <x-layout.productdetails :product="$product" />
+            <x-layout.product-description :product="$product" />
         </div>
         {{-- TODO: fix tab changes --}}
         <section

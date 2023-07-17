@@ -12,6 +12,7 @@ class ProductsController extends Controller
 {
 	public function index(Request $request)
 	{
+		// TODO: implement filter
 
 		$categories = Category::with([
 			'subCategories' => function ($query) {
@@ -41,6 +42,6 @@ class ProductsController extends Controller
 		$product->ratings = round($product->productReviews->avg('rating'), 1);
 		$product->total_reviews = $product->productReviews->count();
 
-		return view('main.productDetails', compact('product'));
+		return view('main.product-details', compact('product'));
 	}
 }

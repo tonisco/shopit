@@ -147,7 +147,7 @@
 
             <div class="grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 @foreach ($products as $product)
-                    <x-layout.productcard :product="$product" />
+                    <x-layout.product-card :product="$product" />
                 @endforeach
             </div>
 
