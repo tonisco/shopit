@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Main\HomeController;
 use App\Http\Controllers\main\ProductsController;
+use App\Http\Controllers\main\VendorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +27,7 @@ Route::get('/contact', function () {
 	return view('main.contact');
 })->name('contact');
 
-Route::get('/vendors', function () {
-	return view('main.vendors');
-})->name('vendors');
+Route::get('/vendors', [VendorController::class, 'all'])->name('vendors');
 
 Route::get('/products/{id}', [ProductsController::class, 'detail'])->name('productsDetails');
 Route::get('/products', [ProductsController::class, 'index'])->name('products');
