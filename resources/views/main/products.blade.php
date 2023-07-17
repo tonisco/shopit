@@ -9,6 +9,8 @@
                 <x-layout.accordion id='product-filter' :categories="$categories" />
             </div>
 
+            <x-utils.brandsfilter :brands="$brands" />
+
             <div class="flex flex-col gap-2 p-4 bg-white border rounded-lg border-gray-300 dark:bg-gray-800">
                 <h3 class="text-lg text-gray-800 dark:text-gray-200 font-semibold">Ratings</h3>
                 <div class="flex flex-col gap-4 px-1">
