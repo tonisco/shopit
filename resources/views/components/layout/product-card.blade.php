@@ -14,9 +14,9 @@
         </p>
         <p class="text-sm font-semibold text-gray-900 dark:text-gray-200">{{ $product->name }}</p>
         <div class="flex gap-2">
-            <x-utils.stars :rating="$product->ratings" />
+            <x-utils.stars :rating="$product->product_reviews_avg_rating" />
 
-            <p class="text-xs text-gray-500 dark:text-gray-400">({{ $product->total_reviews }})
+            <p class="text-xs text-gray-500 dark:text-gray-400">({{ $product->product_reviews_count }})
             </p>
         </div>
         <h3 class="text-lg font-semibold text-red-500 dark:text-red-700">${{ $product->price }}</h3>

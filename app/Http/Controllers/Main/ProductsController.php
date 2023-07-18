@@ -22,16 +22,12 @@ class ProductsController extends Controller
 			->where('status', true)
 			->get();
 
-		$products = Product::with('category:id,name', 'subCategory:id,name')->paginate(9);
+		$products = Product::with('category:id,name', 'subCategory:id,name')
+			->withCount('productReviews')
+			->withAvg('productReviews', 'rating')
+			->paginate(9);
 
 		$brands = Brand::all();
-
-		// get product rating and total reviews
-		foreach ($products as $product) {
-			$reviews = $product->productReviews();
-			$product->ratings = round($reviews->avg('rating'), 1);
-			$product->total_reviews = $reviews->count();
-		}
 
 		return view('main.products', compact('products', 'categories', 'brands'));
 	}

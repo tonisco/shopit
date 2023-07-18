@@ -17,7 +17,9 @@ class VendorController extends Controller
 
 	public function products(string $id)
 	{
-		$vendor = Vendor::with(['products'])->first();
+		$vendor = Vendor::with(['products' => function ($query) {
+			return $query->withAvg('productReviews', 'rating')->withCount('productReviews')->paginate(9);
+		}])->first();
 
 		return view('main.vendors-store', compact('vendor'));
 	}
