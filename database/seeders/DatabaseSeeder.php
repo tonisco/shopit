@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
 			TransactionSeeder::class,
 			HeroSliderSeeder::class,
 			BreadcrumbsImageSeeder::class,
+			SettingsSeeder::class,
 		]);
 	}
 }
