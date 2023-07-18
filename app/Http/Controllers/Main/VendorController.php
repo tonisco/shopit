@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 
@@ -17,10 +18,13 @@ class VendorController extends Controller
 
 	public function products(string $id)
 	{
-		$vendor = Vendor::with(['products' => function ($query) {
-			return $query->withAvg('productReviews', 'rating')->withCount('productReviews')->paginate(9);
-		}])->first();
+		$vendor = Vendor::where('id', $id)->first();
 
-		return view('main.vendors-store', compact('vendor'));
+		$products = Product::where('vendor_id', $id)
+			->withAvg('productReviews', 'rating')
+			->withCount('productReviews')
+			->paginate(9);
+
+		return view('main.vendors-store', compact('vendor', 'products'));
 	}
 }

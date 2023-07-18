@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="w-full px-2 mx-auto my-10 max-w-7xl">
-        {{ $products->appends(request()->query())->links() }}
+        {{ $products->onEachSide(0)->appends(request()->query())->links() }}
 
     </div>
 @endsection

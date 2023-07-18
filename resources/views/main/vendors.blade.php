@@ -14,7 +14,7 @@
                             <x-ri-mail-line class="w-5 h-5 text-white" /><span>{{ $vendor->email }}</span>
                         </p>
                         <p class="flex items-center gap-2">
-                            <x-ri-store-3-fill class="w-5 h-5 text-white" />
+                            <x-ri-map-pin-line class="w-5 h-5 text-white" />
                             <span>{{ $vendor->address }}</span>
                         </p>
                         <p class="flex items-center gap-2">
