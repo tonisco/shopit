@@ -50,8 +50,8 @@
                 <p class="text-sm text-gray-900 dark:text-gray-200">Highest Rated Product</p>
 
                 <div class="flex gap-2">
-                    <x-utils.stars :rating="$product->ratings" size="w-5 h-5" />
-                    <p class="text-gray-800 dark:text-gray-200">({{ $product->total_reviews }}) Reviews</p>
+                    <x-utils.stars :rating="$product->product_reviews_avg_rating" size="w-5 h-5" />
+                    <p class="text-gray-800 dark:text-gray-200">({{ $product->product_reviews_count }}) Reviews</p>
                 </div>
             </div>
 
