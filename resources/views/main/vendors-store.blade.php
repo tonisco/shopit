@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('page')
+    {{ $vendor->name }}
+@endsection
+
 @section('content')
     <x-layout.breadcrumbs heading='{{ $vendor->name }}' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'Vendor Store']]" />
     <div class="w-full px-4 my-10">

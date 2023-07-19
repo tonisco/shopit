@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('page')
+    Home
+@endsection
 
 @section('content')
     <div class="flex flex-col flex-1 gap-16 px-4 mx-auto my-4 max-w-7xl sm:px-6">

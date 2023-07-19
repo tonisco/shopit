@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('page')
+    Products
+@endsection
+
 @section('content')
     <x-layout.breadcrumbs heading='products' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'product']]" />
     <div class="flex w-full gap-6 px-2 mx-auto my-10 max-w-7xl">
