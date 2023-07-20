@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Main\HomeController;
+use App\Http\Controllers\main\PageController;
 use App\Http\Controllers\main\ProductsController;
 use App\Http\Controllers\main\VendorController;
 use App\Http\Controllers\ProfileController;
@@ -19,13 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/about', function () {
-	return view('main.about');
-})->name('about');
+Route::get('/about', [PageController::class, 'about'])->name('about');
 
-Route::get('/contact', function () {
-	return view('main.contact');
-})->name('contact');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/vendors/{id}/products', [VendorController::class, 'products'])->name('vendors-products');
 Route::get('/vendors', [VendorController::class, 'all'])->name('vendors');
