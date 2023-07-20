@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
 			HeroSliderSeeder::class,
 			BreadcrumbsImageSeeder::class,
 			SettingsSeeder::class,
+			AboutSeeder::class,
 		]);
 	}
 }
