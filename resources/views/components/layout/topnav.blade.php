@@ -11,12 +11,12 @@
                 <x-ri-customer-service-2-line class="w-8 h-8 text-gray-200" />
                 <div class="flex flex-col gap-1 text-sm text-gray-200">
                     <p>{{ $settings->email }}</p>
-                    <p>{{ $settings->phone }}/p>
+                    <p>{{ $settings->phone }}</p>
                 </div>
             </div>
         </div>
         <div class="flex gap-4">
-            <div x-data='sidebar' @click="toggle"
+            <div x-data='toggler' @click="toggle"
                 class="cursor-pointer relative text-gray-200 transition duration-200 hover:text-gray-700 hover:ease-in-out focus:text-gray-700 disabled:text-black/30 motion-reduce:transition-none dark:hover:text-gray-300 dark:focus:text-gray-300 [&.active]:text-black/90 dark:[&.active]:text-gray-400">
                 <x-ri-shopping-cart-line class="w-6 h-6" />
                 <span

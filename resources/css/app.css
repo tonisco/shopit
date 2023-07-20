@@ -18,3 +18,7 @@
 		-moz-appearance: textfield !important;
 	}
 }
+
+[x-cloak] {
+	display: none !important;
+}
