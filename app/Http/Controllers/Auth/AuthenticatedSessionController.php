@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -34,6 +35,8 @@ class AuthenticatedSessionController extends Controller
 			Auth::guard('web')->logout();
 			$request->session()->regenerateToken();
 			notify()->error('Your account has been banned. Please connect with support', 'Account Banned');
+			$error_message = ['title' => 'Account Banned', 'message' => 'Your account has been banned. Please connect with support'];
+			Session::flash('info', $error_message);
 			return redirect('/');
 		}
 

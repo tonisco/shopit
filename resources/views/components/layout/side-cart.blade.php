@@ -2,6 +2,7 @@
     $products = App\Models\Product::paginate(3);
 @endphp
 <div class="relative px-2 py-4 overflow-y-auto bg-white dark:bg-gray-800 w-80 sm:px-6 lg:px-8">
+    {{-- TODO: fix close icon --}}
     <button class="absolute text-gray-600 transition dark:text-gray-300 end-4 top-4 hover:scale-110">
         <x-ri-close-fill class="w-5 h-5" />
     </button>

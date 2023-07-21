@@ -24,7 +24,7 @@
                 <template x-teleport="body">
 
                     <x-layout.sidebar-modal ::show="open" ::toggle="toggle">
-                        <x-layout.side-cart />
+                        <x-layout.side-cart ::toggle="toggle" />
                     </x-layout.sidebar-modal>
                 </template>
 
