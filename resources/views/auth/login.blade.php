@@ -8,7 +8,7 @@
     <x-layout.breadcrumbs heading='login / register' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'login / register']]" />
     <section class="w-full px-2 mx-auto my-10 max-w-7xl">
         <div x-data="toggler"
-            class="w-11/12 px-4 py-8 mx-auto space-y-6 bg-white shadow-lg dark:bg-gray-800 md:w-3/4 lg:w-1/2 rounded-xl">
+            class="flex flex-col w-11/12 gap-2 px-4 py-8 mx-auto bg-white shadow-lg dark:bg-gray-800 md:w-3/4 lg:w-1/2 rounded-xl">
             <div class="flex w-full">
                 <button
                     class="flex-1 py-2 text-lg text-gray-800 border-b-2 border-gray-200 sm:text-xl dark:text-gray-200 dark:border-gray-700"
@@ -19,8 +19,23 @@
                     x-bind:class="{ 'text-red-500 dark:text-red-700 border-red-500 dark:border-red-700': open }"
                     @click="change(true)">Sign Up</button>
             </div>
+
+
+            <div class="flex flex-col justify-center w-full mt-8">
+                <a href="{{ route('google-login') }}"
+                    class="!w-3/4 py-2 px-4 mx-auto text-center text-white bg-red-500 dark:bg-red-700">Continue with
+                    Google</a>
+                @error('oauth')
+                    <div class="mt-1 text-center">
+                        <x-input.input-error :messages="$message" />
+                    </div>
+                @enderror
+            </div>
+
+            <h2 class="text-xl text-center text-gray-800 dark:text-gray-200">Or</h2>
+
             <div x-show="!open">
-                <form action="{{ route('login') }}" method="POST" class="px-2 space-y-8 sm:px-4">
+                <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-6 px-2 sm:px-4">
                     @csrf
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="login_email">Email</label>
@@ -42,7 +57,7 @@
                     </div>
                     <div class="flex items-center justify-between w-full">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" class="w-4 h-4" name="remember" id="login_remember"> required
+                            <input type="checkbox" class="w-4 h-4" name="remember" id="login_remember">
                             <label for="login_remember" class="text-xs text-gray-800 sm:text-sm dark:text-gray-200">Remember
                                 me</label>
                         </div>
@@ -50,11 +65,11 @@
                     </div>
 
                     <button type="submit"
-                        class="px-8 py-2 text-white transition bg-red-500 hover:bg-red-600 dark:bg-red-700">Login</button>
+                        class="self-start px-8 py-2 text-white transition bg-red-500 hover:bg-red-600 dark:bg-red-700">Login</button>
                 </form>
             </div>
             <div x-show="open" x-cloak>
-                <form action="{{ route('register') }}" method="POST" class="px-4 space-y-6">
+                <form action="{{ route('register') }}" method="POST" class="flex flex-col gap-6 px-4">
                     @csrf
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="signup_email">First Name</label>
@@ -105,9 +120,11 @@
 
 
                     <button type="submit"
-                        class="px-8 py-2 text-white transition bg-red-500 hover:bg-red-600 dark:bg-red-700">Sign Up</button>
+                        class="self-start px-8 py-2 text-white transition bg-red-500 hover:bg-red-600 dark:bg-red-700">Sign
+                        Up</button>
                 </form>
             </div>
+
         </div>
     </section>
 @endsection
