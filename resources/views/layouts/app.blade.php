@@ -16,7 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    @notifyCss
 
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
 
@@ -33,14 +32,12 @@
 
         @include('layouts.footer')
 
-        <x-notify::notify />
 
-        <script src="{{ asset('js/theme.js') }}"></script>
-        <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
-        <script src="{{ asset('js/main.js') }}"></script>
-        <script src="{{ asset('js/alpine-methods.js') }}"></script>
-        @notifyJs
     </div>
+    <script src="{{ asset('js/theme.js') }}"></script>
+    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/alpine-methods.js') }}"></script>
 </body>
 
 </html>
