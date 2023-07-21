@@ -20,22 +20,29 @@
                     @click="change(true)">Sign Up</button>
             </div>
             <div x-show="!open">
-                <form action="" class="px-2 space-y-8 sm:px-4">
+                <form action="{{ route('login') }}" method="POST" class="px-2 space-y-8 sm:px-4">
+                    @csrf
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="login_email">Email</label>
-                        <input type="email"
+                        <input type="email" value="{{ old('email') }}" required
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="email" id="login_email">
+                        @error('email')
+                            <x-input.input-error :messages="$message" />
+                        @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="login_password">Password</label>
-                        <input type="password"
+                        <input type="password" required
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="password" id="login_password">
+                        @error('password')
+                            <x-input.input-error :messages="$message" />
+                        @enderror
                     </div>
                     <div class="flex items-center justify-between w-full">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" class="w-4 h-4" name="remember" id="login_remember">
+                            <input type="checkbox" class="w-4 h-4" name="remember" id="login_remember"> required
                             <label for="login_remember" class="text-xs text-gray-800 sm:text-sm dark:text-gray-200">Remember
                                 me</label>
                         </div>
@@ -47,36 +54,53 @@
                 </form>
             </div>
             <div x-show="open" x-cloak>
-                <form action="" class="px-4 space-y-6">
+                <form action="{{ route('register') }}" method="POST" class="px-4 space-y-6">
+                    @csrf
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="signup_email">First Name</label>
-                        <input type="text"
+                        <input type="text" required
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
-                            name="first_name" id="signup_first_name">
+                            name="first_name" id="signup_first_name" value="{{ old('first_name') }}">
+                        @error('first_name', 'register')
+                            <x-input.input-error :messages="$message" />
+                        @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="signup_email">Last Name</label>
-                        <input type="text"
+                        <input type="text" required
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
-                            name="last_name" id="signup_last_name">
+                            name="last_name" id="signup_last_name" value="{{ old('last_name') }}">
+                        @error('last_name', 'register')
+                            <x-input.input-error :messages="$message" />
+                        @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="signup_email">Email</label>
-                        <input type="email"
+                        <input type="email" required
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
-                            name="email" id="signup_email">
+                            name="email" id="signup_email" value="{{ old('email') }}">
+                        @error('email', 'register')
+                            <x-input.input-error :messages="$message" />
+                        @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
                         <label class="text-gray-800 dark:text-gray-200" for="signup_password">Password</label>
-                        <input type="password"
+                        <input type="password" required
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="password" id="signup_password">
+                        @error('password', 'register')
+                            <x-input.input-error :messages="$message" />
+                        @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
-                        <label class="text-gray-800 dark:text-gray-200" for="signup_password">Confirm Password</label>
-                        <input type="password"
+                        <label class="text-gray-800 dark:text-gray-200" for="signup_password_confirmation">Confirm
+                            Password</label>
+                        <input type="password" required
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
-                            name="confirm_password" id="signup_confirm_password">
+                            name="password_confirmation" id="signup_password_confirmation">
+                        @error('password_confirmation', 'register')
+                            <x-input.input-error :messages="$message" />
+                        @enderror
                     </div>
 
 
