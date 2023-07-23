@@ -1,10 +1,10 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('page')
     Home
-@endsection
+@endsection --}}
 
-@section('content')
+<x-main.layout.main page="Home">
     <div class="flex flex-col flex-1 gap-16 px-4 mx-auto my-4 max-w-7xl sm:px-6">
 
         <div id="carousel" class="relative" data-te-carousel-init data-te-carousel-slide>
@@ -26,7 +26,8 @@
                     <img src="{{ asset($sliders[0]['image']) }}" class="block w-full" alt="..." />
                     <div class="absolute inset-y-0 h-full left-6 hidden py-5 z-[2] text-center text-black md:block">
                         <div class="flex flex-col items-start justify-center h-full gap-4">
-                            <p class="font-medium text-red-500 capitalize dark:text-red-700">{{ $sliders[0]->top_text }}</p>
+                            <p class="font-medium text-red-500 capitalize dark:text-red-700">{{ $sliders[0]->top_text }}
+                            </p>
                             <h1 class="text-5xl font-bold capitalize">{{ $sliders[0]['title'] }}</h1>
                             <p class="font-medium text-red-500 capitalize dark:text-red-700">
                                 {{ $sliders[0]->bottom_text }}
@@ -46,9 +47,11 @@
                         <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
                             data-te-carousel-item style="backface-visibility: hidden">
                             <img src="{{ asset($slider->image) }}" class="block w-full" alt="..." />
-                            <div class="absolute inset-y-0 z-[2] h-full left-6 hidden py-5 text-center text-black md:block">
+                            <div
+                                class="absolute inset-y-0 z-[2] h-full left-6 hidden py-5 text-center text-black md:block">
                                 <div class="flex flex-col items-start justify-center h-full gap-2">
-                                    <p class="font-medium text-red-500 capitalize dark:text-red-700">{{ $slider->top_text }}
+                                    <p class="font-medium text-red-500 capitalize dark:text-red-700">
+                                        {{ $slider->top_text }}
                                     </p>
                                     <h1 class="text-5xl font-bold capitalize">{{ $slider->title }}</h1>
                                     <p class="font-medium text-red-500 capitalize dark:text-red-700">
@@ -117,8 +120,8 @@
 
                     <div class="flex items-center gap-4">
                         <div class="relative block md:hidden" data-te-dropdown-ref>
-                            <button type="button" id="dropdownMenuButton2" data-te-ripple-init data-te-dropdown-toggle-ref
-                                data-te-ripple-color="light"
+                            <button type="button" id="dropdownMenuButton2" data-te-ripple-init
+                                data-te-dropdown-toggle-ref data-te-ripple-color="light"
                                 class="p-2 text-gray-600 transition bg-gray-200 rounded hover:text-gray-600/75">
                                 <x-ri-menu-fill class="w-5 h-5" />
                             </button>
@@ -150,10 +153,10 @@
 
             <div class="grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 @foreach ($products as $product)
-                    <x-layout.product-card :product="$product" />
+                    <x-main.layout.product-card :product="$product" />
                 @endforeach
             </div>
 
         </div>
     </div>
-@endsection
+</x-main.layout.main>

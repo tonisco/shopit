@@ -24,15 +24,9 @@
 </head>
 
 <body class="antialiased font">
-    <x-utils.flash-message />
+    {{-- <x-utils.flash-message /> --}}
     <div class="flex flex-col h-full min-h-screen bg-gray-100 dark:bg-gray-900">
-
-        @include('layouts.main')
-
         @yield('content')
-
-        @include('layouts.footer')
-
     </div>
     <script src="{{ asset('js/theme.js') }}"></script>
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>

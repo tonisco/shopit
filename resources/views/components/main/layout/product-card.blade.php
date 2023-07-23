@@ -13,7 +13,7 @@
             </p>
             <p class="text-sm font-semibold text-gray-900 dark:text-gray-200">{{ $product->name }}</p>
             <div class="flex gap-2">
-                <x-utils.stars :rating="$product->product_reviews_avg_rating" />
+                <x-main.utils.stars :rating="$product->product_reviews_avg_rating" />
 
                 <p class="text-xs text-gray-500 dark:text-gray-400">({{ $product->product_reviews_count }})
                 </p>
@@ -32,9 +32,9 @@
         <p
             class="block p-1 text-xs text-blue-500 capitalize bg-transparent bg-white rounded-lg shadow opacity-100 cursor-pointer lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block hover:text-blue-600">
             <x-ri-heart-fill class="w-6 h-6" />
-            <x-layout.modal id="{{ $product->slug }}">
-                <x-layout.product-description :product="$product" />
-            </x-layout.modal>
+            <x-general.layout.modal id="{{ $product->slug }}">
+                <x-main.layout.product-description :product="$product" />
+                </x-layout.modal>
         </p>
         <p class="block p-1 text-xs text-red-500 capitalize bg-transparent bg-white rounded-lg shadow opacity-100 cursor-pointer lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block dark:text-red-700 hover:text-red-600"
             data-te-toggle="modal" data-te-target="#{{ $product->slug }}" data-te-ripple-init
