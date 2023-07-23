@@ -1,11 +1,5 @@
-@extends('layouts.app')
-
-@section('page')
-    Login / Register
-@endsection
-
-@section('content')
-    <x-layout.breadcrumbs heading='login / register' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'login / register']]" />
+<x-main.layout.main page="Login / Register">
+    <x-main.layout.breadcrumbs heading='login / register' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'login / register']]" />
     <section class="w-full px-2 mx-auto my-10 max-w-7xl">
         <div x-data="toggler"
             class="flex flex-col w-11/12 gap-2 px-4 py-8 mx-auto bg-white shadow-lg dark:bg-gray-800 md:w-3/4 lg:w-1/2 rounded-xl">
@@ -27,7 +21,7 @@
                     Google</a>
                 @error('oauth')
                     <div class="mt-1 text-center">
-                        <x-input.input-error :messages="$message" />
+                        <x-general.input.input-error :messages="$message" />
                     </div>
                 @enderror
             </div>
@@ -43,7 +37,7 @@
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="email" id="login_email">
                         @error('email')
-                            <x-input.input-error :messages="$message" />
+                            <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
@@ -52,13 +46,14 @@
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="password" id="login_password">
                         @error('password')
-                            <x-input.input-error :messages="$message" />
+                            <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex items-center justify-between w-full">
                         <div class="flex items-center gap-2">
                             <input type="checkbox" class="w-4 h-4" name="remember" id="login_remember">
-                            <label for="login_remember" class="text-xs text-gray-800 sm:text-sm dark:text-gray-200">Remember
+                            <label for="login_remember"
+                                class="text-xs text-gray-800 sm:text-sm dark:text-gray-200">Remember
                                 me</label>
                         </div>
                         <p class="text-xs text-red-500 sm:text-sm dark:text-red-700">Forgot Password?</p>
@@ -77,7 +72,7 @@
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="first_name" id="signup_first_name" value="{{ old('first_name') }}">
                         @error('first_name', 'register')
-                            <x-input.input-error :messages="$message" />
+                            <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
@@ -86,7 +81,7 @@
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="last_name" id="signup_last_name" value="{{ old('last_name') }}">
                         @error('last_name', 'register')
-                            <x-input.input-error :messages="$message" />
+                            <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
@@ -95,7 +90,7 @@
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="email" id="signup_email" value="{{ old('email') }}">
                         @error('email', 'register')
-                            <x-input.input-error :messages="$message" />
+                            <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
@@ -104,7 +99,7 @@
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="password" id="signup_password">
                         @error('password', 'register')
-                            <x-input.input-error :messages="$message" />
+                            <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col w-full gap-1">
@@ -114,7 +109,7 @@
                             class="border-2 rounded focus:border-red-500 dark:focus:border-red-700 focus:ring-red-500 dark:focus:ring-red-700 "
                             name="password_confirmation" id="signup_password_confirmation">
                         @error('password_confirmation', 'register')
-                            <x-input.input-error :messages="$message" />
+                            <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
 
@@ -127,4 +122,4 @@
 
         </div>
     </section>
-@endsection
+</x-main.layout.main>

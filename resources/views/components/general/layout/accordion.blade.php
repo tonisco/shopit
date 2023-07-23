@@ -5,8 +5,16 @@
         @endphp
         <div class="py-2 rounded-t-lg">
             <h2 class="mb-1" id="{{ $category->id }}">
+                @php
+                    if ($isCategory) {
+                        $text_color = 'text-red-500 dark:text-red-700';
+                    } else {
+                        $text_color = 'text-gray-800 dark:text-white';
+                    }
+                @endphp
+
                 <button
-                    class="group relative flex w-full items-center rounded-t-[15px] text-left text-sm @if ($isCategory) text-red-500 dark:text-red-700 @else text-gray-800 dark:text-white @endif  transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none  [&:not([data-te-collapse-collapsed])]:text-red-500 dark:[&:not([data-te-collapse-collapsed])]:text-red-700"
+                    class="group relative flex w-full items-center rounded-t-[15px] text-left text-sm {{ $text_color }}  transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none  [&:not([data-te-collapse-collapsed])]:text-red-500 dark:[&:not([data-te-collapse-collapsed])]:text-red-700"
                     type="button" data-te-collapse-init
                     @if (!$isCategory) data-te-collapse-collapsed @endif
                     data-te-target="#{{ Str::slug($category->name) }}">
@@ -28,10 +36,14 @@
                         @foreach ($category->subCategories as $subCategory)
                             @php
                                 $isSubCategory = request()->get('subCategory') === $subCategory->name;
+                                if ($isSubCategory) {
+                                    $text_color = 'text-red-500 dark:text-red-700';
+                                } else {
+                                    $text_color = 'text-gray-800 dark:text-gray-200';
+                                }
                             @endphp
                             <a href="{{ request()->fullUrlWithQuery(['category' => $category->name, 'subCategory' => $subCategory->name, 'page' => null]) }}"
-                                class="capitalize @if ($isSubCategory) text-red-500 dark:text-red-700
-								@else text-gray-800 dark:text-gray-200 @endif">{{ $subCategory->name }}</a>
+                                class="capitalize {{ $text_color }}">{{ $subCategory->name }}</a>
                         @endforeach
 
                     </div>
