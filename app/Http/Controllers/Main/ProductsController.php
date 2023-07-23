@@ -33,10 +33,10 @@ class ProductsController extends Controller
 	}
 	public function detail(string $id)
 	{
-		$product = Product::with('vendor', 'productReviews')->where('id', $id)->first();
-
-		$product->ratings = round($product->productReviews->avg('rating'), 1);
-		$product->total_reviews = $product->productReviews->count();
+		$product = Product::with('vendor', 'productReviews')->where('id', $id)
+			->withCount('productReviews')
+			->withAvg('productReviews', 'rating')
+			->first();
 
 		return view('main.product-details', compact('product'));
 	}

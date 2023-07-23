@@ -1,11 +1,5 @@
-@extends('layouts.app')
-
-@section('page')
-    {{ $vendor->name }}
-@endsection
-
-@section('content')
-    <x-layout.breadcrumbs heading='{{ $vendor->name }}' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'Vendor Store']]" />
+<x-main.layout.main :page="$vendor->name">
+    <x-main.layout.breadcrumbs heading='{{ $vendor->name }}' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'Vendor Store']]" />
     <div class="w-full px-4 my-10">
         <div class="w-full mx-auto max-w-7xl">
             {{-- TODO: redesign this --}}
@@ -47,10 +41,10 @@
             </div>
             <div class="grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 @foreach ($products as $product)
-                    <x-layout.product-card :product="$product" />
+                    <x-main.layout.product-card :product="$product" />
                 @endforeach
             </div>
             {{ $products->links() }}
         </div>
     </div>
-@endsection
+</x-main.layout.main>

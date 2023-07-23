@@ -1,11 +1,5 @@
-@extends('layouts.app')
-
-@section('page')
-    Vendors
-@endsection
-
-@section('content')
-    <x-layout.breadcrumbs heading='Vendors' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'vendors']]" />
+<x-main.layout.main page="Vendors">
+    <x-main.layout.breadcrumbs heading='Vendors' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'vendors']]" />
     <div class="w-full px-4 my-10">
         <div class="grid w-full grid-cols-1 gap-6 mx-auto sm:grid-cols-2 max-w-7xl">
             @foreach ($vendors as $vendor)
@@ -33,4 +27,4 @@
         </div>
         {{ $vendors->links() }}
     </div>
-@endsection
+</x-main.layout.main>

@@ -1,14 +1,8 @@
-@extends('layouts.app')
-
-@section('page')
-    {{ $product->name }}
-@endsection
-
-@section('content')
-    <x-layout.breadcrumbs heading='{{ $product->name }}' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'product']]" />
+<x-main.layout.main :page="$product->name">
+    <x-main.layout.breadcrumbs heading='{{ $product->name }}' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'product']]" />
     <div class="w-full px-4">
         <div class="w-full p-4 mx-auto my-10 bg-white shadow-lg dark:bg-gray-800 max-w-7xl rounded-xl">
-            <x-layout.product-description :product="$product" />
+            <x-main.layout.product-description :product="$product" />
         </div>
         {{-- TODO: fix tab changes --}}
         <section
@@ -34,7 +28,8 @@
                 class="text-gray-800 dark:text-gray-200 hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block">
                 {{ $product->long_description }}</p>
             <div id="tab-vendor" role="tabpanel">
-                <div class="gap-6 hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:flex">
+                <div
+                    class="gap-6 hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:flex">
                     <img {{-- src="{{ asset($product->vendor->image) }}" --}} src="{{ asset($product->image) }}" alt="{{ $product->vendor->name }}"
                         class="object-cover rounded-lg h-96 aspect-square" />
                     <div class="flex flex-col gap-4 text-gray-800 dark:text-gray-200">
@@ -79,4 +74,4 @@
 
         </section>
     </div>
-@endsection
+</x-main.layout.main>

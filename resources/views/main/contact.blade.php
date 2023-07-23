@@ -1,11 +1,5 @@
-@extends('layouts.app')
-
-@section('page')
-    Contact Us
-@endsection
-
-@section('content')
-    <x-layout.breadcrumbs heading='contact us' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'contact us']]" />
+<x-main.layout.main page="Contact">
+    <x-main.layout.breadcrumbs heading='contact us' :crumbs="[['name' => 'home', 'route' => route('home')], ['name' => 'contact us']]" />
     <div class="relative">
         <div class="absolute flex w-full h-full gap-6 px-2 overflow-x-hidden">
             <iframe src="{{ $settings->map_url }}" width="100%" height="100%" style="border:0;" allowfullscreen=""
@@ -42,4 +36,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-main.layout.main>
