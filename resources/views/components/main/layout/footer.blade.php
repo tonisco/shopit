@@ -206,7 +206,7 @@
         </div>
 
         <p class="text-xs text-gray-800 dark:text-gray-200">
-            &copy; 2022. Shopit. All rights reserved.
+            &copy; 2022. {{ $settings->site_name }}. All rights reserved.
         </p>
     </div>
 </footer>

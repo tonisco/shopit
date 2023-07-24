@@ -61,12 +61,12 @@
                     @elseif (auth()->user()->role === 'vendor')
                         <a href="{{ route('vendor.dashboard') }}"
                             class="cursor-pointer text-gray-900 transition hidden lg:inline-block duration-200 hover:text-gray-700 hover:ease-in-out focus:text-gray-700 disabled:text-black/30 motion-reduce:transition-none dark:text-gray-200 dark:hover:text-gray-300 dark:focus:text-gray-300 [&.active]:text-black/90 dark:[&.active]:text-gray-400">
-                            Vendor Dashboard
+                            Dashboard
                         </a>
                     @else
                         <a href="{{ route('dashboard') }}"
                             class="cursor-pointer text-gray-900 transition hidden lg:inline-block duration-200 hover:text-gray-700 hover:ease-in-out focus:text-gray-700 disabled:text-black/30 motion-reduce:transition-none dark:text-gray-200 dark:hover:text-gray-300 dark:focus:text-gray-300 [&.active]:text-black/90 dark:[&.active]:text-gray-400">
-                            Admin Dashboard
+                            Dashboard
                         </a>
                     @endif
                 @else
