@@ -14,6 +14,7 @@ class OrderProduct extends Model
 		'variants',
 		'price',
 		'qty',
+		'total',
 		'order_id',
 		'product_id',
 		'vendor_id'

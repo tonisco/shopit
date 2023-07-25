@@ -42,7 +42,8 @@ class OrderProductSeeder extends Seeder
 							'order_id' => $order->id,
 							'product_id' => $product->id,
 							'vendor_id' => $product->vendor_id,
-							'product_name' => $product->name
+							'product_name' => $product->name,
+							'total' => $product->price * $item_len
 						])
 						->create();
 

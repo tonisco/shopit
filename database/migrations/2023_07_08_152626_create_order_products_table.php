@@ -15,7 +15,8 @@ return new class extends Migration
 			$table->id();
 			$table->string('product_name');
 			$table->text('variants')->nullable();
-			$table->string('price');
+			$table->double('price');
+			$table->double('total');
 			$table->integer('qty');
 			$table->unsignedBigInteger('order_id');
 			$table->unsignedBigInteger('product_id');

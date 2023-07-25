@@ -21,6 +21,7 @@ class OrderProductFactory extends Factory
 			'variants' => null,
 			'price' => 1,
 			'qty' => 1,
+			'total' => 1,
 			'order_id' => 1,
 			'product_id' => 1,
 			'vendor_id' => 1
