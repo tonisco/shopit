@@ -1,3 +1,127 @@
 <x-vendor.layout.main page="Dashboard">
-    <h1>Vendor page</h1>
+    <section class="flex flex-col flex-1 gap-6 px-4 py-4">
+        @php
+            $p = request()->query('p');
+        @endphp
+        <div class="flex flex-col items-start justify-between w-full gap-2 sm:flex-row sm:items-center">
+            <h1 class="text-3xl text-gray-800 dark:text-gray-200">Dashboard</h1>
+            <form method="GET" action="{{ route('vendor.dashboard') }}">
+                <select name="p" id="p" value=""
+                    onchange="if(event.target.value !=='{{ $p }}')this.closest('form').submit()">
+                    <option value="all">All time</option>
+                    <option @if ($p === 'today') selected @endif value="today">Today</option>
+                    <option @if ($p === 'last_7_days') selected @endif value="last_7_days">Last 7 Days
+                    </option>
+                    <option @if ($p === 'last_30_days') selected @endif value="last_30_days">Last 30 Days
+                    </option>
+                    <option @if ($p === 'last_12_months') selected @endif value="last_12_months">Last 12 Months
+                    </option>
+                </select>
+            </form>
+
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">Total orders</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">{{ $currentOrders }}</h2>
+                </div>
+                <x-bi-clipboard2 class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">completed orders</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">{{ $completedOrder }}</h2>
+                </div>
+                <x-bi-clipboard2-check class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending orders</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">{{ $pendingOrder }}</h2>
+                </div>
+                <x-ri-timer-line class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">products ordered</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">{{ $productOrdered }}</h2>
+                </div>
+                <x-bi-cart class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">completed products order
+                    </p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">{{ $completedProductOrdered }}</h2>
+                </div>
+                <x-bi-cart-check class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending Products order</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">{{ $pendingProductOrdered }}</h2>
+                </div>
+                <x-ri-timer-line class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">Total Earnings</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">${{ $earnings }}</h2>
+                </div>
+                <x-ri-money-dollar-circle-line class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending earnings</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">${{ $pendingEarnings }}</h2>
+                </div>
+                <x-ri-hand-coin-line class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+            <div
+                class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col gap-2">
+                    <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">customers</p>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">{{ $customers }}</h2>
+                </div>
+                <x-ri-user-line class="w-12 h-12 text-gray-600 dark:text-white" />
+            </div>
+        </div>
+        <div class="grid w-full grid-cols-3 gap-4">
+            <div class="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <h1 class="text-xl text-gray-900 dark:text-white/80">Top Selling Product</h1>
+                <div class="flex flex-col gap-4">
+                    @foreach ($mostSold as $item)
+                        <div class="flex items-center w-full gap-2">
+                            <img src="{{ asset($item->image) }}" class="object-cover w-10 h-14">
+                            <p class="flex-1 text-gray-600 truncate text-md dark:text-white">{{ $item->name }}</p>
+                            <p class="text-gray-600 dark:text-white/60">{{ $item->order_products_sum_qty }} times</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <h1 class="text-xl text-gray-900 dark:text-white/80">Lowest Product Quantity</h1>
+                <div class="flex flex-col gap-4">
+                    @foreach ($lowestQuantities as $lowestQuantity)
+                        <div class="flex items-center w-full gap-2">
+                            <img src="{{ asset($lowestQuantity->image) }}" class="object-cover w-10 h-14">
+                            <p class="flex-1 text-gray-600 truncate text-md dark:text-white">
+                                {{ $lowestQuantity->name }}</p>
+                            <p class="text-gray-600 dark:text-white/60">{{ $lowestQuantity->qty }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
 </x-vendor.layout.main>

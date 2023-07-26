@@ -30,5 +30,4 @@
             {{ $slot }}
         </div>
     </div>
-    <x-vendor.layout.footer />
 @endsection

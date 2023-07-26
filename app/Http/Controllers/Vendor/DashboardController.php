@@ -35,6 +35,20 @@ class DashboardController extends Controller
 			})
 			->count();
 
+		$pendingProductOrdered = OrderProduct::whereDate('created_at', '>', $period)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->whereHas('order', function ($query) {
+				$query->where('status', 'pending');
+			})
+			->sum('qty');
+
+		$completedProductOrdered = OrderProduct::whereDate('created_at', '>', $period)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->whereHas('order', function ($query) {
+				$query->where('status', 'delivered');
+			})
+			->sum('qty');
+
 
 		$completedOrder = Order::whereDate('created_at', '>', $period)
 			->where('status', 'delivered')
@@ -47,10 +61,15 @@ class DashboardController extends Controller
 			->where('vendor_id', Auth::user()->vendor->id)
 			->whereHas('order', function ($query) {
 				$query->where('status', 'delivered');
-			});
-		// ->sum('total');
+			})
+			->sum('total');
 
-		$pendingEarnings = OrderProduct::whereDate('created_at', '>', $period);
+		$pendingEarnings = OrderProduct::whereDate('created_at', '>', $period)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->whereHas('order', function ($query) {
+				$query->where('status', 'pending');
+			})
+			->sum('total');
 
 		$customers = User::whereHas('orders', function ($query) {
 			$query->whereHas('orderProducts', function ($q) {
@@ -66,7 +85,7 @@ class DashboardController extends Controller
 			->get();
 
 
-		$lowestQuantity = Product::whereDate('created_at', '>', $period)
+		$lowestQuantities = Product::whereDate('created_at', '>', $period)
 			->where('vendor_id', Auth::user()->vendor->id)
 			->orderBy('qty')->limit(5)->get();
 
@@ -90,12 +109,14 @@ class DashboardController extends Controller
 			'currentOrders',
 			'productOrdered',
 			'pendingOrder',
+			'pendingProductOrdered',
 			'completedOrder',
+			'completedProductOrdered',
 			'earnings',
 			'pendingEarnings',
 			'customers',
 			'mostSold',
-			'lowestQuantity',
+			'lowestQuantities',
 			'graphEarnings'
 		));
 	}
@@ -110,7 +131,7 @@ class DashboardController extends Controller
 			'last_12_months' => Carbon::now()->subYear(),
 		];
 
-		if ($p && $periods[$p]) {
+		if ($p && array_key_exists($p, $periods)) {
 			return $periods[$p];
 		} else {
 			return Carbon::now()->subDecade();
