@@ -75,7 +75,7 @@
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <div class="flex flex-col gap-2">
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">Total Earnings</p>
-                    <h2 class="text-3xl text-gray-800 dark:text-white">${{ $earnings }}</h2>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">${{ number_format($earnings * 1000) }}</h2>
                 </div>
                 <x-ri-money-dollar-circle-line class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
@@ -83,7 +83,7 @@
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <div class="flex flex-col gap-2">
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending earnings</p>
-                    <h2 class="text-3xl text-gray-800 dark:text-white">${{ $pendingEarnings }}</h2>
+                    <h2 class="text-3xl text-gray-800 dark:text-white">${{ number_format($pendingEarnings) }}</h2>
                 </div>
                 <x-ri-hand-coin-line class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
