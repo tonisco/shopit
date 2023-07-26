@@ -32,6 +32,7 @@
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/alpine-methods.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

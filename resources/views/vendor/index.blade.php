@@ -27,7 +27,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">Total orders</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $currentOrders }}</h2>
                 </div>
-                <x-bi-clipboard2 class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-bi-clipboard2 class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -35,7 +35,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">completed orders</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $completedOrder }}</h2>
                 </div>
-                <x-bi-clipboard2-check class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-bi-clipboard2-check class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -43,7 +43,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending orders</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $pendingOrder }}</h2>
                 </div>
-                <x-ri-timer-line class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-ri-timer-line class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -51,7 +51,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">products ordered</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $productOrdered }}</h2>
                 </div>
-                <x-bi-cart class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-bi-cart class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -60,7 +60,7 @@
                     </p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $completedProductOrdered }}</h2>
                 </div>
-                <x-bi-cart-check class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-bi-cart-check class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -68,7 +68,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending Products order</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $pendingProductOrdered }}</h2>
                 </div>
-                <x-ri-timer-line class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-ri-timer-line class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
 
             <div
@@ -77,7 +77,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">Total Earnings</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">${{ $earnings }}</h2>
                 </div>
-                <x-ri-money-dollar-circle-line class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-ri-money-dollar-circle-line class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -85,7 +85,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending earnings</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">${{ $pendingEarnings }}</h2>
                 </div>
-                <x-ri-hand-coin-line class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-ri-hand-coin-line class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -93,10 +93,14 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">customers</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $customers }}</h2>
                 </div>
-                <x-ri-user-line class="w-12 h-12 text-gray-600 dark:text-white" />
+                <x-ri-user-line class="w-12 h-12 text-gray-800 dark:text-white" />
             </div>
         </div>
-        <div class="grid w-full grid-cols-3 gap-4">
+        <div class="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <h1 class="text-xl text-gray-900 dark:text-white/80">Earnings</h1>
+            <canvas id="myChart" class="!max-w-[100%] overflow-hidden !max-h-[450px]"></canvas>
+        </div>
+        <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             <div class="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h1 class="text-xl text-gray-900 dark:text-white/80">Top Selling Product</h1>
                 <div class="flex flex-col gap-4">
@@ -124,4 +128,47 @@
             </div>
         </div>
     </section>
+    @section('script')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+            integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            let earnings = @json($graphEarnings)
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Object.keys(earnings).map(key => key),
+                    datasets: [{
+                        label: 'Earnings',
+                        data: Object.values(earnings).map(value => value),
+                        fill: false,
+                        borderColor: 'rgb(239 68 68)',
+                        pointBackgroundColor: 'rgb(239 68 68)',
+                        pointBorderColor: 'rgb(239 68 68)',
+                        pointHoverBackgroundColor: 'rgb(239 68 68)',
+                        tension: 0.2,
+                        pointBorderWidth: 1,
+
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            displayColors: false,
+                        },
+                        legend: {
+                            display: false
+                        },
+                    }
+                }
+            })
+        </script>
+    @endsection
 </x-vendor.layout.main>
