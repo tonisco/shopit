@@ -5,7 +5,6 @@ use App\Http\Controllers\main\PageController;
 use App\Http\Controllers\main\ProductsController;
 use App\Http\Controllers\main\VendorController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Vendor\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,10 +33,6 @@ Route::get('/products', [ProductsController::class, 'index'])->name('products');
 Route::get('/dashboard', function () {
 	return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::prefix('/vendor')->middleware(['auth', 'verified', 'vendor'])->group(function () {
-	Route::get('/dashboard', [DashboardController::class, 'index'])->name('vendor.dashboard');
-});
 
 Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
