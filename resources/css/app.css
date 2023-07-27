@@ -1,3 +1,8 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
+@import "datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css";
+@import "datatables.net-select-bs5/css/select.bootstrap5.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,4 +26,20 @@
 
 [x-cloak] {
 	display: none !important;
+}
+
+.trash-table-modal {
+	@apply fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-black/25;
+}
+
+.trash-table-modal-content {
+	@apply flex flex-col w-10/12 relative sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto gap-4 p-6 pt-8 bg-white dark:bg-gray-800;
+}
+
+.product-options {
+	@apply w-36 absolute right-0 z-10 flex flex-col bg-white overflow-hidden rounded-md shadow-xl -top-4 dark:bg-gray-700;
+}
+
+.product-options-item {
+	@apply hover:!bg-gray-200 dark:hover:!bg-gray-600 dark:!text-white dark:!bg-gray-700 p-2 !bg-white cursor-pointer text-start;
 }
