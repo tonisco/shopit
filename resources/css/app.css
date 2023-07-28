@@ -43,3 +43,23 @@
 .product-options-item {
 	@apply hover:!bg-gray-200 dark:hover:!bg-gray-600 dark:!text-white dark:!bg-gray-700 p-2 !bg-white cursor-pointer text-start;
 }
+
+.table-image {
+	@apply object-cover w-14;
+}
+
+.action-button {
+	@apply rounded cursor-pointer p-1.5;
+}
+
+.action-button-icon {
+	@apply w-4 h-4 text-white;
+}
+
+.table-body tr {
+	@apply !overflow-x-scroll sm:overflow-x-hidden;
+}
+
+.table-body tr td {
+	@apply p-1 text-sm md:text-base;
+}

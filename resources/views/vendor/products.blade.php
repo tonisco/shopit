@@ -5,20 +5,20 @@
             <a href="{{ route('vendor.product.create') }}"
                 class="px-3 py-2 text-white bg-red-500 rounded shadow dark:bg-red-700 hover:bg-red-600">Add Product</a>
         </div>
-        <div class="w-full" x-data="deleteItem">
-            <table class="w-full datatable">
+        <div class="w-full">
+            <table class="!w-full datatable">
                 <thead>
-                    <tr>
-                        <td> id </td>
-                        <td> image </td>
-                        <td> name </td>
-                        <td> price </td>
-                        <td> discount </td>
-                        <td> approved </td>
-                        <td> action </td>
+                    <tr class="!overflow-x-auto sm:overflow-x-hidden font-semibold capitalize">
+                        <td class="px-1 py-2 text-sm md:text-base"> id </td>
+                        <td class="px-1 py-2 text-sm md:text-base"> image </td>
+                        <td class="px-1 py-2 text-sm md:text-base"> name </td>
+                        <td class="px-1 py-2 text-sm md:text-base"> price </td>
+                        <td class="px-1 py-2 text-sm md:text-base"> discount </td>
+                        <td class="px-1 py-2 text-sm md:text-base"> approved </td>
+                        <td class="px-1 py-2 text-sm md:text-base"> action </td>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody class="!px-1 table-body"></tbody>
             </table>
 
         </div>
