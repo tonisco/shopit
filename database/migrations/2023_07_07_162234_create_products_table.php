@@ -27,7 +27,7 @@ return new class extends Migration
 			$table->unsignedBigInteger('category_id');
 			$table->unsignedBigInteger('sub_category_id')->nullable();
 			$table->unsignedBigInteger('brand_id');
-			$table->enum('approved', ['approved', 'pending', 'rejected']);
+			$table->string('approved');
 			$table->boolean('status');
 
 			$table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');

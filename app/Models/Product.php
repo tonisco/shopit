@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Enums\ProductApprovedEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
 	use HasFactory;
+
+	protected $cast = [
+		'approved' => ProductApprovedEnum::class
+	];
 
 	protected $fillable = [
 		'name',
