@@ -5,7 +5,7 @@
             <a href="{{ route('vendor.product.create') }}"
                 class="px-3 py-2 text-white bg-red-500 rounded shadow dark:bg-red-700 hover:bg-red-600">Add Product</a>
         </div>
-        <div class="w-full">
+        <div class="w-[90vw] overflow-x-auto sm:w-full sm:overflow-hidden">
             <table class="!w-full datatable">
                 <thead>
                     <tr class="!overflow-x-auto sm:overflow-x-hidden font-semibold capitalize">
