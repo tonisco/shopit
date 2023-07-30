@@ -15,6 +15,8 @@ class HomeController extends Controller
 		$sliders = HeroSlider::where('status', true)->orderBy('position', 'asc')->get();
 
 		$products = Product::with('category:id,name', 'subCategory:id,name')
+			->where('status', true)
+			->where('approved', true)
 			->withCount('productReviews')
 			->withAvg('productReviews', 'rating')
 			->paginate(10);

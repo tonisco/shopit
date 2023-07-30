@@ -23,6 +23,8 @@ class ProductsController extends Controller
 			->get();
 
 		$products = Product::with('category:id,name', 'subCategory:id,name')
+			->where('status', true)
+			->where('approved', true)
 			->withCount('productReviews')
 			->withAvg('productReviews', 'rating')
 			->paginate(9);
@@ -33,7 +35,10 @@ class ProductsController extends Controller
 	}
 	public function detail(string $id)
 	{
+		// TODO: find or fail 
 		$product = Product::with('vendor', 'productReviews')->where('id', $id)
+			->where('status', true)
+			->where('approved', true)
 			->withCount('productReviews')
 			->withAvg('productReviews', 'rating')
 			->first();
