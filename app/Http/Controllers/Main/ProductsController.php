@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
@@ -24,7 +25,7 @@ class ProductsController extends Controller
 
 		$products = Product::with('category:id,name', 'subCategory:id,name')
 			->where('status', true)
-			->where('approved', true)
+			->where('approved', ProductApprovedEnum::Approved)
 			->withCount('productReviews')
 			->withAvg('productReviews', 'rating')
 			->paginate(9);

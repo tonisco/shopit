@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Vendor;
@@ -18,11 +19,12 @@ class VendorController extends Controller
 
 	public function products(string $id)
 	{
+		// TODO: find or fail
 		$vendor = Vendor::where('id', $id)->first();
 
 		$products = Product::where('vendor_id', $id)
 			->where('status', true)
-			->where('approved', 'approved')
+			->where('approved', ProductApprovedEnum::Approved)
 			->withAvg('productReviews', 'rating')
 			->withCount('productReviews')
 			->paginate(9);

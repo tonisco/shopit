@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\HeroSlider;
@@ -16,7 +17,7 @@ class HomeController extends Controller
 
 		$products = Product::with('category:id,name', 'subCategory:id,name')
 			->where('status', true)
-			->where('approved', 'approved')
+			->where('approved', ProductApprovedEnum::Approved)
 			->withCount('productReviews')
 			->withAvg('productReviews', 'rating')
 			->paginate(10);
