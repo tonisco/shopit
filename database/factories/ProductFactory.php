@@ -31,7 +31,7 @@ class ProductFactory extends Factory
 			'category_id' => 1,
 			'sub_category_id' => 1,
 			'brand_id' => 1,
-			'approved' => 1,
+			'approved' => 'approved',
 			'status' => 1,
 		];
 	}

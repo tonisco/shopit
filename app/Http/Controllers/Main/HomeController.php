@@ -16,7 +16,7 @@ class HomeController extends Controller
 
 		$products = Product::with('category:id,name', 'subCategory:id,name')
 			->where('status', true)
-			->where('approved', true)
+			->where('approved', 'approved')
 			->withCount('productReviews')
 			->withAvg('productReviews', 'rating')
 			->paginate(10);

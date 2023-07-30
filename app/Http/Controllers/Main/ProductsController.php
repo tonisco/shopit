@@ -35,10 +35,10 @@ class ProductsController extends Controller
 	}
 	public function detail(string $id)
 	{
-		// TODO: find or fail 
+		// TODO: find or fail
 		$product = Product::with('vendor', 'productReviews')->where('id', $id)
 			->where('status', true)
-			->where('approved', true)
+			->where('approved', 'approved')
 			->withCount('productReviews')
 			->withAvg('productReviews', 'rating')
 			->first();

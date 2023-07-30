@@ -21,6 +21,8 @@ class VendorController extends Controller
 		$vendor = Vendor::where('id', $id)->first();
 
 		$products = Product::where('vendor_id', $id)
+			->where('status', true)
+			->where('approved', 'approved')
 			->withAvg('productReviews', 'rating')
 			->withCount('productReviews')
 			->paginate(9);
