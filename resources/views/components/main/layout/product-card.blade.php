@@ -1,4 +1,5 @@
 <div class="relative h-[460px] w-full group/productcard">
+    {{-- TODO: fix product card on small screens --}}
     <a href="{{ route('productsDetails', $product->id) }}"
         class="shadow-lg hover:shadow-lg lg:shadow-none mx-auto w-full bg-white max-w-sm relative dark:bg-gray-800 cursor-pointer rounded-lg h-full overflow-hidden grid grid-rows-[65%_35%]">
         <div class="w-full h-full overflow-hidden">

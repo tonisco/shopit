@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Vendor;
 
+use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -44,7 +45,21 @@ class ProductController extends Controller
 				->addColumn('image', function ($query) {
 					return "<img src='" . asset($query->image) . "' alt='" . $query->name . "' class='table-image'>";
 				})
-				->rawColumns(['image', 'action'])
+				->addColumn('approved', function ($query) {
+					if ($query->approved == ProductApprovedEnum::Approved->value) {
+						return '<div class="flex">
+									<i class="approve-icon bi bi-check-circle-fill"></i>
+								</div>';
+					} else if ($query->approved == ProductApprovedEnum::Pending->value)
+						return '<div class="flex">
+								<i class="pending-icon bi bi-clock-history"></i>
+							</div>';
+					else
+						return '<div class="flex">
+								<i class="cancel-icon bi bi-x-circle-fill"></i>
+							</div>';
+				})
+				->rawColumns(['image', 'action', 'approved'])
 				->make(true);
 		}
 		return view('vendor.products');

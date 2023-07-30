@@ -56,10 +56,49 @@
 	@apply w-4 h-4 text-white;
 }
 
+.pending-icon {
+	@apply text-2xl text-zinc-700 dark:text-zinc-200;
+}
+.cancel-icon {
+	@apply text-2xl text-red-500 dark:text-red-700;
+}
+.approve-icon {
+	@apply text-2xl text-green-500 dark:text-green-700;
+}
+
 .table-body tr {
 	@apply !overflow-x-scroll sm:overflow-x-hidden;
 }
 
 .table-body tr td {
 	@apply p-1 text-sm md:text-base;
+}
+
+#DataTables_Table_0_length > label > select,
+#DataTables_Table_0_filter > label > input {
+	@apply text-black;
+}
+
+#DataTables_Table_0_wrapper > div:nth-child(4) {
+	@apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2;
+}
+
+#DataTables_Table_0_paginate > ul {
+	@apply flex;
+}
+
+#DataTables_Table_0_paginate > ul > li {
+	@apply px-3 py-1 border;
+}
+
+#DataTables_Table_0_paginate > ul > .active {
+	@apply text-gray-600;
+}
+
+#DataTables_Table_0_paginate > ul > li:last-child {
+	@apply rounded-r-md;
+}
+
+#DataTables_Table_0_paginate > ul > li:first-child {
+	@apply rounded-l-md;
 }
