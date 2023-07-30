@@ -97,6 +97,7 @@ class DashboardController extends Controller
 					->get()
 					->where('status', 'delivered');
 			})
+			->sortBy('created_at')
 			->groupBy(function ($post) {
 				return $post->created_at->format('Y M');
 			})
