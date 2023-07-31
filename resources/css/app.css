@@ -28,11 +28,11 @@
 	display: none !important;
 }
 
-.trash-table-modal {
+.modal {
 	@apply fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-black/25;
 }
 
-.trash-table-modal-content {
+.modal-content {
 	@apply flex flex-col w-10/12 relative sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto gap-4 p-6 pt-8 bg-white dark:bg-gray-800;
 }
 
@@ -80,7 +80,7 @@
 }
 
 #DataTables_Table_0_wrapper > div:nth-child(4) {
-	@apply flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2;
+	@apply flex flex-col my-4 sm:flex-row items-start sm:items-center justify-between gap-2;
 }
 
 #DataTables_Table_0_paginate > ul {
@@ -101,4 +101,8 @@
 
 #DataTables_Table_0_paginate > ul > li:first-child {
 	@apply rounded-l-md;
+}
+
+#DataTables_Table_0_wrapper > div:nth-child(1) {
+	@apply hidden;
 }

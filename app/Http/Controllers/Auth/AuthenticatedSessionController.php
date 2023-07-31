@@ -34,7 +34,6 @@ class AuthenticatedSessionController extends Controller
 		if ($request->user()->status === 'inActive') {
 			Auth::guard('web')->logout();
 			$request->session()->regenerateToken();
-			notify()->error('Your account has been banned. Please connect with support', 'Account Banned');
 			$error_message = ['title' => 'Account Banned', 'message' => 'Your account has been banned. Please connect with support'];
 			Session::flash('info', $error_message);
 			return redirect('/');

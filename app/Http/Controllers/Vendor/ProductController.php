@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -21,11 +22,11 @@ class ProductController extends Controller
 			return DataTables::of($data)
 				->addIndexColumn()
 				->addColumn('action', function ($query) {
-					$edit_button = "<a href='" . route('vendor.product.edit', $query->id) . "' class='bg-blue-500 action-button dark:bg-blue-700'><i class='action-button-icon bi bi-pencil-square'></i></a>";
+					$edit_button = "<a href='" . route('vendor.products.edit', $query->id) . "' class='bg-blue-500 action-button dark:bg-blue-700'><i class='action-button-icon bi bi-pencil-square'></i></a>";
 
 					$delete_button = '<div>
 										<a class="bg-red-500 action-button dark:bg-red-700 deleteButton"
-										data-id="' . $query->id . '" data-name="' . $query->name . '" data-route="' . route('vendor.product.destroy', $query->id) . '">
+										data-id="' . $query->id . '" data-name="' . $query->name . '" data-route="' . route('vendor.products.destroy', $query->id) . '">
 											<i class="action-button-icon bi bi-trash"></i>
 										</a>
 									</div>';
@@ -103,6 +104,24 @@ class ProductController extends Controller
 	public function update(Request $request, string $id)
 	{
 		//
+	}
+
+	public function productStatus(Request $request, string $id)
+	{
+		error_log(Auth::user()->vendor->id);
+		$product = Product::findOrFail($id);
+		if ($product->vendor_id !== Auth::user()->vendor->id) {
+			$error_message = ['title' => 'Unauthorized Operation', 'message' => 'You are not authorized to updated this product'];
+			Session::flash('error', $error_message);
+			return back();
+		}
+
+		$product->status = !$product->status;
+		$product->save();
+		$error_message = ['title' => 'Product Updated', 'message' => 'Product status has successfully been updated'];
+		Session::flash('success', $error_message);
+
+		return back();
 	}
 
 	/**

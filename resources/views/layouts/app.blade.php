@@ -24,7 +24,7 @@
 </head>
 
 <body class="antialiased font">
-    {{-- <x-utils.flash-message /> --}}
+    <x-general.utils.flash-message />
     <div class="flex flex-col h-full min-h-screen bg-gray-100 dark:bg-gray-900">
         @yield('content')
     </div>
