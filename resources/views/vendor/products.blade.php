@@ -118,7 +118,7 @@
                             data: 'price'
                         },
                         {
-                            data: 'discount'
+                            data: 'discount',
                         },
                         {
                             data: 'status',
@@ -158,13 +158,11 @@
                             })
                         })
                         $('.status').on('click', function(e) {
-                            console.log(e.target.checked)
                             let {
                                 name,
                                 id
                             } = this.dataset
 
-                            console.log(name)
                             if (e.target.checked) {
                                 $('.check-heading').append(' show')
                                 $('.check-button').text('Show')

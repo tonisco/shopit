@@ -16,6 +16,19 @@ class ProductFactory extends Factory
 	 */
 	public function definition(): array
 	{
+		$date1 = fake()->dateTimeThisYear('+6 months');
+		$date2 = fake()->dateTimeThisYear('+6 months');
+
+		if ($date1 > $date2) {
+			$start = $date2;
+			$end = $date1;
+		} else {
+			$start = $date1;
+			$end = $date2;
+		}
+		$discount = rand(1, 5) * 10;
+
+
 		return [
 			'name' => fake()->name(),
 			'slug' => fake()->name(),
@@ -25,9 +38,9 @@ class ProductFactory extends Factory
 			'short_description' => fake()->sentence(),
 			'long_description' => fake()->paragraph(),
 			'vendor_id' => 1,
-			'discount' => rand(0, 1),
-			'discount_start_date' => fake()->date(),
-			'discount_end_date' => fake()->date(),
+			'discount' => $discount,
+			'discount_start_date' => $start,
+			'discount_end_date' => $end,
 			'category_id' => 1,
 			'sub_category_id' => 1,
 			'brand_id' => 1,

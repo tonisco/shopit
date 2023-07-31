@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -21,6 +22,15 @@ class ProductController extends Controller
 			$data = Product::where('vendor_id', Auth::user()->vendor->id)->get();
 			return DataTables::of($data)
 				->addIndexColumn()
+				->addColumn('discount', function ($query) {
+					if ($query->discount) {
+						$now = new DateTime('now');
+						error_log($query->discount_start_date < $now && $query->discount_end_date > $now);
+						if ($query->discount_start_date < $now && $query->discount_end_date > $now) {
+							return '$' . $query->discount;
+						}
+					}
+				})
 				->addColumn('action', function ($query) {
 					$edit_button = "<a href='" . route('vendor.products.edit', $query->id) . "' class='bg-blue-500 action-button dark:bg-blue-700'><i class='action-button-icon bi bi-pencil-square'></i></a>";
 
