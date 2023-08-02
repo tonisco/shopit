@@ -3,7 +3,8 @@
         <div class="flex flex-col items-start justify-between w-full gap-2 sm:flex-row sm:items-center">
             <h1 class="text-3xl text-gray-800 dark:text-gray-200">Products</h1>
             <a href="{{ route('vendor.products.create') }}"
-                class="px-3 py-2 text-white bg-red-500 rounded shadow dark:bg-red-700 hover:bg-red-600">Add Product</a>
+                class="px-3 py-2 text-white bg-red-500 rounded shadow dark:bg-red-700 hover:bg-red-600">Create
+                Product</a>
         </div>
         <div class="w-[90vw] overflow-x-auto sm:w-full sm:overflow-hidden text-gray-800 dark:text-gray-200">
             <table class="!w-full datatable text-gray-800 dark:text-gray-200">
