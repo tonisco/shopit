@@ -37,7 +37,8 @@ class datePicker extends Component
 		public bool $time24hr = true,
 		public bool $clearable = false,
 		public bool $disableMobile = true,
-		public string $label = 'Date Picker'
+		public string $label = 'Date Picker',
+		public string $name = 'name'
 	) {
 		$this->id = $this->id ?: Str::random(16);
 

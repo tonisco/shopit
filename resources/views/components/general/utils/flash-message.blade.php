@@ -10,6 +10,3 @@
 @if ($message = Session::get('info'))
     <x-general.utils.toast :message="$message['message']" :title="$message['title']" type="info" />
 @endif
-@if ($errors->any())
-    <x-general.utils.toast :message="$message['message']" :title="$message['title']" type="any" />
-@endif
