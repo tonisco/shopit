@@ -85,8 +85,10 @@ class ProductController extends Controller
 	 */
 	public function create()
 	{
-		$categories = Category::with('subCategories');
-		$brands = Brand::all();
+		$categories = Category::with('subCategories:id,name,category_id')
+			->select('id', 'name',)->get();
+
+		$brands = Brand::select('id', 'name')->get();
 
 		return view('vendor.Products.create', compact('categories', 'brands'));
 	}

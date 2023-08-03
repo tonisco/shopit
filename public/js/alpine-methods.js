@@ -28,4 +28,20 @@ document.addEventListener("alpine:init", () => {
 			}, 1000);
 		},
 	}));
+
+	Alpine.data("categoriesData", (data) => ({
+		categories: data,
+		subCategories: [],
+		setSubCategory(e) {
+			if (this.categories) {
+				let category = this.categories.find(
+					(category) => category.id == e
+				);
+
+				if (category && category.sub_categories.length > 0) {
+					this.subCategories = category.sub_categories;
+				} else this.subCategories = [];
+			}
+		},
+	}));
 });
