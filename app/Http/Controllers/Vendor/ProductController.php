@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use DateTime;
 use Illuminate\Http\Request;
@@ -25,11 +27,13 @@ class ProductController extends Controller
 				->addColumn('discount', function ($query) {
 					if ($query->discount) {
 						$now = new DateTime('now');
-						error_log($query->discount_start_date < $now && $query->discount_end_date > $now);
 						if ($query->discount_start_date < $now && $query->discount_end_date > $now) {
-							return '$' . $query->discount;
+							return  $query->discount . '%';
 						}
 					}
+				})
+				->addColumn('price', function ($query) {
+					return '$' . number_format($query->price);
 				})
 				->addColumn('action', function ($query) {
 					$edit_button = "<a href='" . route('vendor.products.edit', $query->id) . "' class='bg-blue-500 action-button dark:bg-blue-700'><i class='action-button-icon bi bi-pencil-square'></i></a>";
@@ -73,7 +77,7 @@ class ProductController extends Controller
 				->rawColumns(['image', 'action', 'approved'])
 				->make(true);
 		}
-		return view('vendor.products');
+		return view('vendor.Products.index');
 	}
 
 	/**
@@ -81,7 +85,10 @@ class ProductController extends Controller
 	 */
 	public function create()
 	{
-		//
+		$categories = Category::with('subCategories');
+		$brands = Brand::all();
+
+		return view('vendor.Products.create', compact('categories', 'brands'));
 	}
 
 	/**

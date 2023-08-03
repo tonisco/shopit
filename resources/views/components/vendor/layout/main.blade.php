@@ -36,7 +36,7 @@
                     class="fixed top-12 left-0 hidden lg:block h-[calc(100vh-48px)] overflow-hidden w-[210px] bg-gray-100 dark:bg-gray-800 shadow-lg">
                     <x-vendor.layout.sidebar />
                 </div>
-                <div class="lg:ml-[210px] flex-1">
+                <div class="lg:ml-[210px] w-full">
                     {{ $slot }}
                 </div>
             </div>

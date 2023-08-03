@@ -106,3 +106,42 @@
 #DataTables_Table_0_wrapper > div:nth-child(1) {
 	@apply hidden;
 }
+
+.form-input {
+	@apply block min-h-[auto] focus:!ring-red-500 w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-red-500 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 focus:outline-none focus:ring-0 focus:border-0 focus:border-red-500;
+}
+
+.form-label {
+	@apply pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-red-500 peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200;
+}
+
+div[data-te-input-wrapper-init] > div[data-te-input-focused] > div,
+div[data-te-select-form-outline-ref] > div[data-te-input-focused] > div {
+	@apply !shadow-red-500 focus:!bg-red-500 !border-red-500;
+}
+
+div[data-te-select-form-outline-ref] > input[data-te-select-input-ref] {
+	@apply border-none outline-none ring-0;
+}
+
+div[data-te-select-form-outline-ref]
+	> input[data-te-input-focused]
+	~ label[data-te-input-state-active],
+div[data-te-select-form-outline-ref] > input[data-te-input-focused] ~ span,
+div[data-te-select-form-outline-ref] > input[data-te-input-focused] ~ div {
+	@apply !text-red-500;
+}
+
+div[data-te-input-wrapper-init]
+	> div[data-te-input-focused]
+	> div[data-te-input-notch-middle-ref],
+div[data-te-select-form-outline-ref]
+	> div[data-te-input-focused]
+	> div[data-te-input-notch-middle-ref] {
+	@apply border-t-0 transition-[border-top] duration-0;
+}
+
+.flatpickr-container .form-control,
+.flatpickr-input {
+	@apply border-none;
+}
