@@ -180,7 +180,56 @@ class ProductController extends Controller
 	 */
 	public function update(Request $request, string $id)
 	{
-		//
+		$product = Product::where('id', $id)->where('vendor_id', Auth::user()->vendor->id)->firstOrFail();
+
+		$request->validate([
+			'name' => ['required', 'max:200'],
+			'image' => ['image', 'max:3000'],
+			'category' => ['required'],
+			'brand' => ['required'],
+			'price' => ['required', 'numeric'],
+			'discount' => ['numeric', 'nullable'],
+			'discount_date' => ['required_with:discount', 'regex:/to/i' => 'End Date is required'],
+			'qty' => ['required', 'numeric'],
+			'short_description' => ['required'],
+			'long_description' => ['required'],
+			'status' => ['required'],
+		]);
+
+		if ($request->image) {
+			$image = $this->replaceImage($request, 'image', 'product', 'product', $product->image);
+
+			$product->image = $image;
+		}
+
+		$discount_start_date = null;
+		$discount_end_date = null;
+
+		if ($request->discount_date) {
+			$dates = explode(' to ', $request->discount_date);
+			$discount_start_date = $dates[0];
+			$discount_end_date = $dates[1];
+		}
+
+		$product->name = $request->name;
+		$product->slug = Str::slug($request->name);
+		$product->qty = $request->qty;
+		$product->price = $request->price;
+		$product->short_description = $request->short_description;
+		$product->long_description = $request->long_description;
+		$product->discount = $request->discount;
+		$product->discount_start_date = $discount_start_date;
+		$product->discount_end_date = $discount_end_date;
+		$product->category_id = $request->category;
+		$product->sub_category_id = $request->sub_category_id;
+		$product->brand_id = $request->brand;
+		$product->status = $request->status;
+
+		$product->save();
+
+		Session::flash('success', ['title' => 'Product Updated', 'message' => 'Product details has been updated']);
+
+		return redirect()->route('vendor.products.index');
 	}
 
 	public function productStatus(Request $request, string $id)
