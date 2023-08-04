@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Traits\ImageUploadTrait;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -11,10 +12,13 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
+	use ImageUploadTrait;
+
 	/**
 	 * Display a listing of the resource.
 	 */
@@ -98,7 +102,54 @@ class ProductController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		$request->validate([
+			'name' => ['required', 'max:200'],
+			'image' => ['required', 'image', 'max:3000'],
+			'category' => ['required'],
+			'brand' => ['required'],
+			'price' => ['required', 'numeric'],
+			'discount' => ['numeric', 'nullable'],
+			'discount_date' => ['required_with:discount', 'regex:/to/i' => 'End Date is required'],
+			'qty' => ['required', 'numeric'],
+			'short_description' => ['required'],
+			'long_description' => ['required'],
+			'status' => ['required'],
+		]);
+
+		$image = $this->uploadImage($request, 'image', 'product', 'product');
+
+		$discount_start_date = null;
+		$discount_end_date = null;
+
+		if ($request->discount_date) {
+			$dates = explode(' to ', $request->discount_date);
+			$discount_start_date = $dates[0];
+			$discount_end_date = $dates[1];
+		}
+
+		$product = Product::create([
+			'name' => $request->name,
+			'slug' => Str::slug($request->name),
+			'image' => $image,
+			'qty' => $request->qty,
+			'price' => $request->price,
+			'short_description' => $request->short_description,
+			'long_description' => $request->long_description,
+			'vendor_id' => Auth::user()->vendor->id,
+			'discount' => $request->discount,
+			'discount_start_date' => $discount_start_date,
+			'discount_end_date' => $discount_end_date,
+			'category_id' => $request->category,
+			'sub_category_id' => $request->sub_category_id,
+			'brand_id' => $request->brand,
+			'approved' => 0,
+			'status' => $request->status,
+		]);
+
+		Session::flash('success', ['title' => 'Product Created', 'message' => 'Product has been created and is awaiting approval']);
+
+
+		return redirect()->route('vendor.products.index');
 	}
 
 	/**

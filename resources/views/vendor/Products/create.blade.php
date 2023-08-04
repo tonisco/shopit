@@ -112,9 +112,9 @@
 
             <div class="flex flex-col w-full gap-2">
                 <div class="relative" data-te-input-wrapper-init>
-                    <input required class="form-input peer" value="{{ old('quantity') }}" type="number" name="quantity"
-                        id="quantity">
-                    <label class="form-label" for="quantity">Stock Quantity</label>
+                    <input required class="form-input peer" value="{{ old('qty') }}" type="number" name="qty"
+                        id="qty">
+                    <label class="form-label" for="qty">Stock Quantity</label>
                 </div>
                 @error('discount')
                     <x-general.input.input-error :messages="$message" />
