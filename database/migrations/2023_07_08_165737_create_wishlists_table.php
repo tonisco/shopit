@@ -6,27 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('wishlists', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('user_id');
+	/**
+	 * Run the migrations.
+	 */
+	public function up(): void
+	{
+		Schema::create('wishlists', function (Blueprint $table) {
+			$table->id();
+			$table->unsignedBigInteger('product_id');
+			$table->unsignedBigInteger('user_id');
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
-        });
-    }
+			$table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+			$table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('wishlists');
-    }
+	/**
+	 * Reverse the migrations.
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('wishlists');
+	}
 };
