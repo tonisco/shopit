@@ -1,6 +1,14 @@
 <x-vendor.layout.main page="Products edit">
-    <section class="flex flex-col flex-1 gap-6 px-6 py-8 overflow-x-hidden">
-        <h1 class="text-3xl font-semibold text-gray-800 capitalize dark:text-gray-200">Create Product</h1>
+    <section class="flex flex-col flex-1 gap-8 px-6 py-8 overflow-x-hidden">
+        <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+            <h1 class="text-3xl font-semibold text-gray-800 capitalize dark:text-gray-200">Edit Product</h1>
+
+            <form action="{{ route('vendor.products.destroy', $product->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <x-general.input.submit-button text="Delete Product" />
+            </form>
+        </div>
 
         <form method="POST" enctype="multipart/form-data" action="{{ route('vendor.products.update', $product->id) }}"
             class="flex flex-col gap-8 p-8 bg-white shadow-lg rounded-2xl dark:bg-gray-800">
@@ -34,7 +42,7 @@
                 @enderror
             </div>
 
-            <div class="flex gap-4" x-data="categoriesData({{ json_encode($categories) }}, {{ json_encode($product) }})">
+            <div class="flex flex-col gap-4 sm:flex-row" x-data="categoriesData({{ json_encode($categories) }}, {{ json_encode($product) }})">
                 <div class="flex flex-col w-full gap-2">
                     <div class="flex-1">
                         <select required data-te-select-init data-te-select-size="lg" name="category" id="category"
@@ -163,7 +171,7 @@
                 </label>
             </div>
 
-            <x-general.input.submit-button text="create Product" />
+            <x-general.input.submit-button text="update Product" />
         </form>
     </section>
 </x-vendor.layout.main>

@@ -29,7 +29,7 @@
                 @enderror
             </div>
 
-            <div class="flex gap-4" x-data="categoriesData({{ json_encode($categories) }})">
+            <div class="flex flex-col gap-4 sm:flex-row" x-data="categoriesData({{ json_encode($categories) }})">
                 <div class="flex flex-col w-full gap-2">
                     <div class="flex-1">
                         <select required data-te-select-init data-te-select-size="lg" name="category" id="category"
