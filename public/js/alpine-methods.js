@@ -29,7 +29,7 @@ document.addEventListener("alpine:init", () => {
 		},
 	}));
 
-	Alpine.data("categoriesData", (data) => ({
+	Alpine.data("categoriesData", (data, defaultData) => ({
 		categories: data,
 		subCategories: [],
 		setSubCategory(e) {
@@ -41,6 +41,11 @@ document.addEventListener("alpine:init", () => {
 				if (category && category.sub_categories.length > 0) {
 					this.subCategories = category.sub_categories;
 				} else this.subCategories = [];
+			}
+		},
+		init() {
+			if (defaultData && defaultData.category_id) {
+				this.setSubCategory(defaultData.category_id);
 			}
 		},
 	}));

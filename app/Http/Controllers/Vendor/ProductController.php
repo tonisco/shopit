@@ -127,7 +127,7 @@ class ProductController extends Controller
 			$discount_end_date = $dates[1];
 		}
 
-		$product = Product::create([
+		Product::create([
 			'name' => $request->name,
 			'slug' => Str::slug($request->name),
 			'image' => $image,
@@ -165,7 +165,14 @@ class ProductController extends Controller
 	 */
 	public function edit(string $id)
 	{
-		//
+		$product = Product::where('id', $id)->where('vendor_id', Auth::user()->vendor->id)->firstOrFail();
+
+		$categories = Category::with('subCategories:id,name,category_id')
+			->select('id', 'name',)->get();
+
+		$brands = Brand::select('id', 'name')->get();
+
+		return view('vendor.Products.edit', compact('product', 'categories', 'brands'));
 	}
 
 	/**
