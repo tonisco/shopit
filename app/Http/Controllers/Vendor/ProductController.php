@@ -234,20 +234,19 @@ class ProductController extends Controller
 
 	public function productStatus(Request $request, string $id)
 	{
-		error_log(Auth::user()->vendor->id);
-		$product = Product::findOrFail($id);
+		$product = Product::where('id', $id)->where('vendor_id', Auth::user()->vendor->id)->firstOrFail();
 		if ($product->vendor_id !== Auth::user()->vendor->id) {
 			$error_message = ['title' => 'Unauthorized Operation', 'message' => 'You are not authorized to updated this product'];
 			Session::flash('error', $error_message);
-			return back();
+			return redirect()->back();
 		}
 
 		$product->status = !$product->status;
 		$product->save();
-		$error_message = ['title' => 'Product Updated', 'message' => 'Product status has successfully been updated'];
-		Session::flash('success', $error_message);
+		$message = ['title' => 'Product Updated', 'message' => 'Product status has successfully been updated'];
+		Session::flash('success', $message);
 
-		return back();
+		return redirect()->back();
 	}
 
 	/**
@@ -255,6 +254,22 @@ class ProductController extends Controller
 	 */
 	public function destroy(string $id)
 	{
-		//
+		$product = Product::with('productImages')
+			->where('id', $id)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->firstOrFail();
+
+		$this->deleteImage($product->image);
+
+		foreach ($product->productImages as $productImage) {
+			$this->deleteImage($productImage->image);
+		}
+
+		$product->delete();
+
+		$message = ['title' => 'Product Delete', 'message' => 'Product has been deleted'];
+		Session::flash('success', $message);
+
+		return redirect()->route('vendor.products.index');
 	}
 }

@@ -29,4 +29,11 @@ trait ImageUploadTrait
 			return $this->uploadImage($request, $imageName, $path, $type);
 		}
 	}
+
+	public function deleteImage(string $imageName)
+	{
+		if (File::exists(public_path($imageName))) {
+			File::delete(public_path($imageName));
+		}
+	}
 }
