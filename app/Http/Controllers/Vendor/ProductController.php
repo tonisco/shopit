@@ -54,7 +54,7 @@ class ProductController extends Controller
 											<i class="action-button-icon bi bi-three-dots-vertical"></i>
 										</a>
 										<div @click.outside="toggle" x-show="open" class="product-options">
-											<a class="product-options-item">Image Gallery</a>
+											<a class="product-options-item" href="' . route('vendor.products.images.index', $query->id) . '">Image Gallery</a>
 											<a class="product-options-item">Variants</a>
 										</div>
 									</div>';
