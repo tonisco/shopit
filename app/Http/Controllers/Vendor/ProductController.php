@@ -140,7 +140,7 @@ class ProductController extends Controller
 			'discount_start_date' => $discount_start_date,
 			'discount_end_date' => $discount_end_date,
 			'category_id' => $request->category,
-			'sub_category_id' => $request->sub_category_id,
+			'sub_category_id' => $request->sub_category,
 			'brand_id' => $request->brand,
 			'approved' => 0,
 			'status' => $request->status,

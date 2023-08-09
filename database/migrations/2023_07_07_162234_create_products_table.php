@@ -24,6 +24,8 @@ return new class extends Migration
 			$table->double('discount')->nullable();
 			$table->date('discount_start_date')->nullable();
 			$table->date('discount_end_date')->nullable();
+			$table->string('seo_title')->nullable();
+			$table->text('seo_description')->nullable();
 			$table->unsignedBigInteger('category_id');
 			$table->unsignedBigInteger('sub_category_id')->nullable();
 			$table->unsignedBigInteger('brand_id');
