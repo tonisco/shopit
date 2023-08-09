@@ -49,4 +49,17 @@ document.addEventListener("alpine:init", () => {
 			}
 		},
 	}));
+
+	Alpine.data("imagePreview", () => ({
+		image_url: "",
+		value: "",
+		change(e) {
+			if (e.target.files[0])
+				this.image_url = URL.createObjectURL(e.target.files[0]);
+		},
+		clear(val) {
+			this.image_url = "";
+			document.querySelector("#" + val.id).value = "";
+		},
+	}));
 });
