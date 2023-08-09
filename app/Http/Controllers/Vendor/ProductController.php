@@ -114,9 +114,15 @@ class ProductController extends Controller
 			'short_description' => ['required'],
 			'long_description' => ['required'],
 			'status' => ['required'],
+			'product_image1' => ['nullable', 'image', 'max:3000'],
+			'product_image2' => ['nullable', 'image', 'max:3000'],
+			'product_image3' => ['nullable', 'image', 'max:3000'],
+			'product_image4' => ['nullable', 'image', 'max:3000'],
+			'product_image5' => ['nullable', 'image', 'max:3000'],
+			'product_image6' => ['nullable', 'image', 'max:3000'],
 		]);
 
-		$image = $this->uploadImage($request, 'image', 'product', 'product');
+		$image = $this->uploadImage($request, 'image', 'product', $request->name);
 
 		$discount_start_date = null;
 		$discount_end_date = null;
@@ -127,7 +133,7 @@ class ProductController extends Controller
 			$discount_end_date = $dates[1];
 		}
 
-		Product::create([
+		$product = Product::create([
 			'name' => $request->name,
 			'slug' => Str::slug($request->name),
 			'image' => $image,
@@ -145,6 +151,17 @@ class ProductController extends Controller
 			'approved' => 0,
 			'status' => $request->status,
 		]);
+
+		$productImages = [];
+
+		for ($i = 1; $i < 7; $i++) {
+			if ($request['product_image' . $i]) {
+				$productImage = $this->uploadImage($request, 'product_image' . $i, 'product_image', $request->name);
+				array_push($productImages, ['image' => $productImage]);
+			}
+		}
+
+		$product->productImages()->createMany();
 
 		Session::flash('success', ['title' => 'Product Created', 'message' => 'Product has been created and is awaiting approval']);
 
