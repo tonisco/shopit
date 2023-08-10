@@ -1,6 +1,7 @@
 <x-vendor.layout.main page="Products create">
     <form method="POST" action="{{ route('vendor.products.store') }}" enctype="multipart/form-data"
         class="flex flex-col flex-1 gap-6 px-6 py-8 overflow-x-hidden">
+        @csrf
         <div class="flex flex-col justify-between w-full gap-4 sm:items-center sm:flex-row">
             <x-vendor.layout.heading title="Create Product" :crumbs="[
                 ['name' => 'dashboard', 'route' => route('vendor.dashboard')],
@@ -10,8 +11,7 @@
             <x-general.input.submit-button text="create Product" />
         </div>
 
-        <div class="flex flex-col flex-wrap gap-8 sm:gap-4 sm:flex-row" action="{{ route('vendor.products.store') }}">
-            @csrf
+        <div class="flex flex-col flex-wrap gap-8 sm:gap-4 sm:flex-row">
             <div class="flex flex-[3] flex-col gap-8 sm:min-w-[31rem]">
 
                 <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
