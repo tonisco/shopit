@@ -42,8 +42,7 @@
 
                     <div class="flex flex-col w-full gap-2">
                         <div class="relative" data-te-input-wrapper-init>
-                            <textarea class="form-input peer" value="{{ old('long_description') }}"name="long_description" id="long_description"
-                                cols="30" rows="10"></textarea>
+                            <textarea class="form-input peer" name="long_description" id="long_description" cols="30" rows="10">{{ old('long_description') }}</textarea>
                             <label class="form-label" for="long_description">Long
                                 Description</label>
                         </div>
@@ -129,18 +128,20 @@
 
 
 
-            <div class="flex flex-[2] flex-col gap-8 sm:min-w-[20.625rem]" x-data="categoriesData({{ json_encode($categories) }})">
+            <div class="flex flex-[2] flex-col gap-8 sm:min-w-[20.625rem]" x-data="categoriesData({{ json_encode($categories) }}, {{ old('category') }})">
                 <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                     <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Group</h2>
 
                     <div class="flex flex-col w-full gap-2">
                         <div class="flex-1">
                             <select required data-te-select-init data-te-select-size="lg" name="category" id="category"
-                                x-on:change="setSubCategory($event.target.value)" value="{{ old('category') }}">
+                                x-on:change="setSubCategory($event.target.value)">
                                 <option>Select</option>
-                                <template x-for="category in categories">
-                                    <option :value="category.id" x-text="category.name"></option>
-                                </template>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        @if ($category->id == old('category')) selected @endif>{{ $category->name }}
+                                    </option>
+                                @endforeach
                             </select>
                             <label data-te-select-label-ref for="category">Category</label>
                         </div>
@@ -152,10 +153,12 @@
                     <div class="flex flex-col w-full gap-2">
                         <div class="flex-1">
                             <select required data-te-select-init data-te-select-size="lg" name="sub_category"
-                                id="sub_category" value="{{ old('sub_category') }}">
+                                id="sub_category">
                                 <option>Select</option>
                                 <template x-for="subCategory in subCategories">
-                                    <option :value="subCategory.id" x-text="subCategory.name"></option>
+                                    <option :value="subCategory.id"
+                                        :selected="subCategory.id == {{ old('sub_category') }}"
+                                        x-text="subCategory.name"></option>
                                 </template>
                             </select>
                             <label data-te-select-label-ref for="sub_category">Sub
@@ -171,7 +174,8 @@
                             value="{{ old('brand') }}">
                             <option>Select</option>
                             @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                <option value="{{ $brand->id }}" @if ($brand->id == old('brand')) selected @endif>
+                                    {{ $brand->name }}>{{ $brand->name }}</option>
                             @endforeach
                         </select>
                         <label data-te-select-label-ref for="brand">Brand</label>

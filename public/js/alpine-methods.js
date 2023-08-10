@@ -43,8 +43,8 @@ document.addEventListener("alpine:init", () => {
 			}
 		},
 		init() {
-			if (defaultData && defaultData.category_id) {
-				this.setSubCategory(defaultData.category_id);
+			if (defaultData) {
+				this.setSubCategory(defaultData);
 			}
 		},
 	}));

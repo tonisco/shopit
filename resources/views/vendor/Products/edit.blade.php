@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-[2] flex-col gap-8 sm:min-w-[20.625rem]" x-data="categoriesData({{ json_encode($categories) }})">
+                <div class="flex flex-[2] flex-col gap-8 sm:min-w-[20.625rem]" x-data="categoriesData({{ json_encode($categories) }}, {{ $product->category_id }})">
                     <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                         <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Group</h2>
 
@@ -112,11 +112,13 @@
                             <div class="flex-1">
                                 <select required data-te-select-init data-te-select-size="lg" name="category"
                                     id="category" x-on:change="setSubCategory($event.target.value)"
-                                    value="{{ $product->category }}">
+                                    value="{{ $product->category_id }}">
                                     <option>Select</option>
-                                    <template x-for="category in categories">
-                                        <option :value="category.id" x-text="category.name"></option>
-                                    </template>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            @if ($category->id == $product->category_id) selected @endif>{{ $category->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 <label data-te-select-label-ref for="category">Category</label>
                             </div>
@@ -128,10 +130,12 @@
                         <div class="flex flex-col w-full gap-2">
                             <div class="flex-1">
                                 <select required data-te-select-init data-te-select-size="lg" name="sub_category"
-                                    id="sub_category" value="{{ $product->sub_category }}">
+                                    id="sub_category">
                                     <option>Select</option>
                                     <template x-for="subCategory in subCategories">
-                                        <option :value="subCategory.id" x-text="subCategory.name"></option>
+                                        <option :value="subCategory.id"
+                                            :selected="subCategory.id == {{ $product->sub_category_id }}"
+                                            x-text="subCategory.name"></option>
                                     </template>
                                 </select>
                                 <label data-te-select-label-ref for="sub_category">Sub
@@ -147,7 +151,8 @@
                                 id="brand" value="{{ $product->brand }}">
                                 <option>Select</option>
                                 @foreach ($brands as $brand)
-                                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                    <option value="{{ $brand->id }}"
+                                        @if ($brand->id == $product->brand_id) selected @endif>{{ $brand->name }}</option>
                                 @endforeach
                             </select>
                             <label data-te-select-label-ref for="brand">Brand</label>
@@ -182,9 +187,7 @@
                                 optimization
                             </h2>
                             <p class="text-sm text-gray-500">Provide information that will help improve the snippet and
-                                bring
-                                your product to the top of
-                                search engines.</p>
+                                bring your product to the top of search engines.</p>
                         </div>
 
                         <div class="flex flex-col w-full gap-2">
