@@ -36,33 +36,11 @@ class ProductController extends Controller
 						}
 					}
 				})
-				->addColumn('price', function ($query) {
-					return '$' . number_format($query->price);
-				})
 				->addColumn('action', function ($query) {
-					$edit_button = "<a href='" . route('vendor.products.edit', $query->id) . "' class='bg-blue-500 action-button dark:bg-blue-700'><i class='action-button-icon bi bi-pencil-square'></i></a>";
-
-					$delete_button = '<div>
-										<a class="bg-red-500 action-button dark:bg-red-700 deleteButton"
-										data-id="' . $query->id . '" data-name="' . $query->name . '" data-route="' . route('vendor.products.destroy', $query->id) . '">
-											<i class="action-button-icon bi bi-trash"></i>
-										</a>
-									</div>';
-
-					$options_button = '<div x-data="toggler" class="relative">
-										<a @click="toggle" class="action-button bg-zinc-700">
-											<i class="action-button-icon bi bi-three-dots-vertical"></i>
-										</a>
-										<div @click.outside="toggle" x-show="open" class="product-options">
-											<a class="product-options-item" href="' . route('vendor.products.images.index', $query->id) . '">Image Gallery</a>
-											<a class="product-options-item">Variants</a>
-										</div>
-									</div>';
-					return '<div class="flex items-center gap-2">
-					' . $edit_button . ' ' . $delete_button . ' ' . $options_button . '</div';
+					return ['edit' => route('vendor.products.edit', $query->id), 'delete' => route('vendor.products.destroy', $query->id)];
 				})
 				->addColumn('image', function ($query) {
-					return "<img src='" . asset($query->image) . "' alt='" . $query->name . "' class='table-image'>";
+					return asset($query->image);
 				})
 				->addColumn('approved', function ($query) {
 					if ($query->approved == ProductApprovedEnum::Approved->value) {
@@ -148,7 +126,7 @@ class ProductController extends Controller
 			'category_id' => $request->category,
 			'sub_category_id' => $request->sub_category,
 			'brand_id' => $request->brand,
-			'approved' => 0,
+			'approved' => ProductApprovedEnum::Pending->value,
 			'status' => $request->status === 'active',
 		]);
 

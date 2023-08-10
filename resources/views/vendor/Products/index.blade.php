@@ -3,21 +3,22 @@
         <div class="flex flex-col items-start justify-between w-full gap-2 sm:flex-row sm:items-center">
             <h1 class="text-3xl text-gray-800 dark:text-gray-200">Products</h1>
             <a href="{{ route('vendor.products.create') }}"
-                class="px-3 py-2 text-white bg-red-500 rounded shadow dark:bg-red-700 hover:bg-red-600">Create
+                class="px-3 py-2 text-sm text-white bg-red-500 rounded shadow sm:text-base dark:bg-red-700 hover:bg-red-600">Create
                 Product</a>
         </div>
-        <div class="w-[90vw] overflow-x-auto sm:w-full sm:overflow-hidden text-gray-800 dark:text-gray-200">
+        <div class="w-[93vw] overflow-x-auto sm:w-full sm:overflow-hidden text-gray-800 dark:text-gray-200">
             <table class="!w-full datatable text-gray-800 dark:text-gray-200">
                 <thead>
                     <tr class="font-semibold capitalize">
-                        <td class="px-1 py-2 text-sm md:text-base"> id </td>
-                        <td class="px-1 py-2 text-sm md:text-base"> image </td>
-                        <td class="px-1 py-2 text-sm md:text-base"> name </td>
-                        <td class="px-1 py-2 text-sm md:text-base"> price </td>
-                        <td class="px-1 py-2 text-sm md:text-base"> discount </td>
-                        <td class="px-1 py-2 text-sm md:text-base"> status </td>
-                        <td class="px-1 py-2 text-sm md:text-base"> approved </td>
-                        <td class="px-1 py-2 text-sm md:text-base"> action </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> id </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> image </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> name </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> price </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> discount </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> status </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> approved </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> updated </td>
+                        <td class="px-1 py-2 text-xs md:text-sm"> action </td>
                     </tr>
                 </thead>
                 <tbody class="!px-1 table-body"></tbody>
@@ -69,7 +70,11 @@
     @section('script')
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
         <script type="text/javascript">
+            // let ball = <?php echo json_encode(\App\Enums\ProductApprovedEnum::cases()); ?>
+            // console.log(JSON.parse(ball))
+
             let modal = $('.trash-table-modal')
             let checkmodal = $('.check-modal')
 
@@ -103,6 +108,9 @@
                 let table = $('.datatable').DataTable({
                     processing: true,
                     serverside: true,
+                    order: [
+                        [8, 'desc']
+                    ],
                     ajax: "{{ route('vendor.products.index') }}",
                     columns: [{
                             data: 'id'
@@ -110,13 +118,22 @@
                         {
                             data: 'image',
                             orderable: false,
-                            searchable: false
+                            searchable: false,
+                            render(data, type, row) {
+                                return `<img src='${data}' alt='${row.name}' class='table-image'>`
+                            }
                         },
                         {
-                            data: 'name'
+                            data: 'name',
+							render: function(data){
+								return data.length < 19 ?
+               					 data :
+                				data.substr(0, 18) +'&#8230;';
+							}
                         },
                         {
-                            data: 'price'
+                            data: 'price',
+                            render: DataTable.render.number(null, null, null, '$')
                         },
                         {
                             data: 'discount',
@@ -138,9 +155,34 @@
                             data: 'approved',
                         },
                         {
+                            data: 'updated_at',
+                            render: DataTable.render.date(),
+                        },
+                        {
                             data: 'action',
                             orderable: false,
                             searchable: false,
+                            render(data, type, row) {
+                                return `<div class="flex items-center gap-1.5">
+									<a href='${data.edit}' class='bg-blue-500 action-button dark:bg-blue-700'>
+										<i class='action-button-icon bi bi-pencil-square'></i>
+									</a>
+									<div>
+										<a class="bg-red-500 action-button dark:bg-red-700 deleteButton"
+										data-id="${row.id}" data-name="${row.name}" data-route="${data.delete}">
+											<i class="action-button-icon bi bi-trash"></i>
+										</a>
+									</div>
+									<div x-data="toggler" class="relative">
+										<a @click="toggle" class="action-button bg-zinc-700">
+											<i class="action-button-icon bi bi-three-dots-vertical"></i>
+										</a>
+										<div @click.outside="toggle" x-show="open" class="product-options">
+											<a class="product-options-item">Variants</a>
+										</div>
+									</div>
+								</div`
+                            }
                         },
                     ],
                     drawCallback: function() {

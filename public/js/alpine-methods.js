@@ -22,7 +22,6 @@ document.addEventListener("alpine:init", () => {
 					this.show = false;
 					clearInterval(interval);
 				} else {
-					console.log(this.time);
 					this.time = this.time - 1;
 				}
 			}, 1000);
