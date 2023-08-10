@@ -108,12 +108,12 @@ class ProductController extends Controller
 			'category' => ['required'],
 			'brand' => ['required'],
 			'price' => ['required', 'numeric'],
-			'discount' => ['numeric', 'nullable'],
-			'discount_date' => ['required_with:discount', 'regex:/to/i' => 'End Date is required'],
 			'qty' => ['required', 'numeric'],
 			'short_description' => ['required'],
 			'long_description' => ['required'],
 			'status' => ['required'],
+			'discount' => ['numeric', 'nullable'],
+			'discount_date' => ['required_with:discount'],
 			'product_image1' => ['nullable', 'image', 'max:3000'],
 			'product_image2' => ['nullable', 'image', 'max:3000'],
 			'product_image3' => ['nullable', 'image', 'max:3000'],
@@ -122,7 +122,7 @@ class ProductController extends Controller
 			'product_image6' => ['nullable', 'image', 'max:3000'],
 		]);
 
-		$image = $this->uploadImage($request, 'image', 'product', $request->name);
+		$image = $this->uploadImage($request, 'image', 'product', Str::slug($request->name));
 
 		$discount_start_date = null;
 		$discount_end_date = null;
@@ -149,19 +149,19 @@ class ProductController extends Controller
 			'sub_category_id' => $request->sub_category,
 			'brand_id' => $request->brand,
 			'approved' => 0,
-			'status' => $request->status,
+			'status' => $request->status === 'active',
 		]);
 
-		$productImages = [];
+		$productImgs = [];
 
 		for ($i = 1; $i < 7; $i++) {
 			if ($request['product_image' . $i]) {
-				$productImage = $this->uploadImage($request, 'product_image' . $i, 'product_image', $request->name);
-				array_push($productImages, ['image' => $productImage]);
+				$productImage = $this->uploadImage($request, 'product_image' . $i, 'product_image', $product->slug);
+				array_push($productImgs, ['image' => $productImage]);
 			}
 		}
 
-		$product->productImages()->createMany();
+		$product->productImages()->createMany($productImgs);
 
 		Session::flash('success', ['title' => 'Product Created', 'message' => 'Product has been created and is awaiting approval']);
 
