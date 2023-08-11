@@ -6,12 +6,14 @@
             <form action="{{ route('vendor.products.destroy', $product->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <x-general.input.submit-button text="Delete Product" />
+                <x-general.input.submit-button text="Delete" />
             </form>
         </div>
 
         <form method="POST" enctype="multipart/form-data" action="{{ route('vendor.products.update', $product->id) }}">
-            <div class="flex flex-col flex-wrap gap-8 sm:gap-4 sm:flex-row">
+            @csrf
+            @method('PUT')
+            <div class="flex flex-col flex-wrap gap-8 mb-6 sm:gap-4 sm:flex-row">
                 <div class="flex flex-[3] flex-col gap-8 sm:min-w-[31rem]">
 
                     <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -245,14 +247,7 @@
                     </div>
                 </div>
             </div>
-        </form>
-
-        <form method="POST" enctype="multipart/form-data"
-            action="{{ route('vendor.products.update', $product->id) }}"
-            class="flex flex-col gap-8 p-8 bg-white shadow-lg rounded-2xl dark:bg-gray-800">
-            @csrf
-
-            <x-general.input.submit-button text="update Product" />
+            <x-general.input.submit-button text="update" />
         </form>
     </section>
 </x-vendor.layout.main>

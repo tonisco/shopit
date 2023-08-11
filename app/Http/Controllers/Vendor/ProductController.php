@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Enums\ProductApprovedEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ImageUploadTrait;
+use App\Http\Traits\UtilsTrait;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -17,7 +18,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
-	use ImageUploadTrait;
+	use ImageUploadTrait, UtilsTrait;
 
 	/**
 	 * Display a listing of the resource.
@@ -128,18 +129,11 @@ class ProductController extends Controller
 			'brand_id' => $request->brand,
 			'approved' => ProductApprovedEnum::Pending->value,
 			'status' => $request->status === 'active',
+			'seo_title' => $request->seo_title,
+			'seo_description' => $request->seo_description,
 		]);
 
-		$productImgs = [];
-
-		for ($i = 1; $i < 7; $i++) {
-			if ($request['product_image' . $i]) {
-				$productImage = $this->uploadImage($request, 'product_image' . $i, 'product_image', $product->slug);
-				array_push($productImgs, ['image' => $productImage]);
-			}
-		}
-
-		$product->productImages()->createMany($productImgs);
+		$this->handleProductImages($request, $product);
 
 		Session::flash('success', ['title' => 'Product Created', 'message' => 'Product has been created and is awaiting approval']);
 
@@ -170,8 +164,6 @@ class ProductController extends Controller
 
 		$brands = Brand::select('id', 'name')->get();
 
-		error_log($product);
-
 		return view('vendor.Products.edit', compact('product', 'categories', 'brands'));
 	}
 
@@ -189,7 +181,7 @@ class ProductController extends Controller
 			'brand' => ['required'],
 			'price' => ['required', 'numeric'],
 			'discount' => ['numeric', 'nullable'],
-			'discount_date' => ['required_with:discount', 'regex:/to/i' => 'End Date is required'],
+			'discount_date' => ['required_with:discount'],
 			'qty' => ['required', 'numeric'],
 			'short_description' => ['required'],
 			'long_description' => ['required'],
@@ -223,9 +215,17 @@ class ProductController extends Controller
 		$product->category_id = $request->category;
 		$product->sub_category_id = $request->sub_category_id;
 		$product->brand_id = $request->brand;
-		$product->status = $request->status;
+		$product->status = $request->status === 'active';
+		$product->seo_title = $request->seo_title;
+		$product->seo_description = $request->seo_description;
+
+		if ($product->approved == ProductApprovedEnum::Rejected->value) {
+			$product->approved = ProductApprovedEnum::Pending->value;
+		}
 
 		$product->save();
+
+		$this->handleProductImages($request, $product);
 
 		Session::flash('success', ['title' => 'Product Updated', 'message' => 'Product details has been updated']);
 
@@ -271,5 +271,41 @@ class ProductController extends Controller
 		Session::flash('success', $message);
 
 		return redirect()->route('vendor.products.index');
+	}
+
+	public function handleProductImages(Request $request, Product $product)
+	{
+		$productImages = $product->productImages;
+
+		$productImageDelete = [];
+
+		for ($i = 1; $i <= 6; $i++) {
+			if ($request['delete_product_image' . $i]) {
+				$id = $request['delete_product_image' . $i];
+				array_push($productImageDelete, $id);
+				$item = $this->searchForId($id, $productImages);
+				error_log(json_encode($productImages));
+				error_log($item);
+
+				if ($item) {
+					error_log($item);
+					$this->deleteImage($productImages[$item]->image);
+				}
+			}
+		}
+
+		$product->productImages()->whereIn('id', $productImageDelete)->delete();
+
+
+		$productImgs = [];
+
+		for ($i = 1; $i <= 6; $i++) {
+			if ($request['product_image' . $i]) {
+				$productImage = $this->uploadImage($request, 'product_image' . $i, 'product_image', $product->slug);
+				array_push($productImgs, ['image' => $productImage, 'product_id' => $product->id]);
+			}
+		}
+
+		$product->productImages()->createMany($productImgs);
 	}
 }

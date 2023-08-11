@@ -8,7 +8,7 @@
                 ['name' => 'products', 'route' => route('vendor.products.index')],
                 ['name' => 'create product'],
             ]" />
-            <x-general.input.submit-button text="create Product" />
+            <x-general.input.submit-button text="create" />
         </div>
 
         <div class="flex flex-col flex-wrap gap-8 sm:gap-4 sm:flex-row">
