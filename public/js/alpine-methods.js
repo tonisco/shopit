@@ -49,16 +49,24 @@ document.addEventListener("alpine:init", () => {
 		},
 	}));
 
-	Alpine.data("imagePreview", () => ({
+	Alpine.data("imagePreview", (defaultImage) => ({
 		image_url: "",
 		value: "",
-		change(e) {
+		deleteValue: "",
+		change(e, id) {
 			if (e.target.files[0])
 				this.image_url = URL.createObjectURL(e.target.files[0]);
+			if (id) this.deleteValue = id;
 		},
-		clear(val) {
+		clear(val, id) {
 			this.image_url = "";
 			document.querySelector("#" + val.id).value = "";
+			if (id) this.deleteValue = id;
+		},
+		init() {
+			if (defaultImage) {
+				this.image_url = defaultImage;
+			}
 		},
 	}));
 });

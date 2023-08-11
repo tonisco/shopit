@@ -160,12 +160,17 @@ class ProductController extends Controller
 	 */
 	public function edit(string $id)
 	{
-		$product = Product::where('id', $id)->where('vendor_id', Auth::user()->vendor->id)->firstOrFail();
+		$product = Product::where('id', $id)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->with('productImages')
+			->firstOrFail();
 
 		$categories = Category::with('subCategories:id,name,category_id')
 			->select('id', 'name',)->get();
 
 		$brands = Brand::select('id', 'name')->get();
+
+		error_log($product);
 
 		return view('vendor.Products.edit', compact('product', 'categories', 'brands'));
 	}

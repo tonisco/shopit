@@ -1,4 +1,9 @@
-<div class="relative w-full h-full bg-gray-100 rounded-lg dark:bg-gray-900" x-data="imagePreview">
+@php
+    $imageId = isset($imageId) ? $imageId : '';
+    $image = isset($image) ? $image : '';
+@endphp
+
+<div class="relative w-full h-full bg-gray-100 rounded-lg dark:bg-gray-900" x-data="imagePreview('{{ $image }}')">
     <label for="{{ $id }}">
         <template x-if="!image_url">
             <div class="w-full h-full p-2">
@@ -15,8 +20,15 @@
         </template>
 
     </label>
-    <template x-if="image_url"><x-ri-delete-bin-6-line @click.stop="clear({{ $id }})"
-            class="absolute z-10 w-5 h-5 text-red-500 top-3 right-3 dark:text-red-700" /></template>
-    <input type="file" name="{{ $name }}" accept="image/*" x-on:change="change(event)" class="hidden"
-        id="{{ $id }}">
+    @if (!isset($isMain))
+        <template x-if="image_url"><x-ri-delete-bin-6-line @click.stop="clear({{ $id }},{{ $imageId }})"
+                class="absolute z-10 w-5 h-5 text-red-500 top-3 right-3 dark:text-red-700" /></template>
+
+        @if ($image && $imageId)
+            <input type="text" name="delete_{{ $name }}" accept="image/*" id="delete_{{ $id }}"
+                x-model="deleteValue" class="hidden">
+        @endif
+    @endif
+    <input type="file" name="{{ $name }}" accept="image/*" x-on:change="change(event,{{ $imageId }})"
+        class="hidden" id="{{ $id }}">
 </div>

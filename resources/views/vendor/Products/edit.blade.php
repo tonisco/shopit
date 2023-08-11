@@ -54,6 +54,36 @@
                         </div>
                     </div>
 
+                    <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                        <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">
+                            Images</h2>
+
+                        <div
+                            class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(80px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(128px,1fr))] sm:auto-rows-[144px] auto-rows-[96px] grid-rows-[repeat(auto-fill,96px)] sm:grid-rows-[repeat(auto-fill,144px)]">
+                            <div class="col-span-2 row-span-2">
+                                <x-general.input.image-input name="image" id="image"
+                                    image="{{ asset($product->image) }}" isMain />
+
+                                @error('image')
+                                    <x-general.input.input-error :messages="$message" />
+                                @enderror
+                            </div>
+
+                            @for ($i = 1; $i <= 6; $i++)
+                                @if (isset($product->productImages[$i]))
+                                    <x-general.input.image-input name="product_image{{ $i }}"
+                                        id="product_image{{ $i }}"
+                                        imageId="{{ $product->productImages[$i]->id }}"
+                                        image="{{ asset($product->productImages[$i]->image) }}" />
+                                @else
+                                    <x-general.input.image-input name="product_image{{ $i }}"
+                                        id="product_image{{ $i }}" />
+                                @endif
+                            @endfor
+
+                        </div>
+                    </div>
+
                     <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md w2 dark:bg-gray-800">
                         <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Pricing</h2>
 
@@ -221,23 +251,6 @@
             action="{{ route('vendor.products.update', $product->id) }}"
             class="flex flex-col gap-8 p-8 bg-white shadow-lg rounded-2xl dark:bg-gray-800">
             @csrf
-            <div>
-                <h3>Product Image</h3>
-                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="object-cover h-56 w-52">
-
-            </div>
-
-            <div class="flex flex-col w-full gap-2">
-                <div class="flex flex-col gap-1">
-                    <label class="text-lg text-gray-800 dark:text-gray-200" for="image">Image</label>
-                    <input required accept="image/*"
-                        class="relative focus:ring-red-500 dark:focus:ring-red-700 focus:border-red-500 dark:focus:border-red-700 m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:text-neutral-700 focus:shadow-te-danger focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100"
-                        type="file" name="image" id="image">
-                </div>
-                @error('discount')
-                    <x-general.input.input-error :messages="$message" />
-                @enderror
-            </div>
 
             <x-general.input.submit-button text="update Product" />
         </form>
