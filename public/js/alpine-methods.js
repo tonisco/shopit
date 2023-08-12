@@ -1,3 +1,56 @@
+let toolbar = [
+	["bold", "italic", "underline", "strike"], // toggled buttons
+	["blockquote", "code-block"],
+	[
+		{
+			header: 1,
+		},
+		{
+			header: 2,
+		},
+	], // custom button values
+	[
+		{
+			list: "ordered",
+		},
+		{
+			list: "bullet",
+		},
+	],
+	[
+		{
+			script: "sub",
+		},
+		{
+			script: "super",
+		},
+	], // superscript/subscript
+	[
+		{
+			indent: "-1",
+		},
+		{
+			indent: "+1",
+		},
+	], // outdent/indent
+	[
+		{
+			direction: "rtl",
+		},
+	], // text direction
+
+	[
+		{
+			size: ["small", false, "large", "huge"],
+		},
+	], // custom dropdown
+	[
+		{
+			header: [1, 2, 3, 4, 5, 6, false],
+		},
+	], // remove formatting button
+];
+
 document.addEventListener("alpine:init", () => {
 	Alpine.data("toggler", () => ({
 		open: false,
@@ -67,6 +120,23 @@ document.addEventListener("alpine:init", () => {
 			if (defaultImage) {
 				this.image_url = defaultImage;
 			}
+		},
+	}));
+
+	Alpine.data("editor", (id, data) => ({
+		init() {
+			var quill = new Quill(this.$refs.editor, {
+				theme: "snow",
+				modules: {
+					toolbar,
+				},
+			});
+
+			quill.on("text-change", function () {
+				document.querySelector(`#${id}`).value =
+					document.querySelector(".ql-editor").innerHTML;
+			});
+			if (data) quill.setText(data);
 		},
 	}));
 });

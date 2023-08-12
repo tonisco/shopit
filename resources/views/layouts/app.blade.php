@@ -17,6 +17,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     @include('flatpickr::components.style')
+    <link href="{{ asset('vendor/quill/quill.snow.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
     @yield('stylesheet')
@@ -34,6 +35,7 @@
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/alpine-methods.js') }}"></script>
+    <script src="{{ asset('vendor/quill/quill.js') }}"></script>
     @include('flatpickr::components.script')
     @yield('script')
 </body>

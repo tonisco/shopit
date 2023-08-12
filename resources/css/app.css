@@ -145,3 +145,37 @@ div[data-te-select-form-outline-ref]
 .flatpickr-input {
 	@apply border-none;
 }
+
+.ql-container {
+	@apply h-80 transition-all duration-200;
+}
+
+.ql-editor {
+	@apply font-sans text-base dark:text-gray-200;
+}
+
+.ql-toolbar.ql-snow {
+	@apply pt-4 dark:text-gray-200;
+}
+
+.ql-snow .ql-stroke,
+.ql-snow .ql-fill,
+.ql-toolbar.ql-snow .ql-picker-label {
+	@apply dark:stroke-gray-200 dark:fill-gray-200 dark:text-gray-200;
+}
+
+.editor,
+.editor .ql-container .ql-editor,
+.editor .ql-toolbar.ql-snow {
+	@apply transition-all duration-200;
+}
+
+.editor:focus-within .des {
+	@apply text-red-500 dark:text-red-700;
+}
+
+.editor:focus-within,
+.editor:focus-within .ql-container .ql-editor,
+.editor:focus-within .ql-toolbar.ql-snow {
+	@apply !border-red-500 ring-red-500 ring-1;
+}

@@ -30,8 +30,8 @@
 
                     <div class="flex flex-col w-full gap-2">
                         <div class="relative" data-te-input-wrapper-init>
-                            <input required class="form-input peer" value="{{ old('short_description') }}"
-                                type="text" name="short_description" id="short_description">
+                            <textarea class="form-input peer" required name="short_description" id="short_description" cols="30"
+                                rows="5">{{ old('short_description') }}</textarea>
                             <label class="form-label" for="short_description">Short
                                 Description</label>
                         </div>
@@ -40,10 +40,12 @@
                         @enderror
                     </div>
 
-                    <div class="flex flex-col w-full gap-2">
-                        <div class="relative" data-te-input-wrapper-init>
-                            <textarea class="form-input peer" name="long_description" id="long_description" cols="30" rows="10">{{ old('long_description') }}</textarea>
-                            <label class="form-label" for="long_description">Long
+                    <div class="relative flex flex-col w-full gap-2">
+                        <div class="w-full overflow-hidden rounded editor" x-data="editor('long_description', '{{ old('long_description') }}')">
+                            <textarea class="hidden" name="long_description" id="long_description" cols="30" rows="10"></textarea>
+                            <div id="editor" x-ref='editor'></div>
+                            <label
+                                class="text-[13px] bg-white des transition-all duration-200 dark:bg-gray-800 p-1.5 text-gray-500 dark:text-gray-200 absolute -top-4 left-3 max-w-[90%]">Long
                                 Description</label>
                         </div>
                         @error('long_description')
