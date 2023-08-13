@@ -41,7 +41,12 @@ class ProductVariantController extends Controller
 	 */
 	public function create(string $productId)
 	{
-		//
+		$product = Product::where('id', $productId)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->with('ProductVariants')
+			->firstOrFail();
+
+		return view('vendor.Products.variants.create', compact('product'));
 	}
 
 	/**

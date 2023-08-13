@@ -6,7 +6,7 @@
                 ['name' => 'products', 'route' => route('vendor.products.index')],
                 ['name' => 'variant'],
             ]" />
-            <a href="{{ route('vendor.products.create') }}"
+            <a href="{{ route('vendor.products.variants.create', $product->id) }}"
                 class="px-3 py-2 text-sm text-white bg-red-500 rounded shadow sm:text-base dark:bg-red-700 hover:bg-red-600">Create
                 Variant</a>
         </div>
