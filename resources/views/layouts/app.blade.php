@@ -31,6 +31,7 @@
     <div class="flex flex-col h-full min-h-screen bg-gray-100 dark:bg-gray-900">
         @yield('content')
     </div>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/theme.js') }}"></script>
     <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>

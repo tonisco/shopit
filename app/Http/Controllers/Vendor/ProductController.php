@@ -38,7 +38,11 @@ class ProductController extends Controller
 					}
 				})
 				->addColumn('action', function ($query) {
-					return ['edit' => route('vendor.products.edit', $query->id), 'delete' => route('vendor.products.destroy', $query->id)];
+					return [
+						'edit' => route('vendor.products.edit', $query->id),
+						'delete' => route('vendor.products.destroy', $query->id),
+						'variant' => route('vendor.products.variants.index', $query->id)
+					];
 				})
 				->addColumn('image', function ($query) {
 					return asset($query->image);

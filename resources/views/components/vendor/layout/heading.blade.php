@@ -12,5 +12,5 @@
             @endif
         @endforeach
     </div>
-    <h1 class="font-medium text-gray-800 capitalize text-[1.7rem] dark:text-gray-200">{{ $title }}</h1>
+    <h1 class="font-medium truncate text-gray-800 capitalize text-[1.7rem] dark:text-gray-200">{{ $title }}</h1>
 </div>

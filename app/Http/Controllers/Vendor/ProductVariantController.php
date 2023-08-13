@@ -3,16 +3,37 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductVariantController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index(string $productId)
+	public function index(Request $request, string $productId)
 	{
-		//
+		$product = Product::where('id', $productId)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->with('ProductVariants')
+			->firstOrFail();
+
+		if ($request->ajax()) {
+			return DataTables::of([])
+				->addIndexColumn()
+				->addColumn('action', function ($query) {
+					return [
+						'edit' => route('vendor.products.variants.edit', ['productId' => $query->product_id, 'productVariantId' => $query->id,]),
+						'delete' => route('vendor.products.variants.destroy', ['productId' => $query->product_id, 'productVariantId' => $query->id,]),
+						'variant' => route('vendor.products.variants.index', $query->id)
+					];
+				})->make(true);
+		}
+
+		return view('vendor.Products.variants.index', compact('product'));
 	}
 
 	/**

@@ -1,12 +1,12 @@
 <x-vendor.layout.main page="Products">
-    <section class="flex flex-col flex-1 gap-6 px-4 py-4">
+    <section class="flex flex-col flex-1 gap-6 px-4 py-8">
         <div class="flex flex-col items-start justify-between w-full gap-2 sm:flex-row sm:items-center">
-            <h1 class="text-3xl text-gray-800 dark:text-gray-200">Products</h1>
+            <x-vendor.layout.heading title="Products" :crumbs="[['name' => 'dashboard', 'route' => route('vendor.dashboard')], ['name' => 'products']]" />
             <a href="{{ route('vendor.products.create') }}"
                 class="px-3 py-2 text-sm text-white bg-red-500 rounded shadow sm:text-base dark:bg-red-700 hover:bg-red-600">Create
                 Product</a>
         </div>
-        <div class="w-[93vw] overflow-x-auto sm:w-full sm:overflow-hidden text-gray-800 dark:text-gray-200">
+        <div class="w-[92.5vw] overflow-x-auto sm:w-full sm:overflow-x-hidden text-gray-800 dark:text-gray-200">
             <table class="!w-full datatable text-gray-800 dark:text-gray-200">
                 <thead>
                     <tr class="font-semibold capitalize">
@@ -68,13 +68,7 @@
 
 
     @section('script')
-        <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
         <script type="text/javascript">
-            // let ball = <?php echo json_encode(\App\Enums\ProductApprovedEnum::cases()); ?>
-            // console.log(JSON.parse(ball))
-
             let modal = $('.trash-table-modal')
             let checkmodal = $('.check-modal')
 
@@ -125,17 +119,18 @@
                         },
                         {
                             data: 'name',
-							render: function(data){
-								return data.length < 19 ?
-               					 data :
-                				data.substr(0, 18) +'&#8230;';
-							}
+                            render: function(data) {
+                                return data.length < 19 ?
+                                    data :
+                                    data.substr(0, 18) + '&#8230;';
+                            }
                         },
                         {
                             data: 'price',
                             render: DataTable.render.number(null, null, null, '$')
                         },
                         {
+                            // TODO:check if discount is workin correctly
                             data: 'discount',
                         },
                         {
@@ -178,14 +173,21 @@
 											<i class="action-button-icon bi bi-three-dots-vertical"></i>
 										</a>
 										<div @click.outside="toggle" x-show="open" class="product-options">
-											<a class="product-options-item">Variants</a>
+											<a href="${data.variant}" class="product-options-item">Variants</a>
 										</div>
 									</div>
 								</div`
                             }
                         },
                     ],
-                    drawCallback: function() {
+                    drawCallback: function(settings) {
+                        // removes pagination if there is no extra page
+                        if (settings._iDisplayLength > settings.fnRecordsDisplay()) {
+                            $(settings.nTableWrapper).find('.dataTables_paginate').hide();
+                        } else {
+                            $(settings.nTableWrapper).find('.dataTables_paginate').show();
+                        }
+
                         $('.deleteButton').on('click', function() {
                             let {
                                 name,
