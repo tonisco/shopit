@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductVariantController extends Controller
@@ -22,12 +23,12 @@ class ProductVariantController extends Controller
 			->firstOrFail();
 
 		if ($request->ajax()) {
-			return DataTables::of([])
+			return DataTables::of($product->productVariants)
 				->addIndexColumn()
 				->addColumn('action', function ($query) {
 					return [
-						'edit' => route('vendor.products.variants.edit', ['productId' => $query->product_id, 'productVariantId' => $query->id,]),
-						'delete' => route('vendor.products.variants.destroy', ['productId' => $query->product_id, 'productVariantId' => $query->id,]),
+						'edit' => route('vendor.products.variants.edit', ['product' => $query->product_id, 'variant' => $query->id,]),
+						'delete' => route('vendor.products.variants.destroy', ['product' => $query->product_id, 'variant' => $query->id,]),
 						'variant' => route('vendor.products.variants.index', $query->id)
 					];
 				})->make(true);
@@ -43,7 +44,6 @@ class ProductVariantController extends Controller
 	{
 		$product = Product::where('id', $productId)
 			->where('vendor_id', Auth::user()->vendor->id)
-			->with('ProductVariants')
 			->firstOrFail();
 
 		return view('vendor.Products.variants.create', compact('product'));
@@ -54,7 +54,23 @@ class ProductVariantController extends Controller
 	 */
 	public function store(Request $request, string $productId)
 	{
-		//
+		$request->validate([
+			'name' => ['required', 'max:200'],
+			'status' => ['required'],
+		]);
+
+		$product = Product::where('id', $productId)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->firstOrFail();
+
+		$product->productVariants()->create([
+			'name' => $request->name,
+			'status' => $request->status === 'active'
+		]);
+
+		Session::flash('success', ['title' => 'Product Variant Created', 'message' => 'Product Variant has been created']);
+
+		return redirect()->route('vendor.products.variants.index', $productId);
 	}
 
 	/**

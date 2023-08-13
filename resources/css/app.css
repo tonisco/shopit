@@ -67,11 +67,11 @@
 }
 
 .table-body tr {
-	@apply !overflow-x-scroll sm:overflow-x-hidden;
+	@apply !overflow-x-scroll capitalize sm:overflow-x-hidden;
 }
 
 .table-body tr td {
-	@apply p-1 text-xs md:text-sm;
+	@apply p-1 text-xs md:text-sm capitalize;
 }
 
 #DataTables_Table_0_length > label > select,
