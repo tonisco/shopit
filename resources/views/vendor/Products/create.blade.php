@@ -191,10 +191,10 @@
                 <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                     <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Published</h2>
                     <div class="flex flex-col w-full gap-2">
-                        <select required data-te-select-init data-te-select-size="lg" name="status" id="status"
-                            value="{{ old('status') }}">
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                        <select required data-te-select-init data-te-select-size="lg" name="status" id="status">
+                            <option @if (old('status') === 'active') selected @endif value="active">Active</option>
+                            <option @if (!old('status') === 'active') selected @endif value="inactive">Inactive
+                            </option>
                         </select>
                         <label data-te-select-label-ref for="status">
                             status

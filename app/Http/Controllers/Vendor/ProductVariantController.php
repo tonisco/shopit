@@ -57,7 +57,6 @@ class ProductVariantController extends Controller
 	{
 		$product = Product::where('id', $productId)
 			->where('vendor_id', Auth::user()->vendor->id)
-			->with('productVariants')
 			->firstOrFail();
 
 		$request->validate([
@@ -88,7 +87,12 @@ class ProductVariantController extends Controller
 	 */
 	public function edit(string $productId, string $productVariantId)
 	{
-		//
+		$productVariant = ProductVariant::where('id', $productVariantId)
+			->whereHas('product', function (Builder $query) use ($productId) {
+				$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
+			})->firstOrFail();
+
+		return view('vendor.Products.variants.edit', compact('productVariant', 'productId'));
 	}
 
 	/**
