@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-1">
-    <div class="flex gap-1">
+    <div class="flex flex-wrap gap-1">
         @foreach ($crumbs as $crumb)
             @if (!$loop->first)
                 <p class="text-sm text-gray-500 capitalize dark:text-gray-400">/</p>
@@ -12,5 +12,11 @@
             @endif
         @endforeach
     </div>
-    <h1 class="font-medium truncate text-gray-800 capitalize text-[1.7rem] dark:text-gray-200">{{ $title }}</h1>
+    <h1 class="font-medium w-full block text-gray-800 capitalize text-[1.7rem] dark:text-gray-200">
+        {{ $title }}
+    </h1>
+    @isset($subtitle)
+        <h1 class="text-base text-gray-800 capitalize truncate dark:text-gray-200">{!! $subtitle !!}
+        </h1>
+    @endisset
 </div>

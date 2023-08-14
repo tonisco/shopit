@@ -32,7 +32,8 @@ class ProductVariantController extends Controller
 						'delete' => route('vendor.products.variants.destroy', ['product' => $query->product_id, 'variant' => $query->id,]),
 						'variant_items' => route('vendor.products.variants.items.index', ['product' => $query->product_id, 'variant' => $query->id])
 					];
-				})->make(true);
+				})
+				->make(true);
 		}
 
 		return view('vendor.Products.variants.index', compact('product'));
