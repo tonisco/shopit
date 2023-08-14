@@ -40,5 +40,6 @@
 
             <x-general.input.submit-button text="create" />
             </div>
+        </form>
     </section>
 </x-vendor.layout.main>

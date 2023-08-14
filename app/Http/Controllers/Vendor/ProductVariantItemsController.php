@@ -48,7 +48,7 @@ class ProductVariantItemsController extends Controller
 			$query->where('vendor_id', Auth::user()->vendor->id)
 				->where('id', $productId)
 				->firstOrFail();
-		}]);
+		}])->firstOrFail();
 
 		return view('vendor.Products.variants.item.create', compact('productVariant'));
 	}
