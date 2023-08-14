@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::put('/products/{id}/status', [ProductController::class, 'productStatus'])->name('product-status');
+Route::put('/products/{id}/status', [ProductController::class, 'productStatus'])->name('products.status');
 Route::resource('products', ProductController::class);
+
+Route::put('/products/{product}/variants/{productVariant}/status', [ProductVariantController::class, 'variantStatus'])->name('products.variant.status');
 Route::resource('products.variants', ProductVariantController::class);

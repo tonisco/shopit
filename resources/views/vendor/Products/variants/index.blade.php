@@ -126,6 +126,7 @@
                 					role="switch"
                 					data-name="${val.name}"
                 					data-id="${val.id}"
+									data-product_id="${val.product_id}"
                 					${val.status &&'checked'}
                 				/>`
                             }
@@ -178,19 +179,21 @@
                         $('.status').on('click', function(e) {
                             let {
                                 name,
-                                id
+                                id,
+                                product_id
                             } = this.dataset
 
                             if (e.target.checked) {
                                 $('.check-heading').append(' show')
                                 $('.check-button').text('Show')
                             } else {
-                                // $('.check-heading').append(' hide')
+                                $('.check-heading').append(' hide')
                                 $('.check-button').text('Hide')
                             }
 
                             $('.check-name').text(name)
-                            $('.check-form').attr('action', `/vendor/products/${id}/status`)
+                            $('.check-form').attr('action',
+                                `/vendor/products/${product_id}/variants/${id}/status`)
                             checkmodal.show()
 
                             e.target.checked = !e.target.checked

@@ -96,6 +96,24 @@ class ProductVariantController extends Controller
 		//
 	}
 
+	public function variantStatus(Request $request, Product $product, ProductVariant $productVariant)
+	{
+		if ($product->vendor_id != Auth::user()->vendor->id) {
+			abort(404);
+		}
+
+		if ($product->id != $productVariant->product_id) {
+			abort(404);
+		}
+
+		$productVariant->status = !$productVariant->status;
+		$productVariant->save();
+		$message = ['title' => 'Variant Status', 'message' => 'Variant status has successfully been updated'];
+		// Session::flash('success', $message);
+
+		return redirect()->back()->with('success', $message);
+	}
+
 	/**
 	 * Remove the specified resource from storage.
 	 */
