@@ -151,6 +151,9 @@
                         			<i class="action-button-icon bi bi-trash"></i>
                         		</a>
                         	</div>
+							<div>
+								<a href="${data.variant_items}">Variant items</a>
+							</div>
                         </div`
                             }
                         },
