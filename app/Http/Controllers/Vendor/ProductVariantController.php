@@ -100,7 +100,23 @@ class ProductVariantController extends Controller
 	 */
 	public function update(Request $request, string $productId, string $productVariantId)
 	{
-		//
+		$productVariant = ProductVariant::where('id', $productVariantId)
+			->whereHas('product', function (Builder $query) use ($productId) {
+				$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
+			})->firstOrFail();
+
+		$request->validate([
+			'name' => ['required', 'max:200'],
+			'status' => ['required'],
+		]);
+
+		$productVariant->name = $request->name;
+		$productVariant->status = $request->status === 'active';
+		$productVariant->save();
+
+		$message = ['title' => 'Product Variant Updated', 'message' => 'Product Variant has been updated successfully'];
+
+		return  redirect()->route('vendor.products.variants.index', ['product' => $productId])->with('success', $message);
 	}
 
 	public function variantStatus(Request $request, string $productId, string $productVariantId)
