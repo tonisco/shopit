@@ -31,6 +31,8 @@
         <div class="trash-table-modal-content modal-content">
             <h2 class="text-xl text-gray-800 dark:text-gray-200">Are you sure you want to delete <span
                     class="font-semibold capitalize delete-name"></span> variant</h2>
+            <p class="text-sm text-gray-800 dark:text-gray-200">This will delete all variants items
+                that have been added</p>
             <div class="flex items-center self-end gap-2">
                 <button
                     class="px-3 py-2 bg-gray-200 shadow-md delete-cancel-button dark:bg-gray-900 dark:text-gray-200">Cancel</button>
@@ -47,8 +49,7 @@
     <div class="check-modal modal" style="display: none">
         <div class="check-modal-content modal-content">
             <div class="flex gap-1.5 text-xl text-gray-800 dark:text-gray-200">
-                <h3 class="check-heading">Are you sure you want to </h3>
-                <h2 class="font-semibold capitalize check-name"></h2>
+                <h3 class="check-heading"></h3>
             </div>
             <div class="flex items-center self-end gap-2">
                 <button
@@ -189,15 +190,17 @@
                             } = this.dataset
 
                             if (e.target.checked) {
-                                $('.check-heading').append(' show')
+                                let message = `Are you sure you want to show
+								 <span class="font-semibold capitalize">${name}</span> variant`
+                                $('.check-heading').text(message)
                                 $('.check-button').text('Show')
                             } else {
-                                // TODO: fix extra append
-                                $('.check-heading').append(' hide')
+                                let message = `Are you sure you want to hide
+								 <span class="font-semibold capitalize">${name}</span> variant`
+                                $('.check-heading').html(message)
                                 $('.check-button').text('Hide')
                             }
 
-                            $('.check-name').text(name)
                             let checkForm = $('.check-form')
                             checkForm.attr('action',
                                 `/vendor/products/${product_id}/variants/${id}/status`)

@@ -49,8 +49,7 @@
     <div class="check-modal modal" style="display: none">
         <div class="check-modal-content modal-content">
             <div class="flex gap-1.5 text-xl text-gray-800 dark:text-gray-200">
-                <h3 class="check-heading">Are you sure you want to </h3>
-                <h2 class="font-semibold capitalize check-name"></h2>
+                <h3 class="check-heading"></h3>
             </div>
             <div class="flex items-center self-end gap-2">
                 <button
@@ -210,14 +209,21 @@
                             } = this.dataset
 
                             if (e.target.checked) {
-                                $('.check-heading').append(' show')
+                                let message = `Are you sure you want to show
+                								<span class="font-semibold capitalize"><${name}</span>`
+                                $('.check-heading').html($ {
+                                    message
+                                })
                                 $('.check-button').text('Show')
                             } else {
-                                $('.check-heading').append(' hide')
+                                let message = `Are you sure you want to hide
+                								<span class="font-semibold capitalize"><${name}</span>`
+                                $('.check-heading').html($ {
+                                    message
+                                })
                                 $('.check-button').text('Hide')
                             }
 
-                            $('.check-name').text(name)
                             let checkForm = $('.check-form')
                             checkForm.attr('action', `/vendor/products/${id}/status`)
                             checkmodal.show()
