@@ -155,7 +155,7 @@
                         },
                     ],
                     drawCallback: function(settings, ) {
-                        // remove pagination if there is no extra page
+                        // removes pagination if there is no extra page
                         if (settings._iDisplayLength > settings.fnRecordsDisplay()) {
                             $(settings.nTableWrapper).find('.dataTables_paginate').hide();
                         } else {
@@ -168,12 +168,17 @@
                                 route
                             } = this.dataset
 
+                            console.log(route, 'route')
+
                             $('.delete-name').text(name)
-                            $('.delete-form').attr('action', route)
+
+                            let deleteForm = $('.delete-form')
+
+                            deleteForm.attr('action', route)
                             modal.show()
 
                             $('.delete-item').on('click', function() {
-                                this.submit()
+                                deleteForm.submit()
                             })
                         })
                         $('.status').on('click', function(e) {
@@ -187,19 +192,21 @@
                                 $('.check-heading').append(' show')
                                 $('.check-button').text('Show')
                             } else {
+                                // TODO: fix extra append
                                 $('.check-heading').append(' hide')
                                 $('.check-button').text('Hide')
                             }
 
                             $('.check-name').text(name)
-                            $('.check-form').attr('action',
+                            let checkForm = $('.check-form')
+                            checkForm.attr('action',
                                 `/vendor/products/${product_id}/variants/${id}/status`)
                             checkmodal.show()
 
                             e.target.checked = !e.target.checked
 
                             $('.check-item').on('click', function() {
-                                this.submit()
+                                checkForm.submit()
                             })
                         })
                     }

@@ -195,11 +195,12 @@
                             } = this.dataset
 
                             $('.delete-name').text(name)
-                            $('.delete-form').attr('action', route)
+                            let deleteForm = $('.delete-form')
+                            deleteForm.attr('action', route)
                             modal.show()
 
                             $('.delete-item').on('click', function() {
-                                this.submit()
+                                deleteForm.submit()
                             })
                         })
                         $('.status').on('click', function(e) {
@@ -217,13 +218,14 @@
                             }
 
                             $('.check-name').text(name)
-                            $('.check-form').attr('action', `/vendor/products/${id}/status`)
+                            let checkForm = $('.check-form')
+                            checkForm.attr('action', `/vendor/products/${id}/status`)
                             checkmodal.show()
 
                             e.target.checked = !e.target.checked
 
                             $('.check-item').on('click', function() {
-                                this.submit()
+                                checkForm.submit()
                             })
                         })
                     }

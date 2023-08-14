@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -15,11 +16,12 @@ class ProductVariantController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index(Request $request, Product $product)
+	public function index(Request $request, string $productId)
 	{
-		if ($product->vendor_id != Auth::user()->vendor->id) {
-			abort(404);
-		}
+		$product = Product::where('id', $productId)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->with('productVariants')
+			->firstOrFail();
 
 		if ($request->ajax()) {
 			return DataTables::of($product->productVariants)
@@ -39,11 +41,11 @@ class ProductVariantController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create(Product $product)
+	public function create(string $productId)
 	{
-		if ($product->vendor_id != Auth::user()->vendor->id) {
-			abort(404);
-		}
+		$product = Product::where('id', $productId)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->firstOrFail();
 
 		return view('vendor.Products.variants.create', compact('product'));
 	}
@@ -51,11 +53,12 @@ class ProductVariantController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request, Product $product)
+	public function store(Request $request, string $productId)
 	{
-		if ($product->vendor_id != Auth::user()->vendor->id) {
-			abort(404);
-		}
+		$product = Product::where('id', $productId)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->with('productVariants')
+			->firstOrFail();
 
 		$request->validate([
 			'name' => ['required', 'max:200'],
@@ -67,9 +70,9 @@ class ProductVariantController extends Controller
 			'status' => $request->status === 'active'
 		]);
 
-		Session::flash('success', ['title' => 'Product Variant Created', 'message' => 'Product Variant has been created']);
+		$message = ['title' => 'Product Variant Created', 'message' => 'Product Variant has been created'];
 
-		return redirect()->route('vendor.products.variants.index', $product);
+		return redirect()->route('vendor.products.variants.index', $product)->with('success', $message);
 	}
 
 	/**
@@ -96,20 +99,16 @@ class ProductVariantController extends Controller
 		//
 	}
 
-	public function variantStatus(Request $request, Product $product, ProductVariant $productVariant)
+	public function variantStatus(Request $request, string $productId, string $productVariantId)
 	{
-		if ($product->vendor_id != Auth::user()->vendor->id) {
-			abort(404);
-		}
-
-		if ($product->id != $productVariant->product_id) {
-			abort(404);
-		}
+		$productVariant = ProductVariant::where('id', $productVariantId)
+			->whereHas('product', function (Builder $query) use ($productId) {
+				$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
+			})->firstOrFail();
 
 		$productVariant->status = !$productVariant->status;
 		$productVariant->save();
 		$message = ['title' => 'Variant Status', 'message' => 'Variant status has successfully been updated'];
-		// Session::flash('success', $message);
 
 		return redirect()->back()->with('success', $message);
 	}
@@ -119,6 +118,14 @@ class ProductVariantController extends Controller
 	 */
 	public function destroy(string $productId, string $productVariantId)
 	{
-		//
+		$productVariant = ProductVariant::where('id', $productVariantId)
+			->whereHas('product', function (Builder $query) use ($productId) {
+				$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
+			})->firstOrFail();
+
+		$productVariant->delete();
+		$message = ['title' => 'Variant Deleted', 'message' => 'Product Variant has been deleted'];
+
+		return redirect()->back()->with('success', $message);
 	}
 }
