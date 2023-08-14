@@ -44,7 +44,13 @@ class ProductVariantItemsController extends Controller
 	 */
 	public function create(string $productId, string $productVariantId)
 	{
-		//
+		$productVariant = ProductVariant::with(['product' => function (BelongsTo $query) use ($productId) {
+			$query->where('vendor_id', Auth::user()->vendor->id)
+				->where('id', $productId)
+				->firstOrFail();
+		}]);
+
+		return view('vendor.Products.variants.item.create', compact('productVariant'));
 	}
 
 	/**
