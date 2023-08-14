@@ -100,6 +100,9 @@
                 let table = $('.datatable').DataTable({
                     processing: true,
                     serverside: true,
+                    order: [
+                        [4, 'desc']
+                    ],
                     ajax: {
                         url: "{{ route('vendor.products.variants.index', $product->id) }}"
                     },
@@ -182,7 +185,7 @@
                                 $('.check-heading').append(' show')
                                 $('.check-button').text('Show')
                             } else {
-                                $('.check-heading').append(' hide')
+                                // $('.check-heading').append(' hide')
                                 $('.check-button').text('Hide')
                             }
 

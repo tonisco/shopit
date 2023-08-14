@@ -15,12 +15,11 @@ class ProductVariantController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index(Request $request, string $productId)
+	public function index(Request $request, Product $product)
 	{
-		$product = Product::where('id', $productId)
-			->where('vendor_id', Auth::user()->vendor->id)
-			->with('ProductVariants')
-			->firstOrFail();
+		if ($product->vendor_id != Auth::user()->vendor->id) {
+			abort(404);
+		}
 
 		if ($request->ajax()) {
 			return DataTables::of($product->productVariants)
@@ -40,11 +39,11 @@ class ProductVariantController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 */
-	public function create(string $productId)
+	public function create(Product $product)
 	{
-		$product = Product::where('id', $productId)
-			->where('vendor_id', Auth::user()->vendor->id)
-			->firstOrFail();
+		if ($product->vendor_id != Auth::user()->vendor->id) {
+			abort(404);
+		}
 
 		return view('vendor.Products.variants.create', compact('product'));
 	}
@@ -52,16 +51,16 @@ class ProductVariantController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request, string $productId)
+	public function store(Request $request, Product $product)
 	{
+		if ($product->vendor_id != Auth::user()->vendor->id) {
+			abort(404);
+		}
+
 		$request->validate([
 			'name' => ['required', 'max:200'],
 			'status' => ['required'],
 		]);
-
-		$product = Product::where('id', $productId)
-			->where('vendor_id', Auth::user()->vendor->id)
-			->firstOrFail();
 
 		$product->productVariants()->create([
 			'name' => $request->name,
@@ -70,7 +69,7 @@ class ProductVariantController extends Controller
 
 		Session::flash('success', ['title' => 'Product Variant Created', 'message' => 'Product Variant has been created']);
 
-		return redirect()->route('vendor.products.variants.index', $productId);
+		return redirect()->route('vendor.products.variants.index', $product);
 	}
 
 	/**
