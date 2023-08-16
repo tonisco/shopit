@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\ProductVariantItem;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,14 +62,38 @@ class ProductVariantController extends Controller
 			->firstOrFail();
 
 		$request->validate([
-			'name' => ['required', 'max:200'],
+			'name' => ['required', 'max:200', 'unique:product_variants'],
 			'status' => ['required'],
+			'option-name-1'  => ['required', 'string'],
+			'option-price-1' => ['required', 'string']
 		]);
 
-		$product->productVariants()->create([
+		$productVariant = ProductVariant::create([
 			'name' => $request->name,
-			'status' => $request->status === 'active'
+			'status' => $request->status === 'active',
+			'product_id' => $product->id,
 		]);
+
+		$variantItems = [];
+		$index = 1;
+		$hasMore = true;
+
+		while ($hasMore) {
+			if (isset($request['option-name-' . $index]) && isset($request['option-price-' . $index])) {
+				array_push($variantItems, [
+					'name' => $request['option-name-' . $index],
+					'price' => $request['option-price-' . $index],
+					'default' => false,
+					'product_variant_id' => $productVariant->id,
+				]);
+
+				$index++;
+			} else {
+				$hasMore = false;
+			}
+		}
+
+		ProductVariantItem::insert($variantItems);
 
 		$message = ['title' => 'Product Variant Created', 'message' => 'Product Variant has been created'];
 

@@ -6,7 +6,8 @@
             ['name' => 'create'],
         ]" />
 
-        <form method="POST" {{-- action="{{ route('vendor.products.variants.store', $product->id) }}" --}} class="flex flex-col gap-8">
+        <form method="POST" action="{{ route('vendor.products.variants.store', $product->id) }}"
+            class="flex flex-col gap-8">
             @csrf
             <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant</h2>
@@ -47,19 +48,19 @@
                     </div>
                     <div class="w-full flex-col sm:flex-row flex gap-4">
                         <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="item-name" name="item-name-1" id="item-name-1" label="Name"
-                                required />
-                            @error('name')
+                            <x-general.input.input class="option-name" name="option-name-1" id="option-name-1"
+                                label="Name" required />
+                            @error('option-name-1')
                                 <x-general.input.input-error :messages="$message" />
                             @enderror
                         </div>
                         <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="item-price" name="item-price-1" id="item-price-1"
-                                type="number" label="Price $" required value="0" />
+                            <x-general.input.input class="option-price" required name="option-price-1"
+                                id="option-price-1" type="number" label="Price $" value="0" />
                             <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
                                 the original
                                 product price</p>
-                            @error('price')
+                            @error('option-price-1')
                                 <x-general.input.input-error :messages="$message" />
                             @enderror
                         </div>
@@ -78,11 +79,11 @@
     @section('script')
         <script>
             function addAttributes(title, nameInput, priceInput, index) {
-                nameInput.attr('id', `item-name-${index}`)
-                nameInput.attr('name', `item-name-${index}`)
+                nameInput.attr('id', `option-name-${index}`)
+                nameInput.attr('name', `option-name-${index}`)
 
-                priceInput.attr('id', `item-price-${index}`)
-                priceInput.attr('name', `item-price-${index}`)
+                priceInput.attr('id', `option-price-${index}`)
+                priceInput.attr('name', `option-price-${index}`)
 
                 title.text(`Option ${index}`)
             }
@@ -99,8 +100,8 @@
                     let item = $(this)
 
                     let title = item.find('h3')
-                    let nameInput = item.find('.item-name')
-                    let priceInput = item.find('.item-price')
+                    let nameInput = item.find('.option-name')
+                    let priceInput = item.find('.option-price')
 
                     if (title && nameInput && priceInput) {
                         addAttributes(title, nameInput, priceInput, index)
@@ -116,8 +117,8 @@
                 let index = parent.children().length - 1
 
                 let title = newItem.find('h3')
-                let nameInput = newItem.find('.item-name')
-                let priceInput = newItem.find('.item-price')
+                let nameInput = newItem.find('.option-name')
+                let priceInput = newItem.find('.option-price')
                 newItem.find('.heading').append(
                     '<i class="h-7 bi bi-trash-fill w-7 delete-icon text-red-500 dark:text-red-700" ></i>')
                 addAttributes(title, nameInput, priceInput, index)
