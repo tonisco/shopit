@@ -45,12 +45,7 @@
             <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant Options</h2>
                 @foreach ($productVariant->productVariantItems as $productVariantItem)
-                    @if ($loop->first)
-                        <form></form>
-                    @endif
-                    <form x-data="trackInput('{{ $productVariantItem->name }}', '{{ $productVariantItem->price }}')"
-                        action="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}"
-                        class="flex flex-col gap-4 @if ($loop->first) variant-option @else delete-form @endif">
+                    <div class="flex flex-col gap-4 variant-option delete-form">
                         <div class="flex justify-between gap-4 items-center heading">
                             <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
                                 {{ $loop->index + 1 }}
@@ -69,38 +64,21 @@
 
                             </div>
                         </div>
-                        <div>
-                            <div class="w-full flex-col sm:flex-row flex gap-4 sm:gap-6">
-                                <div class="flex flex-col w-full gap-2">
-                                    <x-general.input.input class="option-name" name="option-name-1" id="option-name-1"
-                                        label="Name" required readonly x-model="name" @input.debounce="change()" />
-                                    @error('option-name-1')
-                                        <div class="mb-1">
-                                            <x-general.input.input-error :messages="$message" />
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="flex flex-col w-full gap-2">
-                                    <x-general.input.input class="option-price" required name="option-price-1"
-                                        id="option-price-1" readonly type="number" label="Price $" x-model="price"
-                                        @input.debounce="change()" />
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added
-                                        to
-                                        the original
-                                        product price</p>
-                                    @error('option-price-1')
-                                        <div class="mb-1">
-                                            <x-general.input.input-error :messages="$message" />
-                                        </div>
-                                    @enderror
-                                </div>
+                        <div class="w-full flex-col sm:flex-row flex gap-4 sm:gap-6">
+                            <div class="flex flex-col w-full gap-2">
+                                <x-general.input.input class="option-name" id="option-name-1" label="Name" readonly
+                                    value="{{ $productVariantItem->name }}" />
                             </div>
-                            <div class="self-start submit-button" x-transition x-cloak x-show="showButton">
-                                <x-general.input.submit-button text="update" />
+                            <div class="flex flex-col w-full gap-2">
+                                <x-general.input.input class="option-price" id="option-price-1" readonly type="number"
+                                    label="Price $" value="{{ $productVariantItem->price }}" />
+                                <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added
+                                    to
+                                    the original
+                                    product price</p>
                             </div>
-
                         </div>
-                    </form>
+                    </div>
                 @endforeach
 
                 <button id="increase" type="button" class="text-end text-red-500 dark:text-red-700 capitalize">add
@@ -144,71 +122,6 @@
 
     @section('script')
         <script>
-            function addAttributes(title, nameInput, priceInput, index) {
-                nameInput.attr('id', `option-name-${index}`)
-                nameInput.attr('name', `option-name-${index}`)
-
-                priceInput.attr('id', `option-price-${index}`)
-                priceInput.attr('name', `option-price-${index}`)
-
-                title.text(`Option ${index}`)
-            }
-
-            function deleteItem() {
-                let parent = $(this).parent().parent()
-                let gran = parent.parent()
-
-                parent.remove()
-
-                let index = 0
-
-                gran.children().each(function() {
-                    let item = $(this)
-
-                    let title = item.find('h3')
-                    let nameInput = item.find('.option-name')
-                    let priceInput = item.find('.option-price')
-
-                    if (title && nameInput && priceInput) {
-                        addAttributes(title, nameInput, priceInput, index)
-                        index++
-                    }
-                })
-            }
-
-            $('#increase').on('click', function() {
-                $(this).hide()
-                let parent = $(this).parent()
-                let newItem = parent.find('.variant-option').clone()
-                let index = parent.children().length - 2
-
-                let title = newItem.find('h3')
-                let nameInput = newItem.find('.option-name')
-                let priceInput = newItem.find('.option-price')
-                newItem.find('.delete-option').remove()
-                newItem.find('.heading').append(
-                    '<i class="h-7 bi bi-trash-fill w-7 delete-icon cursor-pointer text-red-500 dark:text-red-700" ></i>'
-                )
-                addAttributes(title, nameInput, priceInput, index)
-
-                newItem.removeAttr('x-data')
-                nameInput.val('')
-                nameInput.removeAttr('x-model')
-                priceInput.val(0)
-                priceInput.removeAttr('x-model')
-
-                let submitButtton = newItem.find('.submit-button')
-                submitButtton.removeAttr('x-cloak')
-                submitButtton.removeAttr('x-show')
-                submitButtton.removeAttr('x-transition')
-
-                newItem.removeClass('variant-option')
-                newItem.insertBefore(this)
-
-                newItem.find('.delete-icon').on('click', deleteItem)
-                $(this).fadeIn()
-            })
-
             let modal = $('.delete-modal')
 
             $('.delete-option').on('click', function() {
