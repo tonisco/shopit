@@ -116,7 +116,9 @@ class ProductVariantController extends Controller
 		$productVariant = ProductVariant::where('id', $productVariantId)
 			->whereHas('product', function (Builder $query) use ($productId) {
 				$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
-			})->firstOrFail();
+			})
+			->with('productVariantItems')
+			->firstOrFail();
 
 		return view('vendor.Products.variants.edit', compact('productVariant', 'productId'));
 	}

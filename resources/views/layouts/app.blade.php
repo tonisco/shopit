@@ -39,6 +39,7 @@
     <script src="{{ asset('vendor/quill/quill.js') }}"></script>
     @include('flatpickr::components.script')
     @yield('script')
+    @stack('scripts')
 </body>
 
 </html>

@@ -120,7 +120,8 @@
                 let nameInput = newItem.find('.option-name')
                 let priceInput = newItem.find('.option-price')
                 newItem.find('.heading').append(
-                    '<i class="h-7 bi bi-trash-fill w-7 delete-icon text-red-500 dark:text-red-700" ></i>')
+                    '<i class="h-7 bi bi-trash-fill w-7 delete-icon cursor-pointer text-red-500 dark:text-red-700" ></i>'
+                    )
                 addAttributes(title, nameInput, priceInput, index)
 
                 nameInput.val('')

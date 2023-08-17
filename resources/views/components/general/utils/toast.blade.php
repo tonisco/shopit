@@ -1,4 +1,4 @@
-<div role="alert" x-data="timeout" x-show="show" x-init="countdown" x-transition:leave="translate-x-[110%]"
+<div role="alert" x-data="timeout" x-show="show" x-init="countdown(true)" x-transition:leave="translate-x-[110%]"
     class="fixed right-6 top-5 z-[999999] transition-all ease-in-out max-w-[80%] sm:max-w-md mx-auto p-4 bg-white border border-gray-100 shadow-xl rounded-xl dark:border-gray-800 dark:bg-gray-900">
     <div class="flex items-start gap-2 sm:gap-4">
         @if ($type === 'success')
@@ -25,7 +25,7 @@
             </p>
         </div>
 
-        <button @click="close"
+        <button @click="close(true)"
             class="text-gray-500 transition hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-500">
             <x-ri-close-fill class="w-6 h-6" />
         </button>

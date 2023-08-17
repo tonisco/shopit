@@ -65,19 +65,24 @@ document.addEventListener("alpine:init", () => {
 	Alpine.data("timeout", () => ({
 		show: true,
 		time: 5,
-		close() {
+		close(clean) {
 			this.time = 0;
 			this.open = false;
+			if (clean) this.remove();
 		},
-		async countdown() {
+		async countdown(clean) {
 			let interval = window.setInterval(() => {
 				if (this.time === 0) {
 					this.show = false;
 					clearInterval(interval);
+					if (clean) this.remove();
 				} else {
 					this.time = this.time - 1;
 				}
 			}, 1000);
+		},
+		remove() {
+			$(this).remove();
 		},
 	}));
 
