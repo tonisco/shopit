@@ -6,12 +6,12 @@
             ['name' => 'edit'],
         ]" />
 
-        <form method="POST"
-            action="{{ route('vendor.products.variants.update', ['product' => $productId, 'variant' => $productVariant->id]) }}"
-            class="flex flex-col gap-8">
-            @csrf
-            @method('PUT')
-            <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <div class="flex flex-col gap-8">
+            <form method="POST"
+                action="{{ route('vendor.products.variants.update', ['product' => $productId, 'variant' => $productVariant->id]) }}"
+                class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                @csrf
+                @method('PUT')
                 <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant</h2>
 
                 <div class="flex flex-col w-full gap-2">
@@ -40,7 +40,7 @@
                 <div class="self-end">
                     <x-general.input.submit-button text="update" />
                 </div>
-            </div>
+            </form>
 
             <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant Options</h2>
@@ -48,38 +48,57 @@
                     @if ($loop->first)
                         <form></form>
                     @endif
-                    <form
-                        @if (!$loop->first) action="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}" @endif
+                    <form x-data="trackInput('{{ $productVariantItem->name }}', '{{ $productVariantItem->price }}')"
+                        action="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}"
                         class="flex flex-col gap-4 @if ($loop->first) variant-option @else delete-form @endif">
                         <div class="flex justify-between gap-4 items-center heading">
                             <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
                                 {{ $loop->index + 1 }}
                             </h3>
-                            @if (!$loop->first)
-                                <a data-name="{{ $productVariantItem->name }}" class="cursor-pointer delete-option">
-                                    <i class="h-7 bi bi-trash-fill w-7 text-red-500 dark:text-red-700"></i>
+                            <div class="flex gap-2 items-center">
+                                <a data-name="{{ $productVariantItem->name }}"
+                                    data-price="{{ $productVariantItem->price }}" class="cursor-pointer edit-option"
+                                    data-link="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}">
+                                    <i class="h-8 text-lg bi bi-pencil-square w-8 text-blue-500 dark:text-blue-700"></i>
                                 </a>
-                            @endif
+                                @if (!$loop->first)
+                                    <a data-name="{{ $productVariantItem->name }}" class="cursor-pointer delete-option">
+                                        <i class="h-8 text-lg bi bi-trash-fill w-8 text-red-500 dark:text-red-700"></i>
+                                    </a>
+                                @endif
+
+                            </div>
                         </div>
-                        <div class="w-full flex-col sm:flex-row flex gap-4">
-                            <div class="flex flex-col w-full gap-2">
-                                <x-general.input.input class="option-name" name="option-name-1" id="option-name-1"
-                                    label="Name" required value="{{ $productVariantItem->name }}" />
-                                @error('option-name-1')
-                                    <x-general.input.input-error :messages="$message" />
-                                @enderror
+                        <div>
+                            <div class="w-full flex-col sm:flex-row flex gap-4 sm:gap-6">
+                                <div class="flex flex-col w-full gap-2">
+                                    <x-general.input.input class="option-name" name="option-name-1" id="option-name-1"
+                                        label="Name" required readonly x-model="name" @input.debounce="change()" />
+                                    @error('option-name-1')
+                                        <div class="mb-1">
+                                            <x-general.input.input-error :messages="$message" />
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="flex flex-col w-full gap-2">
+                                    <x-general.input.input class="option-price" required name="option-price-1"
+                                        id="option-price-1" readonly type="number" label="Price $" x-model="price"
+                                        @input.debounce="change()" />
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added
+                                        to
+                                        the original
+                                        product price</p>
+                                    @error('option-price-1')
+                                        <div class="mb-1">
+                                            <x-general.input.input-error :messages="$message" />
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="flex flex-col w-full gap-2">
-                                <x-general.input.input class="option-price" required name="option-price-1"
-                                    id="option-price-1" type="number" label="Price $"
-                                    value="{{ $productVariantItem->price }}" />
-                                <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
-                                    the original
-                                    product price</p>
-                                @error('option-price-1')
-                                    <x-general.input.input-error :messages="$message" />
-                                @enderror
+                            <div class="self-start submit-button" x-transition x-cloak x-show="showButton">
+                                <x-general.input.submit-button text="update" />
                             </div>
+
                         </div>
                     </form>
                 @endforeach
@@ -87,10 +106,41 @@
                 <button id="increase" type="button" class="text-end text-red-500 dark:text-red-700 capitalize">add
                     option</button>
             </div>
-        </form>
+        </div>
     </section>
 
     <x-general.utils.delete-modal itemName=" variant option" />
+
+    <div style="display: none"
+        class="edit-modal fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-end bg-black/25">
+        <form
+            class="bg-white edit-content dark:bg-gray-800 h-full p-8 pt-12 flex translate-x-full flex-col gap-6 transition-all duration-300">
+            <h1 class="text-xl font-medium text-gray-800 capitalize dark:text-gray-200">Create Variant Option</h1>
+            <div class="flex flex-col w-full gap-2">
+                <x-general.input.input class="edit-name" name="name" id="name" label="Name" required />
+                @error('name')
+                    <x-general.input.input-error :messages="$message" />
+                @enderror
+            </div>
+            <div class="flex flex-col w-full gap-2">
+                <x-general.input.input class="edit-price" required name="price" id="price" type="number"
+                    label="Price $" />
+                <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added
+                    to
+                    the original
+                    product price</p>
+                @error('price')
+                    <x-general.input.input-error :messages="$message" />
+                @enderror
+            </div>
+            <div class="flex gap-4">
+                <button class="px-3 py-2 text-white bg-red-500 rounded shadow-md dark:bg-red-700 edit-item"
+                    type="submit">Create</button>
+                <button type="reset"
+                    class="px-3 py-2 bg-gray-200 shadow-md edit-cancel dark:bg-gray-900 dark:text-gray-200">Cancel</button>
+            </div>
+        </form>
+    </div>
 
     @section('script')
         <script>
@@ -130,7 +180,7 @@
                 $(this).hide()
                 let parent = $(this).parent()
                 let newItem = parent.find('.variant-option').clone()
-                let index = parent.children().length - 1
+                let index = parent.children().length - 2
 
                 let title = newItem.find('h3')
                 let nameInput = newItem.find('.option-name')
@@ -141,8 +191,16 @@
                 )
                 addAttributes(title, nameInput, priceInput, index)
 
+                newItem.removeAttr('x-data')
                 nameInput.val('')
+                nameInput.removeAttr('x-model')
                 priceInput.val(0)
+                priceInput.removeAttr('x-model')
+
+                let submitButtton = newItem.find('.submit-button')
+                submitButtton.removeAttr('x-cloak')
+                submitButtton.removeAttr('x-show')
+                submitButtton.removeAttr('x-transition')
 
                 newItem.removeClass('variant-option')
                 newItem.insertBefore(this)
@@ -155,6 +213,8 @@
 
             $('.delete-option').on('click', function() {
                 let name = this.dataset.name
+
+                $('.delete-name').text(name)
 
                 let deleteLink = $(this).parent().parent().attr('action')
 
@@ -174,6 +234,109 @@
                         error: function(xhr, status, error) {
                             // {{-- blade-formatter-disable --}}
 							let alert = `{{<x-general.utils.toast message='Failed to delete variant option' title='Variant option' type='success' />}}`
+                            // {{-- blade-formatter-enable --}}
+                            $('body').prepend(alert)
+                            console.log(error);
+                        }
+                    })
+                })
+            })
+
+            let editModal = $('.edit-modal')
+
+            let closeEditModal = function() {
+                editModal.children().addClass('translate-x-full')
+                setTimeout(() => {
+                    editModal.hide()
+                }, 400);
+            }
+
+            editModal.on('click', closeEditModal)
+
+            $('.edit-content').on('click', function(e) {
+                e.stopPropagation()
+            })
+
+            $('.edit-cancel').on('click', closeEditModal)
+
+            $('.edit-option').on('click', function() {
+                let {
+                    name,
+                    price,
+                    link
+                } = this.dataset
+
+                editModal.find('.edit-name').val(name)
+                editModal.find('.edit-price').val(price)
+
+                editModal.find('h1').text('Edit Product Variant')
+
+                editModal.show()
+                editModal.children().removeClass('translate-x-full')
+
+                editModal.find('form').on('submit', async function(e) {
+                    e.preventDefault()
+                    let newName = editModal.find('.edit-name').val(name)
+                    let newPrice = editModal.find('.edit-price').val(price)
+                    await $.ajax({
+                        url: link,
+                        method: 'PUT',
+                        body: {
+                            name: newName,
+                            price: newPrice
+                        },
+                        success: function(data) {
+                            // {{-- blade-formatter-disable --}}
+							let alert = `{{ <x-general.utils.toast message='Variant option has successfully been updated' title='Variant option' type='success' /> }}`
+							// {{-- blade-formatter-enable --}}
+                            $('body').prepend(alert)
+
+                        },
+                        error: function(xhr, status, error) {
+                            // {{-- blade-formatter-disable --}}
+							let alert = `{{<x-general.utils.toast message='Failed to update variant option' title='Variant option' type='success' />}}`
+                            // {{-- blade-formatter-enable --}}
+                            $('body').prepend(alert)
+                            console.log(error);
+                        }
+                    })
+
+                    closeEditModal()
+                })
+
+            })
+
+            $('#increase').on('click', function() {
+                editModal.find('.edit-name').val('')
+                editModal.find('.edit-price').val(0)
+
+                editModal.find('h1').text('Create Product Variant')
+
+                editModal.show()
+                editModal.children().removeClass('translate-x-full')
+
+                editModal.find('form').on('submit', function(e) {
+                    e.preventDefault()
+                    let newName = editModal.find('.edit-name').val(name)
+                    let newPrice = editModal.find('.edit-price').val(price)
+
+                    $.ajax({
+                        url: "{{ route('vendor.products.variants.items.store', ['product' => $productId, 'variant' => $productVariant->id]) }}",
+                        method: 'POST',
+                        body: {
+                            name: newName,
+                            price: newPrice
+                        },
+                        success: function(data) {
+                            // {{-- blade-formatter-disable --}}
+							let alert = `{{ <x-general.utils.toast message='Variant option has successfully been created' title='Variant option' type='success' /> }}`
+							// {{-- blade-formatter-enable --}}
+                            $('body').prepend(alert)
+
+                        },
+                        error: function(xhr, status, error) {
+                            // {{-- blade-formatter-disable --}}
+							let alert = `{{<x-general.utils.toast message='Failed to create variant option' title='Variant option' type='success' />}}`
                             // {{-- blade-formatter-enable --}}
                             $('body').prepend(alert)
                             console.log(error);
