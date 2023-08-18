@@ -42,22 +42,23 @@
                 </div>
             </form>
 
-            <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg parent shadow-md dark:bg-gray-800">
                 <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant Options</h2>
                 @foreach ($productVariant->productVariantItems as $productVariantItem)
-                    <div class="flex flex-col gap-4 variant-option delete-form">
+                    <div class="flex flex-col gap-4 @if ($loop->first) variant-option @endif">
                         <div class="flex justify-between gap-4 items-center heading">
                             <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
                                 {{ $loop->index + 1 }}
                             </h3>
-                            <div class="flex gap-2 items-center">
-                                <a data-name="{{ $productVariantItem->name }}"
-                                    data-price="{{ $productVariantItem->price }}" class="cursor-pointer edit-option"
-                                    data-link="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}">
+                            <div class="flex gap-2 items-center data-item" data-name="{{ $productVariantItem->name }}"
+                                data-price="{{ $productVariantItem->price }}"
+                                data-link="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}"
+                                data-deletelink="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}">
+                                <a class="cursor-pointer edit-option">
                                     <i class="h-8 text-lg bi bi-pencil-square w-8 text-blue-500 dark:text-blue-700"></i>
                                 </a>
                                 @if (!$loop->first)
-                                    <a data-name="{{ $productVariantItem->name }}" class="cursor-pointer delete-option">
+                                    <a class="cursor-pointer delete-option">
                                         <i class="h-8 text-lg bi bi-trash-fill w-8 text-red-500 dark:text-red-700"></i>
                                     </a>
                                 @endif
@@ -122,20 +123,31 @@
 
     @section('script')
         <script>
-            let modal = $('.delete-modal')
+            function addAttributes(title, nameInput, priceInput, index) {
+                nameInput.attr('id', `option-name-${index}`)
+                nameInput.attr('name', `option-name-${index}`)
 
-            $('.delete-option').on('click', function() {
-                let name = this.dataset.name
+                priceInput.attr('id', `option-price-${index}`)
+                priceInput.attr('name', `option-price-${index}`)
+
+                title.text(`Option ${index}`)
+            }
+
+            function deleteItem() {
+                let ele = $(this)
+                let {
+                    name,
+                    deletelink
+                } = ele.parent()[0].dataset
 
                 $('.delete-name').text(name)
 
-                let deleteLink = $(this).parent().parent().attr('action')
-
                 modal.show()
 
-                $('.delete-item').on('click', function() {
-                    $.ajax({
-                        url: deleteLink,
+                $('.delete-item').on('click', async function(e) {
+                    e.preventDefault()
+                    await $.ajax({
+                        url: deletelink,
                         method: 'DELETE',
                         success: function(data) {
                             // {{-- blade-formatter-disable --}}
@@ -143,6 +155,11 @@
 							// {{-- blade-formatter-enable --}}
                             $('body').prepend(alert)
 
+                            ele.parent().parent().parent().remove()
+
+                            $('.heading').find('h3').each(function(index) {
+                                $(this).text(`Option ${index+1}`)
+                            })
                         },
                         error: function(xhr, status, error) {
                             // {{-- blade-formatter-disable --}}
@@ -152,32 +169,45 @@
                             console.log(error);
                         }
                     })
+
                 })
-            })
-
-            let editModal = $('.edit-modal')
-
-            let closeEditModal = function() {
-                editModal.children().addClass('translate-x-full')
-                setTimeout(() => {
-                    editModal.hide()
-                }, 400);
             }
 
-            editModal.on('click', closeEditModal)
+            function addItem(name, price, link, deletelink) {
+                let newItem = $('.variant-option').clone()
+                let index = $('.parent').children().length - 1
 
-            $('.edit-content').on('click', function(e) {
-                e.stopPropagation()
-            })
+                newItem.find('h3').text(`Option ${index}`)
+                newItem.find('.option-name').val(name)
+                newItem.find('.option-price').val(price)
 
-            $('.edit-cancel').on('click', closeEditModal)
+                let editButton = $(
+                    '<a class="cursor-pointer delete-option"><i class="h-8 text-lg bi bi-trash-fill w-8 text-red-500 dark:text-red-700"></i></a>'
+                ).get(0)
 
-            $('.edit-option').on('click', function() {
+                newItem.find('.heading').children()[1].append(editButton)
+
+                let dataItem = newItem.find('.data-item')
+                dataItem.attr('data-name', name)
+                dataItem.attr('data-price', price)
+                dataItem.attr('data-link', link)
+                dataItem.attr('data-deletelink', deletelink)
+
+                newItem.find('.edit-option').on('click', editItem)
+
+                newItem.removeClass('variant-option')
+                newItem.insertBefore($('#increase'))
+
+                newItem.find('.delete-option').on('click', deleteItem)
+                $(this).fadeIn()
+            }
+
+            function editItem() {
                 let {
                     name,
                     price,
                     link
-                } = this.dataset
+                } = $(this).parent()[0].dataset
 
                 editModal.find('.edit-name').val(name)
                 editModal.find('.edit-price').val(price)
@@ -203,7 +233,7 @@
 							let alert = `{{ <x-general.utils.toast message='Variant option has successfully been updated' title='Variant option' type='success' /> }}`
 							// {{-- blade-formatter-enable --}}
                             $('body').prepend(alert)
-
+                            closeEditModal()
                         },
                         error: function(xhr, status, error) {
                             // {{-- blade-formatter-disable --}}
@@ -211,13 +241,38 @@
                             // {{-- blade-formatter-enable --}}
                             $('body').prepend(alert)
                             console.log(error);
+                            closeEditModal()
                         }
                     })
 
                     closeEditModal()
                 })
 
+            }
+
+            let modal = $('.delete-modal')
+
+            $('.delete-option').on('click', deleteItem)
+
+            let editModal = $('.edit-modal')
+
+            function closeEditModal() {
+                editModal.children().addClass('translate-x-full')
+                editModal.find('form').off('submit')
+                setTimeout(() => {
+                    editModal.hide()
+                }, 400);
+            }
+
+            editModal.on('click', closeEditModal)
+
+            $('.edit-content').on('click', function(e) {
+                e.stopPropagation()
             })
+
+            $('.edit-cancel').on('click', closeEditModal)
+
+            $('.edit-option').on('click', editItem)
 
             $('#increase').on('click', function() {
                 editModal.find('.edit-name').val('')
@@ -245,7 +300,8 @@
 							let alert = `{{ <x-general.utils.toast message='Variant option has successfully been created' title='Variant option' type='success' /> }}`
 							// {{-- blade-formatter-enable --}}
                             $('body').prepend(alert)
-
+                            closeEditModal()
+                            // addItem('name', '0', 'thsisis', 'delete fjdgfj')
                         },
                         error: function(xhr, status, error) {
                             // {{-- blade-formatter-disable --}}
@@ -253,6 +309,7 @@
                             // {{-- blade-formatter-enable --}}
                             $('body').prepend(alert)
                             console.log(error);
+                            closeEditModal()
                         }
                     })
                 })
