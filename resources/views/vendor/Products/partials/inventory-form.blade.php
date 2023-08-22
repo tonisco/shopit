@@ -14,4 +14,6 @@
             <x-general.input.input-error :messages="$message" />
         @enderror
     </div>
+
+    @include('vendor.Products.partials.create-variation')
 </div>
