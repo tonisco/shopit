@@ -211,16 +211,12 @@
                             if (e.target.checked) {
                                 let message = `Are you sure you want to show
                 								<span class="font-semibold capitalize"><${name}</span>`
-                                $('.check-heading').html($ {
-                                    message
-                                })
+                                $('.check-heading').html(message)
                                 $('.check-button').text('Show')
                             } else {
                                 let message = `Are you sure you want to hide
                 								<span class="font-semibold capitalize"><${name}</span>`
-                                $('.check-heading').html($ {
-                                    message
-                                })
+                                $('.check-heading').html(message)
                                 $('.check-button').text('Hide')
                             }
 
