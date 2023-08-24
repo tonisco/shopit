@@ -1,5 +1,5 @@
 @php
-    $old = old('status') === 'active';
+    $old = old('status') !== null ? old('status') === 'active' : true;
     $status = isset($product->status) ? $product->status : $old;
 @endphp
 

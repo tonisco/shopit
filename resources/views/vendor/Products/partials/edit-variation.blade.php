@@ -4,9 +4,9 @@
     @if (count($product->productVariants))
         @foreach ($product->productVariants as $productVariant)
             <div class="flex flex-col w-full gap-2">
-                <x-general.input.input name="variant-name" id="variant-name" label="Variant Name" ::required="open"
-                    value="{{ isset($productVariant->name) ? $productVariant->name : old('variant-name') }}" />
-                @error('variant-name')
+                <x-general.input.input name="variant_name" id="variant_name" label="Variant Name" ::required="open"
+                    value="{{ isset($productVariant->name) ? $productVariant->name : old('variant_name') }}" />
+                @error('variant_name')
                     <x-general.input.input-error :messages="$message" />
                 @enderror
             </div>
@@ -25,31 +25,32 @@
                     </div>
                     <div class="flex flex-col w-full gap-4 sm:flex-row">
                         <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="option-name" name="{{ 'option-name-' . $loop->index }}"
-                                id="{{ 'option-name-' . $loop->index }}" label="Name" ::required="open"
-                                value="{{ isset($productVariantItem->name) ? $productVariantItem->name : old('variant-name') }}" />
-                            @error('option-name-*')
+                            <x-general.input.input class="option_name" name="{{ 'option_name_' . $loop->index }}"
+                                id="{{ 'option_name_' . $loop->index }}" label="Name" ::required="open"
+                                value="{{ isset($productVariantItem->name) ? $productVariantItem->name : '' }}" />
+                            @error('option_name_*')
                                 <x-general.input.input-error :messages="$message" />
                             @enderror
                         </div>
 
                         <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="option-price" ::required="open"
-                                name="{{ 'option-price-' . $loop->index }}" id="{{ 'option-price-' . $loop->index }}"
-                                type="number" label="Price $" value="0" />
+                            <x-general.input.input class="option_price" ::required="open"
+                                name="{{ 'option_price_' . $loop->index }}" id="{{ 'option_price_' . $loop->index }}"
+                                type="number" label="Price $"
+                                value="{{ isset($productVariantItem->price) ? $productVariantItem->price : '0' }}" />
                             <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
                                 the original
                                 product price</p>
-                            @error('option-price-*')
+                            @error('option_price_*')
                                 <x-general.input.input-error :messages="$message" />
                             @enderror
                         </div>
 
                         <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="option-stock" name="{{ 'option-stock-' . $loop->index }}"
-                                id="{{ 'option-stock-' . $loop->index }}" label="Stock" ::required="open"
-                                type="number" />
-                            @error('option-stock-*')
+                            <x-general.input.input class="option_qty" name="{{ 'option_qty_' . $loop->index }}"
+                                id="{{ 'option_qty_' . $loop->index }}" label="Qty" ::required="open" type="number"
+                                value="{{ isset($productVariantItem->qty) ? $productVariantItem->qty : '' }}" />
+                            @error('option_qty_*')
                                 <x-general.input.input-error :messages="$message" />
                             @enderror
                         </div>
@@ -66,26 +67,26 @@
             </div>
             <div class="flex flex-col w-full gap-4 sm:flex-row">
                 <div class="flex flex-col w-full gap-2">
-                    <x-general.input.input class="option-name" name="option-name-1" id="option-name-1" label="Name"
+                    <x-general.input.input class="option_name" name="option_name_1" id="option_name_1" label="Name"
                         ::required="open" />
-                    @error('option-name-*')
+                    @error('option_name_*')
                         <x-general.input.input-error :messages="$message" />
                     @enderror
                 </div>
                 <div class="flex flex-col w-full gap-2">
-                    <x-general.input.input class="option-price" ::required="open" name="option-price-1"
-                        id="option-price-1" type="number" label="Price $" value="0" />
+                    <x-general.input.input class="option_price" ::required="open" name="option_price_1"
+                        id="option_price_1" type="number" label="Price $" value="0" />
                     <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
                         the original
                         product price</p>
-                    @error('option-price-*')
+                    @error('option_price_*')
                         <x-general.input.input-error :messages="$message" />
                     @enderror
                 </div>
                 <div class="flex flex-col w-full gap-2">
-                    <x-general.input.input class="option-stock" name="option-stock-1" id="option-stock-1" label="Stock"
+                    <x-general.input.input class="option_qty" name="option_qty_1" id="option_qty_1" label="Qty"
                         ::required="open" type="number" />
-                    @error('option-stock-*')
+                    @error('option_qty_*')
                         <x-general.input.input-error :messages="$message" />
                     @enderror
                 </div>
@@ -99,15 +100,15 @@
 
 @push('scripts')
     <script>
-        function addAttributes(title, nameInput, priceInput, stockInput, index) {
-            nameInput.attr('id', `option-name-${index}`)
-            nameInput.attr('name', `option-name-${index}`)
+        function addAttributes(title, nameInput, priceInput, qtyInput, index) {
+            nameInput.attr('id', `option_name_${index}`)
+            nameInput.attr('name', `option_name_${index}`)
 
-            priceInput.attr('id', `option-price-${index}`)
-            priceInput.attr('name', `option-price-${index}`)
+            priceInput.attr('id', `option_price_${index}`)
+            priceInput.attr('name', `option_price_${index}`)
 
-            stockInput.attr('id', `option-stock-${index}`)
-            stockInput.attr('name', `option-stock-${index}`)
+            qtyInput.attr('id', `option_qty_${index}`)
+            qtyInput.attr('name', `option_qty_${index}`)
 
             title.text(`Option ${index}`)
         }
@@ -119,12 +120,12 @@
                 let index = -1
 
                 let title = item.find('h3')
-                let nameInput = item.find('.option-name')
-                let priceInput = item.find('.option-price')
-                let stockInput = item.find('.option-stock')
+                let nameInput = item.find('.option_name')
+                let priceInput = item.find('.option_price')
+                let qtyInput = item.find('.option_qty')
 
-                if (title && nameInput && priceInput && stockInput) {
-                    addAttributes(title, nameInput, priceInput, stockInput, index)
+                if (title && nameInput && priceInput && qtyInput) {
+                    addAttributes(title, nameInput, priceInput, qtyInput, index)
                     index++
                 }
             })
@@ -148,19 +149,19 @@
 
             let title = newItem.find('h3')
 
-            let nameInput = newItem.find('.option-name')
-            let priceInput = newItem.find('.option-price')
-            let stockInput = newItem.find('.option-stock')
+            let nameInput = newItem.find('.option_name')
+            let priceInput = newItem.find('.option_price')
+            let qtyInput = newItem.find('.option_qty')
 
             newItem.find('.heading').append(
                 '<i class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-red-700" ></i>'
             )
 
-            addAttributes(title, nameInput, priceInput, stockInput, index)
+            addAttributes(title, nameInput, priceInput, qtyInput, index)
 
             nameInput.val('')
             priceInput.val(0)
-            stockInput.val('')
+            qtyInput.val('')
 
             newItem.removeClass('variant-option')
             newItem.insertBefore(this)
