@@ -9,7 +9,9 @@ use App\Http\Traits\UtilsTrait;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use DateTime;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -85,13 +87,16 @@ class ProductController extends Controller
 	 */
 	public function store(Request $request)
 	{
+		error_log(json_encode($request->all()));
+
+
 		$request->validate([
 			'name' => ['required', 'max:200'],
 			'image' => ['required', 'image', 'max:3000'],
 			'category' => ['required'],
 			'brand' => ['required'],
 			'price' => ['required', 'numeric'],
-			'qty' => ['required', 'numeric'],
+			'qty' => ['required_without:use_variant', 'nullable', 'numeric'],
 			'short_description' => ['required'],
 			'long_description' => ['required'],
 			'status' => ['required'],
@@ -103,6 +108,11 @@ class ProductController extends Controller
 			'product_image4' => ['nullable', 'image', 'max:3000'],
 			'product_image5' => ['nullable', 'image', 'max:3000'],
 			'product_image6' => ['nullable', 'image', 'max:3000'],
+			'use_variant' => ['nullable', 'string'],
+			'variant_name' => ['required_with:use_variant', 'nullable', 'string'],
+			'option_name_1' => ['required_with:use_variant', 'nullable', 'string'],
+			'option_price_1' => ['required_with:use_variant', 'nullable', 'numeric'],
+			'option_qty_1' => ['required_with:use_variant', 'nullable', 'numeric'],
 		]);
 
 		$image = $this->uploadImage($request, 'image', 'product', Str::slug($request->name));
@@ -120,7 +130,7 @@ class ProductController extends Controller
 			'name' => $request->name,
 			'slug' => Str::slug($request->name),
 			'image' => $image,
-			'qty' => $request->qty,
+			'qty' => $request->qty ?? 0,
 			'price' => $request->price,
 			'short_description' => $request->short_description,
 			'long_description' => $request->long_description,
@@ -138,6 +148,9 @@ class ProductController extends Controller
 		]);
 
 		$this->handleProductImages($request, $product);
+		if (isset($request->use_variant) && $request->use_variant === "on") {
+			$this->handleProductVariants($request, $product);
+		}
 
 		Session::flash('success', ['title' => 'Product Created', 'message' => 'Product has been created and is awaiting approval']);
 
@@ -160,7 +173,9 @@ class ProductController extends Controller
 	{
 		$product = Product::where('id', $id)
 			->where('vendor_id', Auth::user()->vendor->id)
-			->with('productImages')
+			->with(['productImages', 'ProductVariants' => function (HasMany $query) {
+				$query->with('ProductVariantItems')->get();
+			}])
 			->firstOrFail();
 
 		$categories = Category::with('subCategories:id,name,category_id')
@@ -311,5 +326,29 @@ class ProductController extends Controller
 		}
 
 		$product->productImages()->createMany($productImgs);
+	}
+
+	public function handleProductVariants(Request $request, Product $product)
+	{
+		$productVariantItems = [];
+
+		$index = 1;
+
+		while (isset($request['option_name' . $index]) && isset($request['option_price' . $index]) && isset($request['option_qty' . $index])) {
+			array_push($productVariantItems, [
+				'name' => $request['option_name' . $index],
+				'price' => $request['option_price' . $index],
+				'qty' => $request['option_qty' . $index]
+			]);
+			$index++;
+		}
+
+		$productVariant = ProductVariant::create([
+			'name' => $request['variant_name'],
+			'product_id' => $product->id,
+			'status' => true
+		]);
+
+		$productVariant->productVariantItems()->createMany($productVariantItems);
 	}
 }
