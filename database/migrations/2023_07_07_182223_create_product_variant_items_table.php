@@ -16,6 +16,7 @@ return new class extends Migration
 			$table->string('name');
 			$table->double('price');
 			$table->boolean('default');
+			$table->integer('qty');
 			$table->unsignedBigInteger('product_variant_id');
 
 			$table->foreign('product_variant_id')->references('id')->on('product_variants')->cascadeOnDelete();
