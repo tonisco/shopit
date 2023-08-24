@@ -1,8 +1,10 @@
 @php
     $qty = isset($product->qty) ? $product->qty : old('qty');
+    $useVariant = isset($product->productVariants) ? count($product->productVariants) > 0 : old('use_variant') === 'on';
 @endphp
 
-<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" x-data="toggler({{ old('use_variant') === 'on' }})">
+<div id="inventory-form" class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+    x-data="toggler({{ $useVariant }})">
     <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Inventory</h2>
 
     <div class="flex items-center gap-2">
@@ -23,6 +25,7 @@
     </div>
 
     @if (isset($product))
+        @include('vendor.Products.partials.edit-variation')
     @else
         @include('vendor.Products.partials.create-variation')
     @endif

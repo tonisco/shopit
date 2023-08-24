@@ -145,8 +145,6 @@
             let newItem = parent.find('.variant-option').clone()
             let index = parent.children().length - 2
 
-            console.log(index)
-
             let title = newItem.find('h3')
 
             let nameInput = newItem.find('.option-name')
