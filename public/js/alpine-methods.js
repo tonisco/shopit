@@ -52,13 +52,19 @@ let toolbar = [
 ];
 
 document.addEventListener("alpine:init", () => {
-	Alpine.data("toggler", () => ({
+	Alpine.data("toggler", (data) => ({
 		open: false,
 		toggle() {
 			this.open = !this.open;
 		},
 		change(val) {
 			this.open = Boolean(val);
+		},
+		init() {
+			console.log(data);
+			if (data && typeof Boolean(data) === "boolean") {
+				this.open = Boolean(data);
+			}
 		},
 	}));
 
@@ -141,7 +147,7 @@ document.addEventListener("alpine:init", () => {
 				document.querySelector(`#${id}`).value =
 					document.querySelector(".ql-editor").innerHTML;
 			});
-			if (data) quill.setText(data);
+			if (data) document.querySelector(".ql-editor").innerHTML = data;
 		},
 	}));
 });

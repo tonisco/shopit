@@ -1,8 +1,8 @@
-<div class="flex flex-col gap-4">
+<div x-cloak x-show="open" class="flex flex-col gap-4">
     <h2 class="font-medium text-gray-800 capitalize dark:text-gray-200">Variant Option</h2>
 
     <div class="flex flex-col w-full gap-2">
-        <x-general.input.input name="variant-name" id="variant-name" label="Variant Name" required
+        <x-general.input.input name="variant-name" id="variant-name" label="Variant Name" ::required="open"
             value="{{ old('variant-name') }}" />
         @error('variant-name')
             <x-general.input.input-error :messages="$message" />
@@ -19,14 +19,14 @@
             <div class="flex flex-col w-full gap-4 sm:flex-row">
                 <div class="flex flex-col w-full gap-2">
                     <x-general.input.input class="option-name" name="option-name-1" id="option-name-1" label="Name"
-                        required />
+                        ::required="open" />
                     @error('option-name-*')
                         <x-general.input.input-error :messages="$message" />
                     @enderror
                 </div>
                 <div class="flex flex-col w-full gap-2">
-                    <x-general.input.input class="option-price" required name="option-price-1" id="option-price-1"
-                        type="number" label="Price $" value="0" />
+                    <x-general.input.input class="option-price" ::required="open" name="option-price-1"
+                        id="option-price-1" type="number" label="Price $" value="0" />
                     <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
                         the original
                         product price</p>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="flex flex-col w-full gap-2">
                     <x-general.input.input class="option-stock" name="option-stock-1" id="option-stock-1" label="Stock"
-                        required type="number" />
+                        ::required="open" type="number" />
                     @error('option-stock-*')
                         <x-general.input.input-error :messages="$message" />
                     @enderror
@@ -62,16 +62,16 @@
                 <div class="flex flex-col w-full gap-4 sm:flex-row">
                     <div class="flex flex-col w-full gap-2">
                         <x-general.input.input class="option-name" name="option-name-{{ $index }}"
-                            id="option-name-{{ $index }}" label="Name" required
+                            id="option-name-{{ $index }}" label="Name" ::required="open"
                             value="{{ old('option-name-' . $index) }}" />
                         @error('option-name-*')
                             <x-general.input.input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col w-full gap-2">
-                        <x-general.input.input class="option-price" required name="option-price-{{ $index }}"
-                            id="option-price-{{ $index }}" type="number" label="Price $"
-                            value="{{ old('option-price-' . $index) }}" />
+                        <x-general.input.input class="option-price" ::required="open"
+                            name="option-price-{{ $index }}" id="option-price-{{ $index }}" type="number"
+                            label="Price $" value="{{ old('option-price-' . $index) }}" />
                         <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
                             the original
                             product price</p>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="flex flex-col w-full gap-2">
                         <x-general.input.input class="option-stock" name="option-stock-{{ $index }}"
-                            id="option-stock-{{ $index }}" label="Stock" required type="number"
+                            id="option-stock-{{ $index }}" label="Stock" ::required="open" type="number"
                             value="{{ old('option-stock-' . $index) }}" />
                         @error('option-stock-*')
                             <x-general.input.input-error :messages="$message" />

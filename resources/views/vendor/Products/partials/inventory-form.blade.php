@@ -2,12 +2,19 @@
     $qty = isset($product->qty) ? $product->qty : old('qty');
 @endphp
 
-<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" x-data="toggler({{ old('use_variant') === 'on' }})">
     <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Inventory</h2>
 
-    <div class="flex flex-col w-full gap-2">
+    <div class="flex items-center gap-2">
+        <x-general.input.switch id="variant" x-model="open" name="use_variant" />
+        <label for="variant" class="font-medium text-gray-800 capitalize dark:text-gray-200">Use
+            Variant</label>
+    </div>
+
+    <div class="flex flex-col w-full gap-2" x-show="!open">
         <div class="relative" data-te-input-wrapper-init>
-            <input required class="form-input peer" value="{{ $qty }}" type="number" name="qty" id="qty">
+            <input :required="!open" class="form-input peer disabled:bg-gray-100" value="{{ $qty }}"
+                type="number" name="qty" id="qty">
             <label class="form-label" for="qty">Stock Quantity</label>
         </div>
         @error('qty')
@@ -15,5 +22,8 @@
         @enderror
     </div>
 
-    @include('vendor.Products.partials.create-variation')
+    @if (isset($product))
+    @else
+        @include('vendor.Products.partials.create-variation')
+    @endif
 </div>

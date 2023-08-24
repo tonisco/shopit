@@ -14,7 +14,9 @@
 
     <div class="flex flex-col w-full gap-2">
         <div class="relative" data-te-input-wrapper-init>
-            <input class="form-input peer" value="{{ $seo_title }}" type="number" name="seo_title" id="seo_title">
+            <input class="form-input peer"
+                value="{{ isset($product->seo_title) ? $product->seo_title : old('seo_title') }}" type="number"
+                name="seo_title" id="seo_title">
             <label class="form-label" for="seo_title">Seo Title</label>
         </div>
         @error('seo_title')
@@ -24,8 +26,9 @@
 
     <div class="flex flex-col w-full gap-2">
         <div class="relative" data-te-input-wrapper-init>
-            <input class="form-input peer" value="{{ $seo_description }}" type="text" name="seo_description"
-                id="seo_description">
+            <textarea class="form-input peer" name="seo_description" id="seo_description" cols="30" rows="3">
+				{{ isset($product->seo_description) ? $product->seo_description : old('seo_description') }}
+			</textarea>
             <label class="form-label" for="seo_description">Seo
                 Description</label>
         </div>
