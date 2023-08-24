@@ -61,7 +61,6 @@ document.addEventListener("alpine:init", () => {
 			this.open = Boolean(val);
 		},
 		init() {
-			console.log(data);
 			if (data && typeof Boolean(data) === "boolean") {
 				this.open = Boolean(data);
 			}
@@ -92,8 +91,9 @@ document.addEventListener("alpine:init", () => {
 		},
 	}));
 
-	Alpine.data("categoriesData", (data, defaultData) => ({
+	Alpine.data("categoriesData", (data, defaultData, defaultSub) => ({
 		categories: data,
+		subCategoryValue: "",
 		subCategories: [],
 		setSubCategory(e) {
 			if (this.categories) {
@@ -109,6 +109,9 @@ document.addEventListener("alpine:init", () => {
 		init() {
 			if (defaultData) {
 				this.setSubCategory(defaultData);
+			}
+			if (defaultSub) {
+				this.subCategoryValue = defaultSub;
 			}
 		},
 	}));

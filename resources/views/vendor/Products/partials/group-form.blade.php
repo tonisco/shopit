@@ -4,7 +4,7 @@
     $brand_id = isset($product->brand_id) ? $product->brand_id : old('brand');
 @endphp
 
-<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" x-data="categoriesData({{ $categories }}, '{{ $category_id }}', '{{ $sub_category_id }}')">
     <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Group</h2>
 
     <div class="flex flex-col w-full gap-2">
@@ -27,9 +27,9 @@
 
     <div class="flex flex-col w-full gap-2">
         <div class="flex-1">
-            <select required data-te-select-init data-te-select-size="lg" name="sub_category" id="sub_category">
+            <select required data-te-select-init data-te-select-size="lg" name="sub_category" id="sub_category"
+                x-model="subCategoryValue">
                 <option>Select</option>
-                {{-- TODO: fix this 😡  edit --}}
                 <template x-for="subCategory in subCategories">
                     <option :value="subCategory.id" :selected="subCategory.id == {{ $sub_category_id }}"
                         x-text="subCategory.name"></option>
