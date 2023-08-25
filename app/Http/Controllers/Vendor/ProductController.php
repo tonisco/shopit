@@ -149,7 +149,7 @@ class ProductController extends Controller
 
 		$this->handleProductImages($request, $product);
 		if (isset($request->use_variant) && $request->use_variant === "on") {
-			$this->handleProductVariants($request, $product);
+			$this->handleProductVariant($request, $product);
 		}
 
 		Session::flash('success', ['title' => 'Product Created', 'message' => 'Product has been created and is awaiting approval']);
@@ -191,7 +191,11 @@ class ProductController extends Controller
 	 */
 	public function update(Request $request, string $id)
 	{
-		$product = Product::where('id', $id)->where('vendor_id', Auth::user()->vendor->id)->firstOrFail();
+		error_log(json_encode($request->all()));
+
+		$product = Product::where('id', $id)
+			->where('vendor_id', Auth::user()->vendor->id)
+			->firstOrFail();
 
 		$request->validate([
 			'name' => ['required', 'max:200'],
@@ -199,15 +203,26 @@ class ProductController extends Controller
 			'category' => ['required'],
 			'brand' => ['required'],
 			'price' => ['required', 'numeric'],
-			'discount' => ['numeric', 'nullable'],
-			'discount_date' => ['required_with:discount'],
-			'qty' => ['required', 'numeric'],
+			'qty' => ['required_without:use_variant', 'nullable', 'numeric'],
 			'short_description' => ['required'],
 			'long_description' => ['required'],
 			'status' => ['required'],
+			'discount' => ['numeric', 'nullable'],
+			'discount_date' => ['required_with:discount'],
+			'product_image1' => ['nullable', 'image', 'max:3000'],
+			'product_image2' => ['nullable', 'image', 'max:3000'],
+			'product_image3' => ['nullable', 'image', 'max:3000'],
+			'product_image4' => ['nullable', 'image', 'max:3000'],
+			'product_image5' => ['nullable', 'image', 'max:3000'],
+			'product_image6' => ['nullable', 'image', 'max:3000'],
+			'use_variant' => ['nullable', 'string'],
+			'variant_name' => ['required_with:use_variant', 'nullable', 'string'],
+			'option_name_1' => ['required_with:use_variant', 'nullable', 'string'],
+			'option_price_1' => ['required_with:use_variant', 'nullable', 'numeric'],
+			'option_qty_1' => ['required_with:use_variant', 'nullable', 'numeric'],
 		]);
 
-		if ($request->image) {
+		if ($request->hasFile('image')) {
 			$image = $this->replaceImage($request, 'image', 'product', 'product', $product->image);
 
 			$product->image = $image;
@@ -224,7 +239,7 @@ class ProductController extends Controller
 
 		$product->name = $request->name;
 		$product->slug = Str::slug($request->name);
-		$product->qty = $request->qty;
+		$product->qty = $request->qty ?? 0;
 		$product->price = $request->price;
 		$product->short_description = $request->short_description;
 		$product->long_description = $request->long_description;
@@ -245,6 +260,10 @@ class ProductController extends Controller
 		$product->save();
 
 		$this->handleProductImages($request, $product);
+
+		if (isset($request->use_variant) && $request->use_variant === "on") {
+			$this->handleProductVariant($request, $product);
+		}
 
 		Session::flash('success', ['title' => 'Product Updated', 'message' => 'Product details has been updated']);
 
@@ -328,9 +347,11 @@ class ProductController extends Controller
 		$product->productImages()->createMany($productImgs);
 	}
 
-	public function handleProductVariants(Request $request, Product $product)
+	public function handleProductVariant(Request $request, Product $product)
 	{
 		$productVariantItems = [];
+
+		$productVariant = $product->productVariant();
 
 		$index = 1;
 
@@ -343,12 +364,20 @@ class ProductController extends Controller
 			$index++;
 		}
 
-		$productVariant = ProductVariant::create([
-			'name' => $request['variant_name'],
-			'product_id' => $product->id,
-			'status' => true
-		]);
+		if ($productVariant && isset($request['delete_variant_items'])) {
+			$variantItems = explode('_', $request['delete_variant_items']);
+			$items = $productVariant->productVariantItems();
 
-		$productVariant->productVariantItems()->createMany($productVariantItems);
+			$items->whereIn('id', $variantItems)->delete();
+
+			$items->createMany($productVariantItems);
+		} else {
+			$newProductVariant = ProductVariant::create([
+				'name' => $request['variant_name'],
+				'product_id' => $product->id,
+				'status' => true
+			]);
+			$newProductVariant->productVariantItems()->createMany($productVariantItems);
+		}
 	}
 }

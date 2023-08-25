@@ -1,63 +1,65 @@
 <div x-cloak x-show="open" class="flex flex-col gap-4">
     <h2 class="font-medium text-gray-800 capitalize dark:text-gray-200">Variant Option</h2>
 
-    @if (count($product->productVariants))
-        @foreach ($product->productVariants as $productVariant)
-            <div class="flex flex-col w-full gap-2">
-                <x-general.input.input name="variant_name" id="variant_name" label="Variant Name" ::required="open"
-                    value="{{ isset($productVariant->name) ? $productVariant->name : old('variant_name') }}" />
-                @error('variant_name')
-                    <x-general.input.input-error :messages="$message" />
-                @enderror
-            </div>
+    @if (isset($product->productVariant))
+        @php
+            $productVariant = $product->productVariant;
+        @endphp
 
-            @foreach ($productVariant->productVariantItems as $productVariantItem)
-                <div class="flex flex-col gap-4 @if ($loop->first === 1) variant-option @endif">
-                    <div class="flex items-center justify-between gap-4 heading">
-                        <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
-                            {{ $loop->index }}
-                        </h3>
-                        @if (!$loop->first)
-                            <a class="delete-item" data-id="{{ $productVariantItem->id }}">
-                                <i class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 dark:text-red-700"></i>
-                            </a>
-                        @endif
-                    </div>
-                    <div class="flex flex-col w-full gap-4 sm:flex-row">
-                        <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="option_name" name="{{ 'option_name_' . $loop->index }}"
-                                id="{{ 'option_name_' . $loop->index }}" label="Name" ::required="open"
-                                value="{{ isset($productVariantItem->name) ? $productVariantItem->name : '' }}" />
-                            @error('option_name_*')
-                                <x-general.input.input-error :messages="$message" />
-                            @enderror
-                        </div>
+        <div class="flex flex-col w-full gap-2">
+            <x-general.input.input name="variant_name" id="variant_name" label="Variant Name" ::required="open"
+                value="{{ isset($productVariant->name) ? $productVariant->name : old('variant_name') }}" />
+            @error('variant_name')
+                <x-general.input.input-error :messages="$message" />
+            @enderror
+        </div>
 
-                        <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="option_price" ::required="open"
-                                name="{{ 'option_price_' . $loop->index }}" id="{{ 'option_price_' . $loop->index }}"
-                                type="number" label="Price $"
-                                value="{{ isset($productVariantItem->price) ? $productVariantItem->price : '0' }}" />
-                            <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
-                                the original
-                                product price</p>
-                            @error('option_price_*')
-                                <x-general.input.input-error :messages="$message" />
-                            @enderror
-                        </div>
-
-                        <div class="flex flex-col w-full gap-2">
-                            <x-general.input.input class="option_qty" name="{{ 'option_qty_' . $loop->index }}"
-                                id="{{ 'option_qty_' . $loop->index }}" label="Qty" ::required="open" type="number"
-                                value="{{ isset($productVariantItem->qty) ? $productVariantItem->qty : '' }}" />
-                            @error('option_qty_*')
-                                <x-general.input.input-error :messages="$message" />
-                            @enderror
-                        </div>
-
-                    </div>
+        @foreach ($productVariant->productVariantItems as $productVariantItem)
+            <div class="flex flex-col gap-4 @if ($loop->first === 1) variant-option @endif">
+                <div class="flex items-center justify-between gap-4 heading">
+                    <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
+                        {{ $loop->index }}
+                    </h3>
+                    @if (!$loop->first)
+                        <a class="delete-item" data-id="{{ $productVariantItem->id }}">
+                            <i class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 dark:text-red-700"></i>
+                        </a>
+                    @endif
                 </div>
-            @endforeach
+                <div class="flex flex-col w-full gap-4 sm:flex-row">
+                    <div class="flex flex-col w-full gap-2">
+                        <x-general.input.input class="option_name" name="{{ 'option_name_' . $loop->index }}"
+                            id="{{ 'option_name_' . $loop->index }}" label="Name" ::required="open"
+                            value="{{ isset($productVariantItem->name) ? $productVariantItem->name : '' }}" />
+                        @error('option_name_*')
+                            <x-general.input.input-error :messages="$message" />
+                        @enderror
+                    </div>
+
+                    <div class="flex flex-col w-full gap-2">
+                        <x-general.input.input class="option_price" ::required="open"
+                            name="{{ 'option_price_' . $loop->index }}" id="{{ 'option_price_' . $loop->index }}"
+                            type="number" label="Price $"
+                            value="{{ isset($productVariantItem->price) ? $productVariantItem->price : '0' }}" />
+                        <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
+                            the original
+                            product price</p>
+                        @error('option_price_*')
+                            <x-general.input.input-error :messages="$message" />
+                        @enderror
+                    </div>
+
+                    <div class="flex flex-col w-full gap-2">
+                        <x-general.input.input class="option_qty" name="{{ 'option_qty_' . $loop->index }}"
+                            id="{{ 'option_qty_' . $loop->index }}" label="Qty" ::required="open" type="number"
+                            value="{{ isset($productVariantItem->qty) ? $productVariantItem->qty : '' }}" />
+                        @error('option_qty_*')
+                            <x-general.input.input-error :messages="$message" />
+                        @enderror
+                    </div>
+
+                </div>
+            </div>
         @endforeach
     @else
         <div class="flex flex-col gap-4 variant-option">
@@ -148,7 +150,6 @@
             let index = parent.children().length - 2
 
             let title = newItem.find('h3')
-
             let nameInput = newItem.find('.option_name')
             let priceInput = newItem.find('.option_price')
             let qtyInput = newItem.find('.option_qty')
@@ -179,13 +180,13 @@
                 id
             } = elem.dataset
 
-            let deleteInput = $("input[name='delete-variant-items']")
+            let deleteInput = $("input[name='delete_variant_items']")
 
             if (deleteInput) {
                 let oldVal = deleteInput.val()
                 deleteInput.val(`${oldVal}_${id}`)
             } else {
-                let input = `<input name="delete-variant-items" value="${id}"/>`
+                let input = `<input name="delete_variant_items" value="${id}"/>`
                 $('#inventory-form').append(input)
             }
 
