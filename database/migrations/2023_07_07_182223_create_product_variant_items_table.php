@@ -15,7 +15,6 @@ return new class extends Migration
 			$table->id();
 			$table->string('name');
 			$table->double('price');
-			$table->boolean('default');
 			$table->integer('qty');
 			$table->unsignedBigInteger('product_variant_id');
 

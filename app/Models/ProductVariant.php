@@ -7,21 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductVariant extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'status',
-        'product_id',
-    ];
+	protected $fillable = [
+		'name',
+		'product_id',
+	];
 
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
+	public function product()
+	{
+		return $this->belongsTo(Product::class);
+	}
 
-    public function productVariantItems()
-    {
-        return $this->hasMany(ProductVariantItem::class);
-    }
+	public function productVariantItems()
+	{
+		return $this->hasMany(ProductVariantItem::class);
+	}
 }
