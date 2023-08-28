@@ -1,3 +1,5 @@
+{{-- TODO: decide whether keep file  --}}
+
 <div x-cloak x-show="open" class="flex flex-col gap-4">
     <h2 class="font-medium text-gray-800 capitalize dark:text-gray-200">Variant Option</h2>
 
@@ -15,10 +17,10 @@
         </div>
 
         @foreach ($productVariant->productVariantItems as $productVariantItem)
-            <div class="flex flex-col gap-4 @if ($loop->first === 1) variant-option @endif">
+            <div class="flex flex-col gap-4 @if ($loop->first) variant-option @endif">
                 <div class="flex items-center justify-between gap-4 heading">
                     <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
-                        {{ $loop->index }}
+                        {{ $loop->index + 1 }}
                     </h3>
                     @if (!$loop->first)
                         <a class="delete-item" data-id="{{ $productVariantItem->id }}">
@@ -112,14 +114,14 @@
             qtyInput.attr('id', `option_qty_${index}`)
             qtyInput.attr('name', `option_qty_${index}`)
 
+            console.log(index)
             title.text(`Option ${index}`)
         }
 
         function reIndex(gran) {
+            let index = -1
             gran.children().each(function() {
                 let item = $(this)
-
-                let index = -1
 
                 let title = item.find('h3')
                 let nameInput = item.find('.option_name')
@@ -172,13 +174,12 @@
         })
 
         function deleteVariantItem() {
-            let elem = $(this)
-            let parent = elem.parent().parent()
+            let parent = $(this).parent().parent()
             let gran = parent.parent()
 
             let {
                 id
-            } = elem.dataset
+            } = this.dataset
 
             let deleteInput = $("input[name='delete_variant_items']")
 

@@ -1,3 +1,5 @@
+{{-- TODO: decide whether keep file  --}}
+
 <x-vendor.layout.main page="Products Variants">
     <section class="flex flex-col flex-1 gap-6 px-6 py-8 overflow-x-hidden">
         <x-vendor.layout.heading title="Create Variant" :crumbs="[
@@ -42,11 +44,11 @@
                 <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant Options</h2>
 
                 <div class="flex flex-col gap-4 variant-option">
-                    <div class="flex justify-between gap-4 items-center heading">
+                    <div class="flex items-center justify-between gap-4 heading">
                         <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option 1
                         </h3>
                     </div>
-                    <div class="w-full flex-col sm:flex-row flex gap-4">
+                    <div class="flex flex-col w-full gap-4 sm:flex-row">
                         <div class="flex flex-col w-full gap-2">
                             <x-general.input.input class="option-name" name="option-name-1" id="option-name-1"
                                 label="Name" required />
@@ -67,7 +69,7 @@
                     </div>
                 </div>
 
-                <button id="increase" type="button" class="text-end text-red-500 dark:text-red-700 capitalize">add
+                <button id="increase" type="button" class="text-red-500 capitalize text-end dark:text-red-700">add
                     option</button>
             </div>
 
@@ -120,8 +122,8 @@
                 let nameInput = newItem.find('.option-name')
                 let priceInput = newItem.find('.option-price')
                 newItem.find('.heading').append(
-                    '<i class="h-7 bi bi-trash-fill w-7 delete-icon cursor-pointer text-red-500 dark:text-red-700" ></i>'
-                    )
+                    '<i class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-red-700" ></i>'
+                )
                 addAttributes(title, nameInput, priceInput, index)
 
                 nameInput.val('')
