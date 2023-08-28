@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\ProductVariantItem;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -21,17 +22,17 @@ class ProductVariantController extends Controller
 	{
 		$product = Product::where('id', $productId)
 			->where('vendor_id', Auth::user()->vendor->id)
-			->with('productVariants')
+			->with('productVariant')
 			->firstOrFail();
 
 		if ($request->ajax()) {
-			return DataTables::of($product->productVariants)
+			return DataTables::of($product->productVariant)
 				->addIndexColumn()
 				->addColumn('action', function ($query) {
 					return [
 						'edit' => route('vendor.products.variants.edit', ['product' => $query->product_id, 'variant' => $query->id,]),
 						'delete' => route('vendor.products.variants.destroy', ['product' => $query->product_id, 'variant' => $query->id,]),
-						'variant_items' => route('vendor.products.variants.items.index', ['product' => $query->product_id, 'variant' => $query->id])
+						'variant_items' => route('vendor.products.variants.items.edit', ['product' => $query->product_id, 'variant' => $query->id])
 					];
 				})
 				->make(true);
@@ -175,5 +176,84 @@ class ProductVariantController extends Controller
 		$message = ['title' => 'Variant Deleted', 'message' => 'Product Variant has been deleted'];
 
 		return redirect()->back()->with('success', $message);
+	}
+
+	/**
+	 * Store a newly created variant Item in storage.
+	 */
+	public function storeVariantItem(Request $request, string $productId, string $productVariantId)
+	{
+		// vendor check
+		$productVariant = ProductVariant::where('id', $productVariantId)
+			->whereHas('product', function (Builder $query) use ($productId) {
+				$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
+			})->firstOrFail();
+
+		$request->validate([
+			'name' => ['required', 'string'],
+			'price' => ['required', 'numeric'],
+			'qty' => ['required', 'numeric']
+		]);
+
+		$variant = $productVariant->productVariantItems()->create([
+			'name' => $request->name,
+			'price' => $request->price,
+			'qty' => $request->qty,
+			// 'default' => false,
+		]);
+
+		return response([
+			'item' => $variant,
+			'link' => route('vendor.products.variants.items.update', ['product' => $productId, 'variant' => $variant, 'item' => 1]),
+			'deletelink' => route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $variant, 'item' => 1]),
+		]);
+	}
+
+	/**
+	 * update specified variant Item in storage.
+	 */
+	public function updateVariantItem(Request $request, string $productId, string $productVariantId, string $productVariantItemId)
+	{
+		$variantItem = ProductVariantItem::where('id', $productVariantItemId)
+			->whereHas('productVariant', function (Builder $query) use ($productVariantId, $productId) {
+				$query->where('id', $productVariantId)
+					->whereHas('product', function (Builder $query) use ($productId) {
+						$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
+					});
+			})
+			->firstOrFail();
+
+		$request->validate([
+			'name' => ['required', 'string'],
+			'price' => ['required', 'string'],
+			'qty' => ['required', 'numeric']
+		]);
+
+		$variantItem->name = $request->name;
+		$variantItem->price = $request->price;
+		$variantItem->qty = $request->qty;
+
+		$variantItem->save();
+
+		return response(['message' => 'Variant Item has been updated!']);
+	}
+
+	/**
+	 * destroy specified variant Item in storage.
+	 */
+	public function destroyVariantItem(string $productId, string $productVariantId, string $productVariantItemId)
+	{
+		$variantItem = ProductVariantItem::where('id', $productVariantItemId)
+			->whereHas('productVariant', function (Builder $query) use ($productVariantId, $productId) {
+				$query->where('id', $productVariantId)
+					->whereHas('product', function (Builder $query) use ($productId) {
+						$query->where('vendor_id', Auth::user()->vendor->id)->where('id', $productId);
+					});
+			})
+			->firstOrFail();
+
+		$variantItem->delete();
+
+		return response(['message' => 'Variant item has been deleted!']);
 	}
 }
