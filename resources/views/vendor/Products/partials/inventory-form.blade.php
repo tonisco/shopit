@@ -1,6 +1,6 @@
 @php
     $qty = isset($product->qty) ? $product->qty : old('qty');
-    $useVariant = isset($product->productVariants) ? count($product->productVariants) > 0 : old('use_variant') === 'on';
+    $useVariant = isset($product->productVariant) ? true : old('use_variant') === 'on';
 @endphp
 
 <div id="inventory-form" class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
@@ -13,7 +13,7 @@
             Variant</label>
     </div>
 
-    <div class="flex flex-col w-full gap-2" x-show="!open">
+    <div class="flex flex-col w-full gap-2" x-cloak x-show="!open">
         <div class="relative" data-te-input-wrapper-init>
             <input :required="!open" class="form-input peer disabled:bg-gray-100" value="{{ $qty }}"
                 type="number" name="qty" id="qty">
@@ -25,7 +25,10 @@
     </div>
 
     @if (isset($product))
-        @include('vendor.Products.partials.edit-variation')
+        <a x-cloak x-show="open"
+            class="self-start px-4 py-1.5 text-white capitalize bg-red-500 rounded-lg dark:bg-red-700"
+            href="{{ route('vendor.products.variants.edit', ['product' => $product->id, 'variant' => $product->productVariant->id]) }}">Edit
+            Variant</a>
     @else
         @include('vendor.Products.partials.create-variation')
     @endif

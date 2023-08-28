@@ -11,7 +11,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use DateTime;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -173,7 +173,7 @@ class ProductController extends Controller
 	{
 		$product = Product::where('id', $id)
 			->where('vendor_id', Auth::user()->vendor->id)
-			->with(['productImages', 'ProductVariants' => function (HasMany $query) {
+			->with(['productImages', 'ProductVariant' => function (HasOne $query) {
 				$query->with('ProductVariantItems')->get();
 			}])
 			->firstOrFail();
@@ -355,11 +355,11 @@ class ProductController extends Controller
 
 		$index = 1;
 
-		while (isset($request['option_name' . $index]) && isset($request['option_price' . $index]) && isset($request['option_qty' . $index])) {
+		while (isset($request['option_name_' . $index]) && isset($request['option_price_' . $index]) && isset($request['option_qty_' . $index])) {
 			array_push($productVariantItems, [
-				'name' => $request['option_name' . $index],
-				'price' => $request['option_price' . $index],
-				'qty' => $request['option_qty' . $index]
+				'name' => $request['option_name_' . $index],
+				'price' => $request['option_price_' . $index],
+				'qty' => $request['option_qty_' . $index]
 			]);
 			$index++;
 		}
@@ -375,8 +375,8 @@ class ProductController extends Controller
 			$newProductVariant = ProductVariant::create([
 				'name' => $request['variant_name'],
 				'product_id' => $product->id,
-				'status' => true
 			]);
+
 			$newProductVariant->productVariantItems()->createMany($productVariantItems);
 		}
 	}
