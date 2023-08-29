@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Vendor\DashboardController;
+use App\Http\Controllers\vendor\OrderController;
 use App\Http\Controllers\Vendor\ProductController;
 use App\Http\Controllers\Vendor\ProductVariantController;
 use App\Http\Controllers\Vendor\ProductVariantItemsController;
@@ -18,4 +19,4 @@ Route::post('/products/{product}/variants/{variant}/items', [ProductVariantContr
 Route::put('/products/{product}/variants/{variant}/items/{item}', [ProductVariantController::class, 'updateVariantItem'])->name('products.variants.items.update');
 Route::delete('/products/{product}/variants/{variant}/items/{item}', [ProductVariantController::class, 'destroyVariantItem'])->name('products.variants.items.destroy');
 
-// Route::resource('products.variants.items', ProductVariantItemsController::class);
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
