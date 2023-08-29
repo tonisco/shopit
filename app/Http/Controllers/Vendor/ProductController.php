@@ -87,9 +87,6 @@ class ProductController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		error_log(json_encode($request->all()));
-
-
 		$request->validate([
 			'name' => ['required', 'max:200'],
 			'image' => ['required', 'image', 'max:3000'],
@@ -191,8 +188,6 @@ class ProductController extends Controller
 	 */
 	public function update(Request $request, string $id)
 	{
-		error_log(json_encode($request->all()));
-
 		$product = Product::where('id', $id)
 			->where('vendor_id', Auth::user()->vendor->id)
 			->firstOrFail();
@@ -322,11 +317,8 @@ class ProductController extends Controller
 				$id = $request['delete_product_image' . $i];
 				array_push($productImageDelete, $id);
 				$item = $this->searchForId($id, $productImages);
-				error_log(json_encode($productImages));
-				error_log($item);
 
 				if ($item) {
-					error_log($item);
 					$this->deleteImage($productImages[$item]->image);
 				}
 			}

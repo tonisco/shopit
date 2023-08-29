@@ -150,7 +150,7 @@
                         },
                         {
                             data: 'updated_at',
-                            render: DataTable.render.date(),
+                            render: DataTable.render.datetime('Do MMM YYYY'),
                         },
                         {
                             data: 'action',

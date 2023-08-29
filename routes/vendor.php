@@ -20,3 +20,4 @@ Route::put('/products/{product}/variants/{variant}/items/{item}', [ProductVarian
 Route::delete('/products/{product}/variants/{variant}/items/{item}', [ProductVariantController::class, 'destroyVariantItem'])->name('products.variants.items.destroy');
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('/orders/{id}', [OrderController::class, 'index'])->name('orders.details');
