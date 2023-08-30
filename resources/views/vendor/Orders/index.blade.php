@@ -54,7 +54,7 @@
                         {
                             data: 'action',
                             render: function(data) {
-                                return `<a href="${data}" class="text-white bg-red-500 dark:bg-red-700 rounded px-4 py-2 text-sm my-2">View order</a>`
+                                return `<a href="${data}" class="text-white bg-red-500 hover:bg-red-600 dark:hover:bg-red-800 transition-all dark:bg-red-700 rounded px-4 py-2 text-sm my-2">View order</a>`
                             }
                         },
                     ],

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\vendor;
 
+use App\Enums\OrderStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,6 +34,11 @@ class OrderController extends Controller
 				->addColumn('action', function ($query) {
 					return route('vendor.orders.details', $query->id);
 				})
+				->addColumn('status', function ($query) {
+					$color = OrderStatusEnum::getColor($query->status);
+					return '<p class="' . $color . '">' . $query->status . '</p>';
+				})
+				->rawColumns(['status'])
 				->make();
 		}
 
