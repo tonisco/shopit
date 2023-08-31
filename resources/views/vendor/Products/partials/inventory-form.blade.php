@@ -24,7 +24,7 @@
         @enderror
     </div>
 
-    @if (isset($product))
+    @if (isset($product->productVariant))
         <a x-cloak x-show="open"
             class="self-start px-4 py-1.5 text-white capitalize bg-red-500 rounded-lg dark:bg-red-700"
             href="{{ route('vendor.products.variants.edit', ['product' => $product->id, 'variant' => $product->productVariant->id]) }}">Edit

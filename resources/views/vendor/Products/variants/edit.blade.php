@@ -126,19 +126,16 @@
     @section('script')
         <script>
             function showAlert(type, message, title) {
+                let alerts
+
                 if (type === 'error') {
-                    // {{-- blade-formatter-disable --}}
-					 let alert = `{{<x-general.utils.toast message='${message}' title='${title}' type='error' />}}`
-                    // {{-- blade-formatter-enable --}}
+                    alerts = `<x-general.utils.toast message='${message}' title='${title}' type='error' />`
 
                 } else {
-                    // {{-- blade-formatter-disable --}}
-					let alert = `{{ <x-general.utils.toast message='${message}' title='${title}' type='success' /> }}`
-					// {{-- blade-formatter-enable --}}
-
+                    alerts = `<x-general.utils.toast message='${message}' title='${title}' type='success' /> `
                 }
 
-                $('body').prepend(alert)
+                $('body').prepend(alerts)
             }
 
             function addAttributes(title, nameInput, priceInput, index) {
@@ -182,10 +179,7 @@
                             modal.hide()
                         },
                         error: function(xhr, status, error) {
-                            showAlert('error', 'Failed to delete variant option', 'Variant option')
-
-                            $('body').prepend(alert)
-                            console.log(error);
+                            showAlert('error', 'Failed to delete variant option', error)
                         }
                     })
 
@@ -319,6 +313,8 @@
                 editModal.show()
                 editModal.children().removeClass('translate-x-full')
 
+                // TODO: add validation and loading state
+
                 editModal.find('form').on('submit', function(e) {
                     e.preventDefault()
                     let newName = editModal.find('.edit-name').val()
@@ -349,7 +345,7 @@
                             addItem(item.name, item.price, item.qty, link, deletelink)
                         },
                         error: function(xhr, status, error) {
-                            showAlert('success', 'Failed to create variant option', error)
+                            showAlert('error', 'Failed to create variant option', error)
 
                             closeEditModal()
                         }

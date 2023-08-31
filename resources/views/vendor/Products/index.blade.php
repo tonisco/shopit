@@ -211,8 +211,6 @@
                                 id
                             } = this.dataset
 
-                            console.log()
-
                             if (e.target.checked) {
                                 let message = `Are you sure you want to show
                 								<span class="font-semibold capitalize">${name}</span>`
