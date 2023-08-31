@@ -15,7 +15,7 @@ class VendorMiddleware
 	 */
 	public function handle(Request $request, Closure $next): Response
 	{
-		if ($request->user()->role !== 'vendor') {
+		if ($request->user()->role !== 'vendor' && isset($request->user()->vendor)) {
 			return redirect()->route('home');
 		}
 
