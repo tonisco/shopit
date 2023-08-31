@@ -49,11 +49,11 @@
 }
 
 .action-button {
-	@apply rounded cursor-pointer p-1.5;
+	@apply rounded cursor-pointer py-1.5 px-2;
 }
 
 .action-button-icon {
-	@apply w-4 h-4 text-white;
+	@apply text-lg text-white;
 }
 
 .pending-icon {
@@ -66,8 +66,10 @@
 	@apply text-2xl text-green-500 dark:text-green-700;
 }
 
+/* TABLE */
+
 .table-body tr td {
-	@apply px-4 py-4 text-sm text-gray-800 dark:text-gray-200 capitalize whitespace-nowrap;
+	@apply px-4 py-4 text-sm text-gray-800 dark:text-gray-200 dark:bg-gray-800 capitalize whitespace-nowrap;
 }
 
 #DataTables_Table_0_wrapper > div:nth-child(3) > div {
@@ -78,11 +80,15 @@
 	@apply hidden;
 }
 
+#DataTables_Table_0_length > label {
+	@apply text-gray-800 dark:text-gray-200;
+}
+
 #DataTables_Table_0_length > label > select {
 	@apply w-16 mx-1 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm focus:border-red-500 rounded focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700;
 }
 #DataTables_Table_0_length > label > select > option {
-	@apply checked:bg-red-500;
+	@apply bg-red-500 text-blue-600;
 }
 
 #DataTables_Table_0_filter > label > input {
@@ -172,6 +178,8 @@ div[data-te-select-form-outline-ref]
 	@apply !border-red-500 ring-red-500 ring-1;
 }
 
+/* 	BADGE */
+
 .green-badge {
 	@apply px-2 py-1 font-semibold leading-tight text-xs text-green-700 dark:text-green-900 dark:bg-green-300 bg-green-100 rounded-sm inline-block;
 }
@@ -186,4 +194,29 @@ div[data-te-select-form-outline-ref]
 }
 .blue-badge {
 	@apply px-2 py-1 font-semibold leading-tight text-xs text-blue-700 dark:text-blue-900 dark:bg-blue-300 bg-blue-100 rounded-sm inline-block;
+}
+
+/* SWITCH */
+.switch {
+	@apply relative inline-block w-12 h-7;
+}
+
+.switch input {
+	@apply opacity-0 w-0 h-0;
+}
+
+.slider {
+	@apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 transition duration-300 bg-slate-300 rounded-3xl;
+}
+
+.slider:before {
+	@apply absolute content-[''] h-5 w-5 left-1 bottom-1 bg-white transition duration-300 rounded-full;
+}
+
+input:checked + .slider {
+	@apply bg-red-500 dark:bg-red-700;
+}
+
+input:checked + .slider:before {
+	@apply translate-x-5;
 }

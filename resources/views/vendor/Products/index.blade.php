@@ -10,7 +10,7 @@
         <div>
             <table style="width: 100%" class="datatable divide-y divide-gray-200 dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-800">
-                    <tr class="text-sm text-left capitalize text-gray-500 dark:text-gray-400">
+                    <tr class="text-sm text-left capitalize text-gray-500 dark:text-gray-300">
                         <td class="py-3.5 px-4 font-normal"> id </td>
                         <td class="py-3.5 px-4 font-normal"> image </td>
                         <td class="py-3.5 px-4 font-normal"> name </td>
@@ -53,6 +53,7 @@
             <div class="flex gap-1.5 text-xl text-gray-800 dark:text-gray-200">
                 <h3 class="check-heading"></h3>
             </div>
+            <p class="text-sm text-gray-800 dark:text-gray-200">This item won't be visible to customers</p>
             <div class="flex items-center self-end gap-2">
                 <button
                     class="px-3 py-2 bg-gray-200 shadow-md check-cancel-button dark:bg-gray-900 dark:text-gray-200">Cancel</button>
@@ -76,6 +77,7 @@
             modal.on('click', function(e) {
                 e.stopPropagation()
                 modal.hide()
+                $('body').removeAttr('style')
             })
 
             $('.trash-table-modal-content').on('click', function(e) {
@@ -84,11 +86,13 @@
 
             $('.delete-cancel-button').on('click', function(e) {
                 modal.hide()
+                $('body').removeAttr('style')
             })
 
             checkmodal.on('click', function(e) {
                 e.stopPropagation()
                 checkmodal.hide()
+                $('body').removeAttr('style')
             })
 
             $('.check-modal-content').on('click', function(e) {
@@ -97,6 +101,7 @@
 
             $('.check-cancel-button').on('click', function(e) {
                 checkmodal.hide()
+                $('body').removeAttr('style')
             })
 
             $(function() {
@@ -137,14 +142,10 @@
                         {
                             data: 'status',
                             render(_, _d, val) {
-                                return `<input
-								class="mr-2 mt-[0.3rem] status h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
-  											type="checkbox"
-  											role="switch"
-											data-name="${val.name}"
-											data-id="${val.id}"
-											${val.status &&'checked'}
-										/>`
+                                return `<label class="switch status" data-id="${val.id}" data-name="${val.name}">
+											<input type="checkbox" ${val.status &&'checked'}>
+											<span class="slider"></span>
+										</label>`
                             }
                         },
                         {
@@ -163,21 +164,20 @@
 									<a href='${data.edit}' class='bg-blue-500 action-button dark:bg-blue-700'>
 										<i class='action-button-icon bi bi-pencil-square'></i>
 									</a>
-									<div>
 										<a class="bg-red-500 action-button dark:bg-red-700 deleteButton"
 										data-id="${row.id}" data-name="${row.name}" data-route="${data.delete}">
 											<i class="action-button-icon bi bi-trash"></i>
 										</a>
-									</div>
-									<div x-data="toggler" class="relative">
-										<a @click="toggle" class="action-button bg-zinc-700">
-											<i class="action-button-icon bi bi-three-dots-vertical"></i>
-										</a>
-										<div @click.outside="toggle" x-show="open" class="product-options">
-											<a href="${data.variant}" class="product-options-item">Variants</a>
-										</div>
-									</div>
-								</div`
+									</div`
+                                //  TODO: MIGHT NOT NEED IT
+                                // <div x-data="toggler" class="relative">
+                                // 	<a @click="toggle" class="action-button bg-zinc-700">
+                                // 		<i class="action-button-icon bi bi-three-dots-vertical"></i>
+                                // 	</a>
+                                // 	<div @click.outside="toggle" x-show="open" class="product-options">
+                                // 		<a href="${data.variant}" class="product-options-item">Variants</a>
+                                // 	</div>
+                                // </div>
                             }
                         },
                     ],
@@ -199,6 +199,7 @@
                             let deleteForm = $('.delete-form')
                             deleteForm.attr('action', route)
                             modal.show()
+                            $('body').css('overflow', 'hidden')
 
                             $('.delete-item').on('click', function() {
                                 deleteForm.submit()
@@ -210,14 +211,16 @@
                                 id
                             } = this.dataset
 
+                            console.log()
+
                             if (e.target.checked) {
                                 let message = `Are you sure you want to show
-                								<span class="font-semibold capitalize"><${name}</span>`
+                								<span class="font-semibold capitalize">${name}</span>`
                                 $('.check-heading').html(message)
                                 $('.check-button').text('Show')
                             } else {
                                 let message = `Are you sure you want to hide
-                								<span class="font-semibold capitalize"><${name}</span>`
+                								<span class="font-semibold capitalize">${name}</span>`
                                 $('.check-heading').html(message)
                                 $('.check-button').text('Hide')
                             }
@@ -225,6 +228,7 @@
                             let checkForm = $('.check-form')
                             checkForm.attr('action', `/vendor/products/${id}/status`)
                             checkmodal.show()
+                            $('body').css('overflow', 'hidden')
 
                             e.target.checked = !e.target.checked
 
