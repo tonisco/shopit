@@ -19,6 +19,7 @@ class OrderProductFactory extends Factory
 		return [
 			'product_name' => fake()->name(),
 			'variants' => null,
+			"product_image" => '',
 			'price' => 1,
 			'qty' => 1,
 			'total' => 1,
