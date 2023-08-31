@@ -69,7 +69,7 @@
 /* TABLE */
 
 .table-body tr td {
-	@apply px-4 py-4 text-sm text-gray-800 dark:text-gray-200 dark:bg-gray-800 capitalize whitespace-nowrap;
+	@apply p-2 sm:p-4 text-sm text-gray-800 dark:text-gray-200 dark:bg-gray-800 capitalize whitespace-nowrap;
 }
 
 #DataTables_Table_0_wrapper > div:nth-child(3) > div {
@@ -219,4 +219,36 @@ input:checked + .slider {
 
 input:checked + .slider:before {
 	@apply translate-x-5;
+}
+
+/* ANIMATION */
+
+@keyframes slideIn {
+	0% {
+		transform: translateY(-40px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.slideIn {
+	animation: slideIn 300ms ease-out;
+}
+
+@keyframes slideOut {
+	0% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-40px);
+		opacity: 0;
+	}
+}
+
+.slideOut {
+	animation: slideOut 300ms ease-out;
 }
