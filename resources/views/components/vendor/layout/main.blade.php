@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="flex flex-1 w-screen h-full">
-        <div class="flex flex-col flex-1">
+        <div class="flex flex-col flex-1 overflow-x-hidden">
             <header
                 class="fixed top-0 left-0 right-0 z-10 flex items-center justify-between w-full px-4 py-2 text-white bg-red-500 dark:bg-red-700">
                 <div class="block lg:hidden" x-data="toggler" @click="toggle">

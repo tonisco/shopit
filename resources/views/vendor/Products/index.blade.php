@@ -6,22 +6,24 @@
                 class="px-3 py-2 text-sm text-white bg-red-500 rounded shadow sm:text-base dark:bg-red-700 hover:bg-red-600">Create
                 Product</a>
         </div>
-        <div class="w-[92.5vw] overflow-x-auto sm:w-full sm:overflow-x-hidden text-gray-800 dark:text-gray-200">
-            <table class="!w-full datatable text-gray-800 dark:text-gray-200">
-                <thead>
-                    <tr class="font-semibold capitalize">
-                        <td class="px-1 py-2 text-xs md:text-sm"> id </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> image </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> name </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> price </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> discount </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> status </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> approved </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> updated </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> action </td>
+
+        <div>
+            <table style="width: 100%" class="datatable divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                    <tr class="text-sm text-left capitalize text-gray-500 dark:text-gray-400">
+                        <td class="py-3.5 px-4 font-normal"> id </td>
+                        <td class="py-3.5 px-4 font-normal"> image </td>
+                        <td class="py-3.5 px-4 font-normal"> name </td>
+                        <td class="py-3.5 px-4 font-normal"> price </td>
+                        <td class="py-3.5 px-4 font-normal"> discount </td>
+                        <td class="py-3.5 px-4 font-normal"> status </td>
+                        <td class="py-3.5 px-4 font-normal"> approved </td>
+                        <td class="py-3.5 px-4 font-normal"> updated </td>
+                        <td class="py-3.5 px-4 font-normal"> action </td>
                     </tr>
                 </thead>
-                <tbody class="!px-1 table-body"></tbody>
+                <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 table-body">
+                </tbody>
             </table>
 
         </div>

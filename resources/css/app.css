@@ -45,7 +45,7 @@
 }
 
 .table-image {
-	@apply object-cover w-12;
+	@apply object-cover w-16 h-16;
 }
 
 .action-button {
@@ -66,49 +66,37 @@
 	@apply text-2xl text-green-500 dark:text-green-700;
 }
 
-/* .table-body tr {
-	@apply !overflow-x-scroll capitalize sm:overflow-x-hidden;
-}
-
 .table-body tr td {
-	@apply p-1 text-xs md:text-sm capitalize;
+	@apply px-4 py-4 text-sm text-gray-800 dark:text-gray-200 capitalize whitespace-nowrap;
 }
 
-#DataTables_Table_0_length > label > select,
-#DataTables_Table_0_filter > label > input {
-	@apply text-black;
-}
-
-#DataTables_Table_0_wrapper > div:nth-child(4) {
-	@apply flex flex-col my-4 sm:flex-row items-start sm:items-center justify-between gap-2;
-}
-
-#DataTables_Table_0_paginate > ul {
-	@apply flex;
-}
-
-#DataTables_Table_0_paginate > ul > li {
-	@apply px-3 py-1 border;
-}
-
-#DataTables_Table_0_paginate > ul > .active {
-	@apply text-gray-600;
-}
-
-#DataTables_Table_0_paginate > ul > li:last-child {
-	@apply rounded-r-md;
-}
-
-#DataTables_Table_0_paginate > ul > li:first-child {
-	@apply rounded-l-md;
+#DataTables_Table_0_wrapper > div:nth-child(3) > div {
+	@apply overflow-x-auto;
 }
 
 #DataTables_Table_0_wrapper > div:nth-child(1) {
 	@apply hidden;
-} */
+}
 
-.table-body tr td {
-	@apply px-4 py-4 text-sm text-gray-800 dark:text-gray-200 capitalize whitespace-nowrap;
+#DataTables_Table_0_length > label > select {
+	@apply w-16 mx-1 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm focus:border-red-500 rounded focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700;
+}
+#DataTables_Table_0_length > label > select > option {
+	@apply checked:bg-red-500;
+}
+
+#DataTables_Table_0_filter > label > input {
+	@apply px-5 py-2.5 text-xs sm:text-sm bg-gray-50 dark:bg-gray-800 focus:border-red-500 rounded focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700;
+}
+#DataTables_Table_0_filter > label {
+	@apply text-gray-800 dark:text-gray-200;
+}
+#DataTables_Table_0_filter {
+	@apply my-4 md:mb-4;
+}
+
+.odd {
+	@apply !bg-white bg-opacity-100;
 }
 
 .form-input {
@@ -185,17 +173,17 @@ div[data-te-select-form-outline-ref]
 }
 
 .green-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-green-700 bg-green-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-green-700 dark:text-green-900 dark:bg-green-300 bg-green-100 rounded-sm inline-block;
 }
 .red-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-red-700 bg-red-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-red-700 dark:text-red-900 dark:bg-red-300 bg-red-100 rounded-sm inline-block;
 }
 .yellow-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-yellow-700 bg-yellow-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-yellow-700 dark:text-yellow-900 dark:bg-yellow-300 bg-yellow-100 rounded-sm inline-block;
 }
 .gray-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-gray-700 bg-gray-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-gray-700 dark:text-gray-900 dark:bg-gray-300 bg-gray-100 rounded-sm inline-block;
 }
 .blue-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-blue-700 bg-blue-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-blue-700 dark:text-blue-900 dark:bg-blue-300 bg-blue-100 rounded-sm inline-block;
 }

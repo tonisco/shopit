@@ -4,20 +4,21 @@
             <x-vendor.layout.heading title="Orders" :crumbs="[['name' => 'dashboard', 'route' => route('vendor.dashboard')], ['name' => 'orders']]" />
         </div>
 
-        <div class="w-[92.5vw] overflow-x-auto sm:w-full sm:overflow-x-hidden text-gray-800 dark:text-gray-200">
-            <table class="!w-full datatable text-gray-800 dark:text-gray-200">
-                <thead>
-                    <tr class="font-semibold capitalize">
-                        <td class="px-1 py-2 text-xs md:text-sm"> id </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> name </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> date </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> items </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> total </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> status </td>
-                        <td class="px-1 py-2 text-xs md:text-sm"> action </td>
+        <div>
+            <table style="width: 100%" class="datatable divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                    <tr class="text-sm text-left capitalize text-gray-500 dark:text-gray-400">
+                        <th class="py-3.5 px-4 font-normal"> id </th>
+                        <th class="py-3.5 px-4 font-normal"> name </th>
+                        <th class="py-3.5 px-4 font-normal"> date </th>
+                        <th class="py-3.5 px-4 font-normal"> items </th>
+                        <th class="py-3.5 px-4 font-normal"> total </th>
+                        <th class="py-3.5 px-4 font-normal"> status </th>
+                        <th class="py-3.5 px-4 font-normal"> action </th>
                     </tr>
                 </thead>
-                <tbody class="!px-1 table-body"></tbody>
+                <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 table-body">
+                </tbody>
             </table>
 
         </div>
@@ -27,6 +28,7 @@
             $(function() {
                 let table = $('.datatable').DataTable({
                     processing: true,
+                    stripeClasses: [],
                     serverside: true,
                     ajax: "{{ route('vendor.orders.index') }}",
                     columns: [{
@@ -54,7 +56,7 @@
                         {
                             data: 'action',
                             render: function(data) {
-                                return `<a href="${data}" class="text-white bg-red-500 hover:bg-red-600 dark:hover:bg-red-800 transition-all dark:bg-red-700 rounded px-4 py-2 text-sm my-2">View order</a>`
+                                return `<a href="${data}" class="text-white bg-red-500 hover:bg-red-600 dark:hover:bg-red-800 transition-all dark:bg-red-700 rounded px-3 py-2 text-sm my-2">View order</a>`
                             }
                         },
                     ],
