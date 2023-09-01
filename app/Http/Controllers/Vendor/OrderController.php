@@ -12,7 +12,7 @@ use Yajra\DataTables\DataTables;
 
 class OrderController extends Controller
 {
-	public function index(Request $request)
+	public function __invoke(Request $request)
 	{
 		if ($request->ajax()) {
 			$orders = Order::whereHas('orderProducts', function (Builder $query) {
@@ -31,9 +31,6 @@ class OrderController extends Controller
 				->addColumn('items', function ($query) {
 					return $query->orderProducts->sum('qty');
 				})
-				->addColumn('action', function ($query) {
-					return route('vendor.orders.details', $query->id);
-				})
 				->addColumn('status', function ($query) {
 					$color = OrderStatusEnum::getColor($query->status);
 					return '<p class="' . $color . '">' . $query->status . '</p>';
@@ -43,10 +40,5 @@ class OrderController extends Controller
 		}
 
 		return view('vendor.Orders.index');
-	}
-
-	public function OrderDetails(string $id)
-	{
-		return view('vendor.Orders.details');
 	}
 }
