@@ -14,10 +14,10 @@
         <x-ri-shopping-cart-line class="w-5 h-5" />
         <p> Products </p>
     </a>
-    <a
-        class="flex items-center gap-2 px-6 py-4 transition-all cursor-pointer hover:text-white hover:bg-red-500 dark:hover:bg-red-700 active:text-white active:bg-red-500 active:hover:bg-red-700">
+    <a href="{{ route('vendor.profile.index') }}"
+        class="flex items-center gap-2 px-6 py-4 transition-all cursor-pointer hover:text-white hover:bg-red-500 dark:hover:bg-red-700 active:text-white active:bg-red-500 active:hover:bg-red-700 {{ request()->routeIs('vendor.profile.index') ? 'text-white bg-red-500 dark:bg-red-700' : '' }}">
         <x-ri-store-3-line class="w-5 h-5" />
-        <p> Shop Profile </p>
+        <p> Profile </p>
     </a>
     <a href="{{ route('dashboard') }}"
         class="flex items-center gap-2 px-6 py-4 transition-all cursor-pointer hover:text-white hover:bg-red-500 dark:hover:bg-red-700 active:text-white active:bg-red-500 active:hover:bg-red-700">

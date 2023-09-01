@@ -4,6 +4,7 @@ use App\Http\Controllers\Vendor\DashboardController;
 use App\Http\Controllers\vendor\OrderController;
 use App\Http\Controllers\Vendor\ProductController;
 use App\Http\Controllers\Vendor\ProductVariantController;
+use App\Http\Controllers\vendor\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,3 +20,5 @@ Route::put('/products/{product}/variants/{variant}/items/{item}', [ProductVarian
 Route::delete('/products/{product}/variants/{variant}/items/{item}', [ProductVariantController::class, 'destroyVariantItem'])->name('products.variants.items.destroy');
 
 Route::get('/orders', OrderController::class)->name('orders.index');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
