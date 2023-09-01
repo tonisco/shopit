@@ -87,6 +87,7 @@ class ProductController extends Controller
 	 */
 	public function store(Request $request)
 	{
+		// TODO: check discount date validation 
 		$request->validate([
 			'name' => ['required', 'max:200'],
 			'image' => ['required', 'image', 'max:3000'],

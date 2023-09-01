@@ -4,7 +4,6 @@ use App\Http\Controllers\Vendor\DashboardController;
 use App\Http\Controllers\vendor\OrderController;
 use App\Http\Controllers\Vendor\ProductController;
 use App\Http\Controllers\Vendor\ProductVariantController;
-use App\Http\Controllers\Vendor\ProductVariantItemsController;
 use Illuminate\Support\Facades\Route;
 
 
