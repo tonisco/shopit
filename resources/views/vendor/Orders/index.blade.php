@@ -60,80 +60,80 @@
     </section>
     @section('script')
         <script>
-            $(function() {
-                let modal = $('.check-modal')
-                let modalContent = $('.content')
+            let modal = $('.check-modal')
+            let modalContent = $('.content')
 
-                function closeModal() {
-                    $('body').removeAttr('style')
-                    modalContent.removeClass('slideIn')
-                    modalContent.addClass('slideOut')
+            function closeModal() {
+                $('body').removeAttr('style')
+                modalContent.removeClass('slideIn')
+                modalContent.addClass('slideOut')
 
-                    setTimeout(() => {
-                        modal.hide()
-                        $('.details').remove()
-                        modalContent.removeClass('slideOut')
-                        modalContent.addClass('slideIn')
-                    }, 300);
-                }
+                setTimeout(() => {
+                    modal.hide()
+                    $('.details').remove()
+                    modalContent.removeClass('slideOut')
+                    modalContent.addClass('slideIn')
+                }, 300);
+            }
 
-                modal.on('click', function(e) {
-                    e.stopPropagation()
-                    closeModal()
-                })
+            modal.on('click', function(e) {
+                e.stopPropagation()
+                closeModal()
+            })
 
-                $('.close-modal').on('click', function(e) {
-                    e.stopPropagation()
-                    closeModal()
-                })
+            $('.close-modal').on('click', function(e) {
+                e.stopPropagation()
+                closeModal()
+            })
 
-                function returnOrderDetails(name, price, qty, sub_total, image_url, variant) {
-                    return `<tr class="border-b details">
-								<th class="py-2 text-sm px-4 font-normal text-start">
-									<img src="{{ asset('') }}${image_url}" class="h-full w-12 object-cover" alt="${name}">
-								</th>
-								<th class="py-2 flex text-xs flex-col justify-center gap-1 px-4 font-normal text-start">
-									<h3 class="text-sm font-medium truncate">${name}</h3>
-									<p>$${price} x ${qty}</p>
-									<p>${variant??''}</p>
-								</th>
-								<th class="sub-total py-2 text-sm font-medium px-4 text-start">$${sub_total}</th>
-							</tr>`
-                }
+            function returnOrderDetails(name, price, qty, sub_total, image_url, variant) {
+                return `<tr class="border-b details">
+							<th class="py-2 text-sm px-4 font-normal text-start">
+								<img src="{{ asset('') }}${image_url}" class="h-full w-12 object-cover" alt="${name}">
+							</th>
+							<th class="py-2 flex text-xs flex-col justify-center gap-1 px-4 font-normal text-start">
+								<h3 class="text-sm font-medium truncate">${name}</h3>
+								<p>$${price} x ${qty}</p>
+								<p>${variant??''}</p>
+							</th>
+							<th class="sub-total py-2 text-sm font-medium px-4 text-start">$${sub_total}</th>
+						</tr>`
+            }
 
-                function openModal(e) {
+            function openModal(data) {
+                let {
+                    id,
+                    order_products,
+                    sum,
+                    user: {
+                        first_name,
+                        last_name
+                    }
+                } = data
+
+                $('.order-id').text(id)
+                $('.customer-name').text(`${first_name} ${last_name}`)
+
+                let details = order_products.map(product => {
                     let {
-                        id,
-                        order_products,
-                        sum,
-                        user: {
-                            first_name,
-                            last_name
-                        }
-                    } = e.data
+                        product_name,
+                        product_image,
+                        price,
+                        qty,
+                        total,
+                        variants
+                    } = product
+                    return returnOrderDetails(product_name, price, qty, total, product_image, variants)
+                });
 
-                    $('.order-id').text(id)
-                    $('.customer-name').text(`${first_name} ${last_name}`)
+                $('.tbody').prepend(details.join(''))
+                $('.sub-total').text(sum)
+                $('.total').text(sum)
 
-                    let details = order_products.map(product => {
-                        let {
-                            product_name,
-                            product_image,
-                            price,
-                            qty,
-                            total,
-                            variants
-                        } = product
-                        return returnOrderDetails(product_name, price, qty, total, product_image, variants)
-                    });
+                modal.show()
+            }
 
-                    $('.tbody').prepend(details.join(''))
-                    $('.sub-total').text(sum)
-                    $('.total').text(sum)
-
-                    modal.show()
-                }
-
+            $(function() {
                 let table = $('.datatable').DataTable({
                     processing: true,
                     stripeClasses: [],
@@ -163,12 +163,10 @@
                         },
                         {
                             data: 'action',
+                            searchable: false,
+                            sortable: false,
                             render: function(data, _, row) {
-                                let button =
-                                    `<div class="text-white show-order-${row.id} inline-block cursor-pointer bg-red-500 hover:bg-red-600 dark:hover:bg-red-800 transition-all dark:bg-red-700 rounded px-3 py-2 text-sm my-2">View order</div>`
-                                $(`.show-order-${row.id}`).on('click', row, openModal)
-
-                                return button
+                                return `<div class="text-white show-order inline-block cursor-pointer bg-red-500 hover:bg-red-600 dark:hover:bg-red-800 transition-all dark:bg-red-700 rounded px-3 py-2 text-sm my-2">View order</div>`
                             }
                         },
                     ],
@@ -181,6 +179,10 @@
                         }
                     }
 
+                }).on('click', 'tbody .show-order', function(e) {
+                    let parent = $(this).parent()[0]
+                    let data = table.row(parent).data()
+                    openModal(data)
                 })
             })
         </script>
