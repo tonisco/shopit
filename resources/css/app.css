@@ -87,9 +87,6 @@
 #DataTables_Table_0_length > label > select {
 	@apply w-16 mx-1 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm focus:border-red-500 rounded focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700;
 }
-#DataTables_Table_0_length > label > select > option {
-	@apply bg-red-500 text-blue-600;
-}
 
 #DataTables_Table_0_filter > label > input {
 	@apply px-5 py-2.5 text-xs sm:text-sm bg-gray-50 dark:bg-gray-800 focus:border-red-500 rounded focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700;
@@ -99,6 +96,30 @@
 }
 #DataTables_Table_0_filter {
 	@apply my-4 md:mb-4;
+}
+
+#DataTables_Table_0_wrapper > div:nth-child(4) {
+	@apply text-gray-800 dark:text-gray-200 flex gap-2 items-end my-6 sm:flex-row flex-col text-sm justify-between;
+}
+
+#DataTables_Table_0_paginate > ul {
+	@apply flex gap-1;
+}
+
+#DataTables_Table_0_paginate > ul > li {
+	@apply px-3 py-1 border rounded border-gray-300 cursor-pointer dark:border-gray-800 hover:opacity-80 active:opacity-80;
+}
+
+#DataTables_Table_0_paginate > ul > li.active > a,
+#DataTables_Table_0_paginate > ul > li.disabled > a {
+	@apply cursor-default;
+}
+
+#DataTables_Table_0_paginate > ul > li.active {
+	@apply bg-red-500 dark:bg-red-700 text-white cursor-default hover:opacity-100 active:opacity-100;
+}
+#DataTables_Table_0_paginate > ul > li.disabled {
+	@apply text-gray-400 hover:opacity-100 active:opacity-100;
 }
 
 .odd {
