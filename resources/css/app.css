@@ -217,32 +217,11 @@ div[data-te-select-form-outline-ref]
 	@apply px-2 py-1 font-semibold leading-tight text-xs text-blue-700 dark:text-blue-900 dark:bg-blue-300 bg-blue-100 rounded-sm inline-block;
 }
 
-/* SWITCH */
-.switch {
-	@apply relative inline-block w-12 h-7;
-}
-
-.switch input {
-	@apply opacity-0 w-0 h-0;
-}
-
-.slider {
-	@apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 transition duration-300 bg-slate-300 rounded-3xl;
-}
-
-.slider:before {
-	@apply absolute content-[''] h-5 w-5 left-1 bottom-1 bg-white transition duration-300 rounded-full;
-}
-
-input:checked + .slider {
-	@apply bg-red-500 dark:bg-red-700;
-}
-
-input:checked + .slider:before {
-	@apply translate-x-5;
-}
-
-/* ANIMATION */
+/*
+**
+** ANIMATION
+**
+ */
 
 @keyframes slideIn {
 	0% {
@@ -272,4 +251,84 @@ input:checked + .slider:before {
 
 .slideOut {
 	animation: slideOut 300ms ease-out;
+}
+
+.white-bg::before {
+	@apply content-[''] w-[calc(100%_+_2px)] absolute -left-[1px] h-full transition-all duration-100 delay-[50ms] peer-focus:bg-white -z-[1];
+}
+
+/*
+**
+** INPUT
+**
+*/
+
+.input-wrapper {
+	@apply relative block h-11 border focus-within:ring-1 rounded transition-all duration-300 border-gray-300;
+	@apply dark:border-gray-600 focus-within:border-red-500 dark:focus-within:border-red-700 focus-within:ring-red-500 dark:focus-within:ring-red-700;
+}
+
+.text-input,
+.select-input,
+.textarea-input {
+	@apply w-full rounded h-full text-gray-800 dark:text-gray-200 placeholder-transparent text-base border-0 focus:border-0 focus:ring-0 bg-transparent;
+}
+
+.text-input-label,
+.select-input-label {
+	@apply pointer-events-none capitalize absolute left-3 transition-all duration-300 top-2 text-gray-500 dark:text-gray-400;
+}
+
+.peer\/input:focus ~ .text-input-label {
+	@apply -top-2.5 left-2 text-red-500 dark:text-red-700 bg-white dark:bg-gray-800 px-1 text-[12.8px];
+}
+
+.peer\/input:not(:placeholder-shown) ~ .text-input-label,
+.select-input-label {
+	@apply -top-2.5 left-2 bg-white dark:bg-gray-800 px-1 text-[12.8px];
+}
+
+.select-input > option {
+	@apply checked:bg-red-500 dark:checked:bg-red-700 checked:text-white hover:bg-red-500 dark:bg-gray-800 hover:text-white py-3;
+}
+
+.peer\/select:focus ~ .select-input-label {
+	@apply text-red-500 dark:text-red-700;
+}
+
+.textarea-wrapper,
+.textarea-input {
+	@apply h-auto;
+}
+/* .textarea-input {
+	@apply w-full rounded text-gray-800 dark:text-gray-200 placeholder-transparent text-base border-0 focus:border-0 focus:ring-0 bg-transparent;
+} */
+
+/*
+**
+** SWITCH
+**
+*/
+.switch {
+	@apply relative inline-block w-12 h-7;
+}
+
+.switch input {
+	@apply opacity-0 w-0 h-0;
+}
+
+.slider {
+	@apply absolute cursor-pointer top-0 left-0 right-0 bottom-0 transition duration-300 bg-slate-300 rounded-3xl;
+}
+
+.slider:before {
+	@apply absolute content-[''] h-5 w-5 left-1 bottom-1 bg-white transition duration-300 rounded-full;
+}
+
+input:checked + .slider {
+	@apply bg-red-500 dark:bg-red-700;
+}
+
+input:checked + .slider:before {
+	@apply translate-x-5;
 }
