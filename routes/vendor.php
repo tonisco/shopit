@@ -22,3 +22,4 @@ Route::delete('/products/{product}/variants/{variant}/items/{item}', [ProductVar
 Route::get('/orders', OrderController::class)->name('orders.index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
