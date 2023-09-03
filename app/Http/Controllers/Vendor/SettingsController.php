@@ -1,14 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\vendor;
+namespace App\Http\Controllers\Vendor;
 
+use App\Enums\UserRoleEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\ImageUploadTrait;
+use App\Models\User;
+use App\Models\Vendor;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class ProfileController extends Controller
+class SettingsController extends Controller
 {
 	use ImageUploadTrait;
 
@@ -54,5 +58,37 @@ class ProfileController extends Controller
 		Session::flash('success', ['title' => 'Profile Updated', 'message' => 'Profile has successfully been updated']);
 
 		return redirect()->back();
+	}
+
+	public function deleteAccount()
+	{
+		$user = User::findOrFail(Auth::user()->id);
+		$vendor = Vendor::where('user_id', $user->id)
+			->with(['products' => function (HasMany $query) {
+				return $query->with('productImages');
+			}])
+			->firstOrFail();
+
+		// delete vendor image
+		$this->deleteImage($vendor->image);
+
+		// delete vendor product image and product gallery images
+		foreach ($vendor->products as $product) {
+			$this->deleteImage($product->image);
+
+			foreach ($product->productImages as $productImage) {
+				$this->deleteImage($productImage->image);
+			}
+		}
+
+		$vendor->delete();
+
+		$user->role = UserRoleEnum::User;
+
+		$user->save();
+
+		Session::flash('success', ['title' => 'Vendor Account', 'message' => 'Your vendor account has successfully been deleted']);
+
+		return redirect()->route('home');
 	}
 }

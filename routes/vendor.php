@@ -4,7 +4,7 @@ use App\Http\Controllers\Vendor\DashboardController;
 use App\Http\Controllers\vendor\OrderController;
 use App\Http\Controllers\Vendor\ProductController;
 use App\Http\Controllers\Vendor\ProductVariantController;
-use App\Http\Controllers\vendor\ProfileController;
+use App\Http\Controllers\Vendor\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,5 +21,6 @@ Route::delete('/products/{product}/variants/{variant}/items/{item}', [ProductVar
 
 Route::get('/orders', OrderController::class)->name('orders.index');
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-Route::put('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+Route::get('/profile', [SettingsController::class, 'index'])->name('profile.index');
+Route::put('/profile/update', [SettingsController::class, 'updateProfile'])->name('profile.update');
+Route::delete('/profile/delete/account', [SettingsController::class, 'deleteAccount'])->name('account.delete');
