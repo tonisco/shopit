@@ -15,6 +15,7 @@
                         <td class="py-3.5 px-4 font-normal"> image </td>
                         <td class="py-3.5 px-4 font-normal"> name </td>
                         <td class="py-3.5 px-4 font-normal"> price </td>
+                        <td class="py-3.5 px-4 font-normal"> Rating </td>
                         <td class="py-3.5 px-4 font-normal"> discount </td>
                         <td class="py-3.5 px-4 font-normal"> status </td>
                         <td class="py-3.5 px-4 font-normal"> approved </td>
@@ -109,7 +110,7 @@
                     processing: true,
                     serverside: true,
                     order: [
-                        [8, 'desc']
+                        [9, 'desc']
                     ],
                     ajax: "{{ route('vendor.products.index') }}",
                     columns: [{
@@ -136,12 +137,18 @@
                             render: DataTable.render.number(null, null, null, '$')
                         },
                         {
+                            data: 'product_reviews_avg_rating',
+                            render: DataTable.render.number(null, null, 1, )
+                        },
+                        {
                             // TODO:check if discount is workin correctly
                             data: 'discount',
                         },
                         {
                             data: 'status',
+                            searchable: false,
                             render(_, _d, val) {
+                                console.log(val.product_reviews_avg_rating)
                                 return `<label class="switch status" data-id="${val.id}" data-name="${val.name}">
 											<input type="checkbox" ${val.status &&'checked'}>
 											<span class="slider"></span>
@@ -150,9 +157,11 @@
                         },
                         {
                             data: 'approved',
+                            searchable: false,
                         },
                         {
                             data: 'updated_at',
+                            searchable: false,
                             render: DataTable.render.datetime('Do MMM YYYY'),
                         },
                         {
@@ -161,6 +170,9 @@
                             searchable: false,
                             render(data, type, row) {
                                 return `<div class="flex items-center gap-1.5">
+									<a href='${data.edit}' class='bg-green-500 action-button dark:bg-green-700'>
+										<i class='action-button-icon bi bi-eye'></i>
+									</a>
 									<a href='${data.edit}' class='bg-blue-500 action-button dark:bg-blue-700'>
 										<i class='action-button-icon bi bi-pencil-square'></i>
 									</a>

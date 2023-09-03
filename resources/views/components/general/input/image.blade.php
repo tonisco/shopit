@@ -3,8 +3,6 @@
     $image = isset($image) ? $image : '';
 @endphp
 
-{{-- TODO: look at image dotted line, should delay on refresh  --}}
-
 <div class="relative w-full h-full rounded-lg bg-gray-50 dark:bg-gray-900" x-data="imagePreview('{{ $image }}')">
     <label for="{{ $id }}">
         <div class="w-full h-full p-2">
@@ -16,7 +14,7 @@
 
         <template x-if="image_url">
             <img :src="image_url" alt="{{ $name }}"
-                class="object-cover w-full h-full rounded-lg cursor-pointer">
+                class="object-cover absolute top-0 left-0 w-full h-full rounded-lg cursor-pointer">
         </template>
 
     </label>
