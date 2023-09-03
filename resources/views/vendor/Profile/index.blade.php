@@ -11,22 +11,21 @@
                         'tab-button-not-selected'">Edit
                     Profile</button>
 
-                <button class="tab-button" @click="setItemSelected('change password')"
-                    :class="itemSelected === 'change password' ? 'tab-button-selected' :
-                        'tab-button-not-selected'">Change
-                    Password</button>
-
                 <button class="tab-button" @click="setItemSelected('withdrawal method')"
                     :class="itemSelected === 'withdrawal method' ? 'tab-button-selected' :
                         'tab-button-not-selected'">Withdrawal
                     Method</button>
+
+                <button class="tab-button" @click="setItemSelected('others')"
+                    :class="itemSelected === 'others' ? 'tab-button-selected' :
+                        'tab-button-not-selected'">Others</button>
             </div>
 
             @include('vendor.Profile.partials._profile-form')
 
-            @include('vendor.Profile.partials._change-password-form')
-
             @include('vendor.Profile.partials._withdrawal-form')
+
+            @include('vendor.Profile.partials._others')
         </div>
 
     </section>
