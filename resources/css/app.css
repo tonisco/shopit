@@ -300,9 +300,6 @@ div[data-te-select-form-outline-ref]
 .textarea-input {
 	@apply h-auto;
 }
-/* .textarea-input {
-	@apply w-full rounded text-gray-800 dark:text-gray-200 placeholder-transparent text-base border-0 focus:border-0 focus:ring-0 bg-transparent;
-} */
 
 /*
 **
@@ -331,4 +328,28 @@ input:checked + .slider {
 
 input:checked + .slider:before {
 	@apply translate-x-5;
+}
+
+/*
+**
+** TAB BUTTON
+**
+*/
+
+.tab-button {
+	@apply border rounded border-red-500 dark:border-red-700 text-red-500 dark:text-red-700 px-3 py-1;
+	@apply text-sm focus:ring-4 ring-red-200 dark:ring-red-500/40 hover:bg-red-500 hover:text-white;
+	@apply dark:hover:text-white dark:hover:bg-red-700 transition-all duration-300;
+}
+
+.tab-button-default {
+	@apply bg-red-500 dark:bg-red-700 text-white;
+}
+
+.tab-button-selected {
+	@apply bg-red-500 dark:bg-red-700 text-white;
+}
+
+.tab-button-not-selected {
+	@apply bg-transparent text-red-500 dark:text-red-700;
 }

@@ -153,4 +153,11 @@ document.addEventListener("alpine:init", () => {
 			if (data) document.querySelector(".ql-editor").innerHTML = data;
 		},
 	}));
+
+	Alpine.data("selected", (data) => ({
+		itemSelected: data,
+		setItemSelected(val) {
+			this.itemSelected = val;
+		},
+	}));
 });
