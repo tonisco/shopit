@@ -346,10 +346,19 @@ input:checked + .slider:before {
 	@apply bg-red-500 dark:bg-red-700 text-white;
 }
 
+/* TODO:
+redesign the default pagination button
+select button at dashboard dark mode
+check dashboard in what to add
+re-do the tables event listner with the new methods
+little animation to delete modal
+side bar and nav bar fix
+*/
+
 .tab-button-selected {
-	@apply bg-red-500 dark:bg-red-700 text-white;
+	@apply bg-red-500 dark:bg-red-700 text-white dark:text-white;
 }
 
 .tab-button-not-selected {
-	@apply bg-transparent text-red-500 dark:text-red-700;
+	@apply bg-transparent text-red-500 dark:text-red-700 dark:bg-transparent;
 }

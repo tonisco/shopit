@@ -12,7 +12,7 @@
             @enderror
         </div>
 
-        @for ($i = 1; $i <= 6; $i++)
+        @for ($i = 0; $i < 6; $i++)
             @if (isset($product->productImages[$i]))
                 <x-general.input.image name="product_image{{ $i }}" id="product_image{{ $i }}"
                     imageId="{{ $product->productImages[$i]->id }}"
