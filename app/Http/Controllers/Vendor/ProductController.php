@@ -9,9 +9,12 @@ use App\Http\Traits\UtilsTrait;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductReview;
 use App\Models\ProductVariant;
 use DateTime;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -45,7 +48,7 @@ class ProductController extends Controller
 					return [
 						'edit' => route('vendor.products.edit', $query->id),
 						'delete' => route('vendor.products.destroy', $query->id),
-						'variant' => route('vendor.products.variants.index', $query->id)
+						'reviews' => route('vendor.products.reviews', $query->id)
 					];
 				})
 				->addColumn('image', function ($query) {
@@ -307,6 +310,17 @@ class ProductController extends Controller
 		Session::flash('success', $message);
 
 		return redirect()->route('vendor.products.index');
+	}
+
+	public function reviews(string $id)
+	{
+		$reviews = ProductReview::where('product_id', $id)
+			->orderBy('updated_at', 'desc')
+			->with('user')
+			->paginate(10);
+		$product = Product::findOrFail($id);
+
+		return view('vendor.Products.reviews', ['reviews' => $reviews, 'product' => $product]);
 	}
 
 	public function handleProductImages(Request $request, Product $product)

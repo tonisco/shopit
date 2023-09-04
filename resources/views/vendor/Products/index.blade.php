@@ -170,7 +170,7 @@
                             searchable: false,
                             render(data, type, row) {
                                 return `<div class="flex items-center gap-1.5">
-									<a href='${data.edit}' class='bg-green-500 action-button dark:bg-green-700'>
+									<a href='${data.show}' class='bg-green-500 action-button dark:bg-green-700'>
 										<i class='action-button-icon bi bi-eye'></i>
 									</a>
 									<a href='${data.edit}' class='bg-blue-500 action-button dark:bg-blue-700'>
