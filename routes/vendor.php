@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::put('/products/{id}/status', [ProductController::class, 'productStatus'])->name('products.status');
+Route::get('/products/{id}/reviews', [ProductController::class, 'reviews'])->name('products.reviews');
 Route::resource('products', ProductController::class);
 
 Route::put('/products/{product}/variants/{productVariant}/status', [ProductVariantController::class, 'variantStatus'])->name('products.variant.status');

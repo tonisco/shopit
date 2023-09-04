@@ -8,9 +8,9 @@
         </div>
 
         <div>
-            <table style="width: 100%" class="datatable divide-y divide-gray-200 dark:divide-gray-700">
+            <table style="width: 100%" class="divide-y divide-gray-200 datatable dark:divide-gray-700">
                 <thead class="bg-gray-50 dark:bg-gray-800">
-                    <tr class="text-sm text-left capitalize text-gray-500 dark:text-gray-300">
+                    <tr class="text-sm text-left text-gray-500 capitalize dark:text-gray-300">
                         <td class="py-3.5 px-4 font-normal"> id </td>
                         <td class="py-3.5 px-4 font-normal"> image </td>
                         <td class="py-3.5 px-4 font-normal"> name </td>
@@ -148,7 +148,6 @@
                             data: 'status',
                             searchable: false,
                             render(_, _d, val) {
-                                console.log(val.product_reviews_avg_rating)
                                 return `<label class="switch status" data-id="${val.id}" data-name="${val.name}">
 											<input type="checkbox" ${val.status &&'checked'}>
 											<span class="slider"></span>
@@ -170,8 +169,8 @@
                             searchable: false,
                             render(data, type, row) {
                                 return `<div class="flex items-center gap-1.5">
-									<a href='${data.show}' class='bg-green-500 action-button dark:bg-green-700'>
-										<i class='action-button-icon bi bi-eye'></i>
+									<a href='${data.reviews}' class='bg-green-500 action-button dark:bg-green-700'>
+										<i class='action-button-icon bi bi-chat-square-dots'></i>
 									</a>
 									<a href='${data.edit}' class='bg-blue-500 action-button dark:bg-blue-700'>
 										<i class='action-button-icon bi bi-pencil-square'></i>
