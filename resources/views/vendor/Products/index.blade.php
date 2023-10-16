@@ -30,27 +30,8 @@
         </div>
     </section>
 
-    <div class="trash-table-modal modal" style="display: none">
-        <div class="trash-table-modal-content modal-content">
-            <h2 class="text-xl text-gray-800 dark:text-gray-200">Are you sure you want to delete <span
-                    class="font-semibold capitalize delete-name"></span></h2>
-            <p class="text-sm text-gray-800 dark:text-gray-200">This will delete all variants and images
-                that have been added</p>
-            <div class="flex items-center self-end gap-2">
-                <button
-                    class="px-3 py-2 bg-gray-200 shadow-md delete-cancel-button dark:bg-gray-900 dark:text-gray-200">Cancel</button>
-                <form action="" method="POST" class="delete-form">
-                    @csrf
-                    @method('DELETE')
-                    <button class="px-3 py-2 text-white bg-red-500 rounded shadow-md dark:bg-red-700 delete-item"
-                        type="submit">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div class="check-modal modal" style="display: none">
-        <div class="check-modal-content modal-content">
+        <div class="check-modal-content modal-content slideIn">
             <div class="flex gap-1.5 text-xl text-gray-800 dark:text-gray-200">
                 <h3 class="check-heading"></h3>
             </div>
@@ -69,41 +50,67 @@
         </div>
     </div>
 
+    <x-general.utils.delete-modal item="your vendor account"
+        subtitle="This will delete all variants and images that have been added" />
+
 
     @section('script')
         <script type="text/javascript">
-            let modal = $('.trash-table-modal')
+            let modal = $('.delete-modal')
             let checkmodal = $('.check-modal')
+
+            function closeModal() {
+                $('body').removeAttr('style')
+                let modalContent = $('.delete-modal-content')
+                let checkmodalContent = $('.check-modal-content')
+                modalContent.removeClass('slideIn')
+                modalContent.addClass('slideOut')
+
+                checkmodalContent.removeClass('slideIn')
+                checkmodalContent.addClass('slideOut')
+
+                setTimeout(() => {
+                    modal.hide()
+                    checkmodal.hide()
+
+                    checkmodalContent.removeClass('slideOut')
+                    checkmodalContent.addClass('slideIn')
+                    modalContent.removeClass('slideOut')
+                    modalContent.addClass('slideIn')
+
+                }, 300);
+            }
 
             modal.on('click', function(e) {
                 e.stopPropagation()
-                modal.hide()
-                $('body').removeAttr('style')
+                closeModal()
             })
 
-            $('.trash-table-modal-content').on('click', function(e) {
+            function openDeleteModal() {
+                modal.show()
+                $('body').css('overflow', 'hidden')
+
+                $('.delete-item').on('click', function() {
+                    deleteForm.submit()
+                })
+            }
+
+            $('.delete-modal-content').on('click', function(e) {
                 e.stopPropagation()
             })
 
-            $('.delete-cancel-button').on('click', function(e) {
-                modal.hide()
-                $('body').removeAttr('style')
-            })
+            $('.delete-cancel-button').on('click', closeModal)
 
             checkmodal.on('click', function(e) {
                 e.stopPropagation()
-                checkmodal.hide()
-                $('body').removeAttr('style')
+                closeModal()
             })
 
             $('.check-modal-content').on('click', function(e) {
                 e.stopPropagation()
             })
 
-            $('.check-cancel-button').on('click', function(e) {
-                checkmodal.hide()
-                $('body').removeAttr('style')
-            })
+            $('.check-cancel-button').on('click', closeModal)
 
             $(function() {
                 let table = $('.datatable').DataTable({
@@ -175,20 +182,10 @@
 									<a href='${data.edit}' class='bg-blue-500 action-button dark:bg-blue-700'>
 										<i class='action-button-icon bi bi-pencil-square'></i>
 									</a>
-										<a class="bg-red-500 action-button dark:bg-red-700 deleteButton"
-										data-id="${row.id}" data-name="${row.name}" data-route="${data.delete}">
+										<a class="bg-red-500 action-button dark:bg-red-700 deleteItem">
 											<i class="action-button-icon bi bi-trash"></i>
 										</a>
 									</div`
-                                //  TODO: MIGHT NOT NEED IT
-                                // <div x-data="toggler" class="relative">
-                                // 	<a @click="toggle" class="action-button bg-zinc-700">
-                                // 		<i class="action-button-icon bi bi-three-dots-vertical"></i>
-                                // 	</a>
-                                // 	<div @click.outside="toggle" x-show="open" class="product-options">
-                                // 		<a href="${data.variant}" class="product-options-item">Variants</a>
-                                // 	</div>
-                                // </div>
                             }
                         },
                     ],
@@ -200,52 +197,46 @@
                             $(settings.nTableWrapper).find('.dataTables_paginate').show();
                         }
 
-                        $('.deleteButton').on('click', function() {
-                            let {
-                                name,
-                                route
-                            } = this.dataset
-
-                            $('.delete-name').text(name)
-                            let deleteForm = $('.delete-form')
-                            deleteForm.attr('action', route)
-                            modal.show()
-                            $('body').css('overflow', 'hidden')
-
-                            $('.delete-item').on('click', function() {
-                                deleteForm.submit()
-                            })
-                        })
-                        $('.status').on('click', function(e) {
-                            let {
-                                name,
-                                id
-                            } = this.dataset
-
-                            if (e.target.checked) {
-                                let message = `Are you sure you want to show
-                								<span class="font-semibold capitalize">${name}</span>`
-                                $('.check-heading').html(message)
-                                $('.check-button').text('Show')
-                            } else {
-                                let message = `Are you sure you want to hide
-                								<span class="font-semibold capitalize">${name}</span>`
-                                $('.check-heading').html(message)
-                                $('.check-button').text('Hide')
-                            }
-
-                            let checkForm = $('.check-form')
-                            checkForm.attr('action', `/vendor/products/${id}/status`)
-                            checkmodal.show()
-                            $('body').css('overflow', 'hidden')
-
-                            e.target.checked = !e.target.checked
-
-                            $('.check-item').on('click', function() {
-                                checkForm.submit()
-                            })
-                        })
                     }
+
+                }).on('click', 'tbody .deleteItem', function() {
+                    let parent = $(this).parent().parent()
+                    let data = table.row(parent).data()
+
+                    $('.delete-name').text(data.name)
+                    $('.delete-form').attr('action', data.action.delete)
+                    openDeleteModal()
+
+                }).on('click', 'tbody .status', function(e) {
+                    e.preventDefault();
+                    let parent = $(this).parent()
+                    let data = table.row(parent).data()
+
+                    let {
+                        name,
+                        id
+                    } = data
+
+                    if (!data.status) {
+                        let message = `Are you sure you want to show
+            						<span class="font-semibold capitalize">${name}</span>`
+                        $('.check-heading').html(message)
+                        $('.check-button').text('Show')
+                    } else {
+                        let message = `Are you sure you want to hide
+            						<span class="font-semibold capitalize">${name}</span>`
+                        $('.check-heading').html(message)
+                        $('.check-button').text('Hide')
+                    }
+
+                    let checkForm = $('.check-form')
+                    checkForm.attr('action', `/vendor/products/${id}/status`)
+                    checkmodal.show()
+                    $('body').css('overflow', 'hidden')
+
+                    $('.check-item').on('click', function() {
+                        checkForm.submit()
+                    })
 
                 })
             })

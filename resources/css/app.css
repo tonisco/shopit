@@ -33,7 +33,7 @@
 }
 
 .modal-content {
-	@apply flex flex-col w-10/12 relative sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto gap-4 p-6 pt-8 bg-white dark:bg-gray-800;
+	@apply flex flex-col w-10/12 relative sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto gap-4 p-6 pt-8 bg-white dark:bg-gray-800 rounded;
 }
 
 .product-options {
@@ -350,8 +350,6 @@ input:checked + .slider:before {
 redesign the default pagination button
 select button at dashboard dark mode
 check dashboard in what to add
-re-do the tables event listner with the new methods
-little animation to delete modal
 side bar and nav bar fix
 */
 

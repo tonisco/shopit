@@ -4,9 +4,9 @@
             <x-vendor.layout.heading title="Orders" :crumbs="[['name' => 'dashboard', 'route' => route('vendor.dashboard')], ['name' => 'orders']]" />
         </div>
 
-        <table style="width: 100%" class="datatable divide-y divide-gray-200 dark:divide-gray-700">
+        <table style="width: 100%" class="divide-y divide-gray-200 datatable dark:divide-gray-700">
             <thead class="bg-gray-50 dark:bg-gray-800">
-                <tr class="text-sm text-left capitalize text-gray-500 dark:text-gray-400">
+                <tr class="text-sm text-left text-gray-500 capitalize dark:text-gray-400">
                     <th class="py-3.5 px-4 font-normal"> id </th>
                     <th class="py-3.5 px-4 font-normal"> name </th>
                     <th class="py-3.5 px-4 font-normal"> date </th>
@@ -26,32 +26,32 @@
                 <div
                     class="flex gap-1.5 justify-between items-center pb-4 border-b-2 text-gray-700 dark:text-gray-400 border-gray-200 dark:border-gray-800">
                     <h3 class="text-lg font-medium capitalize">Order details</h3>
-                    <x-ri-close-fill class="h-6 close-modal cursor-pointer" />
+                    <x-ri-close-fill class="h-6 cursor-pointer close-modal" />
                 </div>
-                <div class="text-gray-600 dark:text-gray-400 capitalize text-sm">
-                    <p>Order Id: <span class="order-id font-medium text-gray-800 dark:text-gray-200"></span></p>
-                    <p>Customer: <span class="customer-name font-medium text-gray-800 dark:text-gray-200"></span></p>
+                <div class="text-sm text-gray-600 capitalize dark:text-gray-400">
+                    <p>Order Id: <span class="font-medium text-gray-800 order-id dark:text-gray-200"></span></p>
+                    <p>Customer: <span class="font-medium text-gray-800 customer-name dark:text-gray-200"></span></p>
                 </div>
                 <table class="table-fixed w-[468px]">
                     <thead class="border-b">
-                        <tr class="text-sm py-2 capitalize text-gray-600 dark:text-gray-400">
-                            <th class="py-2 px-4 font-normal text-start w-20">Image</th>
-                            <th class="py-2 px-4 font-normal text-start">Details</th>
-                            <th class="py-2 px-4 font-normal text-start w-20">price</th>
+                        <tr class="py-2 text-sm text-gray-600 capitalize dark:text-gray-400">
+                            <th class="w-20 px-4 py-2 font-normal text-start">Image</th>
+                            <th class="px-4 py-2 font-normal text-start">Details</th>
+                            <th class="w-20 px-4 py-2 font-normal text-start">price</th>
                         </tr>
                     </thead>
-                    <tbody class="text-sm text-start tbody capitalize text-gray-800 dark:text-gray-200 font-medium">
+                    <tbody class="text-sm font-medium text-gray-800 capitalize text-start tbody dark:text-gray-200">
                         <tr class="border-b">
-                            <th class="py-2 text-sm font-medium px-4 text-start" colspan="2">sub total</th>
-                            <th class="sub-total py-2 text-sm font-medium px-4 text-start">$0</th>
+                            <th class="px-4 py-2 text-sm font-medium text-start" colspan="2">sub total</th>
+                            <th class="px-4 py-2 text-sm font-medium sub-total text-start">$0</th>
                         </tr>
                         <tr class="border-b">
-                            <th class="py-2 text-sm font-medium px-4 text-start" colspan="2">commission</th>
-                            <th class="commission py-2 text-sm font-medium px-4 text-start">$0</th>
+                            <th class="px-4 py-2 text-sm font-medium text-start" colspan="2">commission</th>
+                            <th class="px-4 py-2 text-sm font-medium commission text-start">$0</th>
                         </tr>
                         <tr class="border-b">
-                            <th class="py-2 text-sm font-medium px-4 text-start" colspan="2">total</th>
-                            <th class="total py-2 text-sm font-medium px-4 text-start">$0</th>
+                            <th class="px-4 py-2 text-sm font-medium text-start" colspan="2">total</th>
+                            <th class="px-4 py-2 text-sm font-medium total text-start">$0</th>
                         </tr>
                     </tbody>
                 </table>
@@ -88,15 +88,15 @@
 
             function returnOrderDetails(name, price, qty, sub_total, image_url, variant) {
                 return `<tr class="border-b details">
-							<th class="py-2 text-sm px-4 font-normal text-start">
-								<img src="{{ asset('') }}${image_url}" class="h-full w-12 object-cover" alt="${name}">
+							<th class="px-4 py-2 text-sm font-normal text-start">
+								<img src="{{ asset('') }}${image_url}" class="object-cover w-12 h-full" alt="${name}">
 							</th>
-							<th class="py-2 flex text-xs flex-col justify-center gap-1 px-4 font-normal text-start">
+							<th class="flex flex-col justify-center gap-1 px-4 py-2 text-xs font-normal text-start">
 								<h3 class="text-sm font-medium truncate">${name}</h3>
 								<p>$${price} x ${qty}</p>
 								<p>${variant??''}</p>
 							</th>
-							<th class="sub-total py-2 text-sm font-medium px-4 text-start">$${sub_total}</th>
+							<th class="px-4 py-2 text-sm font-medium sub-total text-start">$${sub_total}</th>
 						</tr>`
             }
 
@@ -166,7 +166,7 @@
                             searchable: false,
                             sortable: false,
                             render: function(data, _, row) {
-                                return `<div class="text-white show-order inline-block cursor-pointer bg-red-500 hover:bg-red-600 dark:hover:bg-red-800 transition-all dark:bg-red-700 rounded px-3 py-2 text-sm my-2">View order</div>`
+                                return `<div class="inline-block px-3 py-2 my-2 text-sm text-white transition-all bg-red-500 rounded cursor-pointer show-order hover:bg-red-600 dark:hover:bg-red-800 dark:bg-red-700">View order</div>`
                             }
                         },
                     ],

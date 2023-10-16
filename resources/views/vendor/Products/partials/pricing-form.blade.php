@@ -24,7 +24,7 @@
         @enderror
     </div>
 
-    {{-- TODO: fix date range for mobile screens --}}
+    {{-- TODO: fix date range for mobile screens and dark mode background --}}
     <div class="flex flex-col w-full gap-2">
         <x-utils.date-picker show-time :time24hr="false" min-date="today" label="Discount Date Range" clearable range
             name="discount_date" {{-- value="{{ isset($product->discount_start_date && $product->discount_end_date) ? $product->discount_start_date . ' to ' . $product->discount_end_date : old('discount_date') }}"  --}} />
