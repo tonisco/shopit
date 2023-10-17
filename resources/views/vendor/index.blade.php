@@ -104,26 +104,36 @@
             <div class="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h1 class="text-xl text-gray-900 dark:text-white/80">Top Selling Product</h1>
                 <div class="flex flex-col gap-4">
-                    @foreach ($mostSold as $item)
-                        <div class="flex items-center w-full gap-2">
-                            <img src="{{ asset($item->image) }}" class="object-cover w-10 h-14">
-                            <p class="flex-1 text-gray-600 truncate text-md dark:text-white">{{ $item->name }}</p>
-                            <p class="text-gray-600 dark:text-white/60">{{ $item->order_products_sum_qty }} times</p>
-                        </div>
-                    @endforeach
+                    @if (count($mostSold) === 0)
+                        <p class="text-base text-center text-gray-600 my-28 dark:text-white/60 sm:text-xl">No data </p>
+                    @else
+                        @foreach ($mostSold as $item)
+                            <div class="flex items-center w-full gap-2">
+                                <img src="{{ asset($item->image) }}" class="object-cover w-10 h-14">
+                                <p class="flex-1 text-gray-600 truncate text-md dark:text-white">{{ $item->name }}
+                                </p>
+                                <p class="text-gray-600 dark:text-white/60">{{ $item->order_products_sum_qty }} times
+                                </p>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <div class="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <h1 class="text-xl text-gray-900 dark:text-white/80">Lowest Product Quantity</h1>
                 <div class="flex flex-col gap-4">
-                    @foreach ($lowestQuantities as $lowestQuantity)
-                        <div class="flex items-center w-full gap-2">
-                            <img src="{{ asset($lowestQuantity->image) }}" class="object-cover w-10 h-14">
-                            <p class="flex-1 text-gray-600 truncate text-md dark:text-white">
-                                {{ $lowestQuantity->name }}</p>
-                            <p class="text-gray-600 dark:text-white/60">{{ $lowestQuantity->qty }}</p>
-                        </div>
-                    @endforeach
+                    @if (count($lowestQuantities) === 0)
+                        <p class="text-base text-center text-gray-600 my-28 dark:text-white/60 sm:text-xl">No data </p>
+                    @else
+                        @foreach ($lowestQuantities as $lowestQuantity)
+                            <div class="flex items-center w-full gap-2">
+                                <img src="{{ asset($lowestQuantity->image) }}" class="object-cover w-10 h-14">
+                                <p class="flex-1 text-gray-600 truncate text-md dark:text-white">
+                                    {{ $lowestQuantity->name }}</p>
+                                <p class="text-gray-600 dark:text-white/60">{{ $lowestQuantity->qty }}</p>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

@@ -9,10 +9,10 @@
                 <tr class="text-sm text-left text-gray-500 capitalize dark:text-gray-400">
                     <th class="py-3.5 px-4 font-normal"> id </th>
                     <th class="py-3.5 px-4 font-normal"> name </th>
-                    <th class="py-3.5 px-4 font-normal"> date </th>
                     <th class="py-3.5 px-4 font-normal"> items </th>
                     <th class="py-3.5 px-4 font-normal"> total </th>
                     <th class="py-3.5 px-4 font-normal"> status </th>
+                    <th class="py-3.5 px-4 font-normal"> date </th>
                     <th class="py-3.5 px-4 font-normal"> action </th>
                 </tr>
             </thead>
@@ -137,6 +137,9 @@
                 let table = $('.datatable').DataTable({
                     processing: true,
                     stripeClasses: [],
+                    order: [
+                        [5, 'desc']
+                    ],
                     serverside: true,
                     ajax: "{{ route('vendor.orders.index') }}",
                     columns: [{
@@ -149,10 +152,6 @@
                             }
                         },
                         {
-                            data: 'created_at',
-                            render: DataTable.render.datetime('Do MMM YYYY')
-                        },
-                        {
                             data: 'items'
                         },
                         {
@@ -160,6 +159,10 @@
                         },
                         {
                             data: 'status'
+                        },
+                        {
+                            data: 'created_at',
+                            render: DataTable.render.datetime('Do MMM YYYY')
                         },
                         {
                             data: 'action',
