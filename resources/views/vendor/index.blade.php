@@ -7,6 +7,7 @@
             <h1 class="text-3xl text-gray-800 dark:text-gray-200">Dashboard</h1>
             <form method="GET" action="{{ route('vendor.dashboard') }}">
                 <select name="p" id="p" value=""
+                    class="dark:bg-gray-800 dark:text-white focus:border-red-500 focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700"
                     onchange="if(event.target.value !=='{{ $p }}')this.closest('form').submit()">
                     <option value="all">All time</option>
                     <option @if ($p === 'today') selected @endif value="today">Today</option>
@@ -27,7 +28,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">Total orders</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $currentOrders }}</h2>
                 </div>
-                <x-bi-clipboard2 class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-bi-clipboard2 class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -35,7 +36,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">completed orders</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $completedOrder }}</h2>
                 </div>
-                <x-bi-clipboard2-check class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-bi-clipboard2-check class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -43,7 +44,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending orders</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $pendingOrder }}</h2>
                 </div>
-                <x-ri-timer-line class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-ri-timer-line class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -51,7 +52,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">products ordered</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $productOrdered }}</h2>
                 </div>
-                <x-bi-cart class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-bi-cart class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -60,7 +61,7 @@
                     </p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $completedProductOrdered }}</h2>
                 </div>
-                <x-bi-cart-check class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-bi-cart-check class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -68,7 +69,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending Products order</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $pendingProductOrdered }}</h2>
                 </div>
-                <x-ri-timer-line class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-ri-timer-line class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
 
             <div
@@ -77,7 +78,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">Total Earnings</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">${{ number_format($earnings) }}</h2>
                 </div>
-                <x-ri-money-dollar-circle-line class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-ri-money-dollar-circle-line class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -85,7 +86,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">pending earnings</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">${{ number_format($pendingEarnings) }}</h2>
                 </div>
-                <x-ri-hand-coin-line class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-ri-hand-coin-line class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
             <div
                 class="flex items-center justify-between w-full max-w-sm p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -93,7 +94,7 @@
                     <p class="text-sm font-medium text-gray-900 uppercase dark:text-white/80">customers</p>
                     <h2 class="text-3xl text-gray-800 dark:text-white">{{ $customers }}</h2>
                 </div>
-                <x-ri-user-line class="w-12 h-12 text-gray-800 dark:text-white" />
+                <x-ri-user-line class="w-12 h-12 text-gray-600 dark:text-white" />
             </div>
         </div>
         <div class="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800">

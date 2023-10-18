@@ -348,9 +348,7 @@ input:checked + .slider:before {
 
 /* TODO:
 redesign the default pagination button
-select button at dashboard dark mode
 check dashboard in what to add
-side bar and nav bar fix
 */
 
 .tab-button-selected {
