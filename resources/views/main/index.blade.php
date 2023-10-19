@@ -26,15 +26,16 @@
                     <img src="{{ asset($sliders[0]['image']) }}" class="block w-full" alt="..." />
                     <div class="absolute inset-y-0 h-full left-6 hidden py-5 z-[2] text-center text-black md:block">
                         <div class="flex flex-col items-start justify-center h-full gap-4">
-                            <p class="font-medium text-red-500 capitalize dark:text-red-700">{{ $sliders[0]->top_text }}
+                            <p class="font-medium text-brandRed capitalize dark:text-brandRedDark">
+                                {{ $sliders[0]->top_text }}
                             </p>
                             <h1 class="text-5xl font-bold capitalize">{{ $sliders[0]['title'] }}</h1>
-                            <p class="font-medium text-red-500 capitalize dark:text-red-700">
+                            <p class="font-medium text-brandRed capitalize dark:text-brandRedDark">
                                 {{ $sliders[0]->bottom_text }}
                             </p>
                             @if ($sliders[0]->btn_url)
                                 <a type="button" href='/{{ $sliders[0]->btn_url }}'
-                                    class="inline-block rounded-full bg-red-500 px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-red-700">
+                                    class="inline-block rounded-full bg-brandRed px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-brandRedDark active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-brandRedDark">
                                     Shop Now
                                 </a>
                             @endif
@@ -50,16 +51,16 @@
                             <div
                                 class="absolute inset-y-0 z-[2] h-full left-6 hidden py-5 text-center text-black md:block">
                                 <div class="flex flex-col items-start justify-center h-full gap-2">
-                                    <p class="font-medium text-red-500 capitalize dark:text-red-700">
+                                    <p class="font-medium text-brandRed capitalize dark:text-brandRedDark">
                                         {{ $slider->top_text }}
                                     </p>
                                     <h1 class="text-5xl font-bold capitalize">{{ $slider->title }}</h1>
-                                    <p class="font-medium text-red-500 capitalize dark:text-red-700">
+                                    <p class="font-medium text-brandRed capitalize dark:text-brandRedDark">
                                         {{ $slider->bottom_text }}
                                     </p>
                                     @if ($slider->btn_url)
                                         <a type="button" href='/{{ $slider->btn_url }}'
-                                            class="inline-block rounded-full bg-red-500 px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-red-700 active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-red-700">
+                                            class="inline-block rounded-full bg-brandRed px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-brandRedDark active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-brandRedDark">
                                             Shop Now
                                         </a>
                                     @endif

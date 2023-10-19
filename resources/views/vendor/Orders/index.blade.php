@@ -169,7 +169,7 @@
                             searchable: false,
                             sortable: false,
                             render: function(data, _, row) {
-                                return `<div class="inline-block px-3 py-2 my-2 text-sm text-white transition-all bg-red-500 rounded cursor-pointer show-order hover:bg-red-600 dark:hover:bg-red-800 dark:bg-red-700">View order</div>`
+                                return `<div class="inline-block px-3 py-2 my-2 text-sm text-white transition-all bg-brandRed rounded cursor-pointer show-order hover:bg-red-600 dark:hover:bg-red-800 dark:bg-brandRedDark">View order</div>`
                             }
                         },
                     ],

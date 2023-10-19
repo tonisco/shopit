@@ -3,7 +3,7 @@
         <div class="flex flex-col items-start justify-between w-full gap-2 sm:flex-row sm:items-center">
             <x-vendor.layout.heading title="Products" :crumbs="[['name' => 'dashboard', 'route' => route('vendor.dashboard')], ['name' => 'products']]" />
             <a href="{{ route('vendor.products.create') }}"
-                class="px-3 py-2 text-sm text-white bg-red-500 rounded shadow sm:text-base dark:bg-red-700 hover:bg-red-600">Create
+                class="px-3 py-2 text-sm text-white bg-brandRed rounded shadow sm:text-base dark:bg-brandRedDark hover:bg-red-600">Create
                 Product</a>
         </div>
 
@@ -43,7 +43,7 @@
                     @csrf
                     @method('PUT')
                     <button
-                        class="px-3 py-2 text-white bg-red-500 rounded shadow-md check-button dark:bg-red-700 check-item"
+                        class="px-3 py-2 text-white bg-brandRed rounded shadow-md check-button dark:bg-brandRedDark check-item"
                         type="submit"></button>
                 </form>
             </div>
@@ -179,10 +179,10 @@
 									<a href='${data.reviews}' class='bg-green-500 action-button dark:bg-green-700'>
 										<i class='action-button-icon bi bi-chat-square-dots'></i>
 									</a>
-									<a href='${data.edit}' class='bg-blue-500 action-button dark:bg-blue-700'>
+									<a href='${data.edit}' class='bg-brandBlue action-button dark:bg-brandBlueDark'>
 										<i class='action-button-icon bi bi-pencil-square'></i>
 									</a>
-										<a class="bg-red-500 action-button dark:bg-red-700 deleteItem">
+										<a class="bg-brandRed action-button dark:bg-brandRedDark deleteItem">
 											<i class="action-button-icon bi bi-trash"></i>
 										</a>
 									</div`

@@ -24,7 +24,7 @@
                     </h3>
                     @if (!$loop->first)
                         <a class="delete-item" data-id="{{ $productVariantItem->id }}">
-                            <i class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 dark:text-red-700"></i>
+                            <i class="text-brandRed cursor-pointer h-7 bi bi-trash-fill w-7 dark:text-brandRedDark"></i>
                         </a>
                     @endif
                 </div>
@@ -98,7 +98,7 @@
         </div>
     @endif
 
-    <button id="increase" type="button" class="text-red-500 capitalize text-end dark:text-red-700">add
+    <button id="increase" type="button" class="text-brandRed capitalize text-end dark:text-brandRedDark">add
         option</button>
 </div>
 
@@ -157,7 +157,7 @@
             let qtyInput = newItem.find('.option_qty')
 
             newItem.find('.heading').append(
-                '<i class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-red-700" ></i>'
+                '<i class="text-brandRed cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-brandRedDark" ></i>'
             )
 
             addAttributes(title, nameInput, priceInput, qtyInput, index)

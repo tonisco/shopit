@@ -35,9 +35,9 @@
             }
         @endphp
         <a class="px-1 flex gap-2 items-center text-sm" href="{{ $brand_link }}">
-            <div class="h-4 w-4 items-center border-2 border-red-500 dark:border-red-500">
+            <div class="h-4 w-4 items-center border-2 border-brandRed dark:border-brandRed">
                 @if ($in_request && gettype($in_array) === 'integer')
-                    <x-ri-checkbox-fill class="h-full w-full text-red-500 dark:text-red-700" />
+                    <x-ri-checkbox-fill class="h-full w-full text-brandRed dark:text-brandRedDark" />
                 @endif
             </div>
             <p class="text-gray-800 dark:text-gray-200">{{ $brand->name }}</p>

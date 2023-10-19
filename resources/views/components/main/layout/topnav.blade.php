@@ -1,4 +1,4 @@
-<div class="justify-center hidden w-full py-4 bg-red-500 lg:flex dark:bg-red-700">
+<div class="justify-center hidden w-full py-4 bg-brandRed lg:flex dark:bg-brandRedDark">
     <div class="flex items-center justify-between flex-1 gap-4 px-3 text-gray-200 max-w-7xl">
         <a href="{{ route('home') }}" class="cursor-pointer">
             <x-general.layout.logo />

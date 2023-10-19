@@ -9,7 +9,7 @@
 @endphp
 {{-- TODO: fix icon on each menu  --}}
 <div class="static" data-te-nav-item-ref data-te-dropdown-ref>
-    <a class="items-center hidden p-2 mr-6 text-gray-200 transition duration-150 ease-in-out bg-red-500 cursor-pointer dark:bg-red-700 lg:flex whitespace-nowrap hover:text-gray-300 dark:hover:text-gray-100 focus:text-gray-300 dark:focus:text-gray-100"
+    <a class="items-center hidden p-2 mr-6 text-gray-200 transition duration-150 ease-in-out bg-brandRed cursor-pointer dark:bg-brandRedDark lg:flex whitespace-nowrap hover:text-gray-300 dark:hover:text-gray-100 focus:text-gray-300 dark:focus:text-gray-100"
         href="#" data-te-ripple-init data-te-ripple-color="light" type="button" id="dropdownMenuButtonQ"
         data-te-dropdown-toggle-ref aria-expanded="false" data-te-nav-link-ref>
         <x-ri-menu-fill class="w-8 h-8" />

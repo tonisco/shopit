@@ -60,7 +60,7 @@
 	@apply text-2xl text-zinc-700 dark:text-zinc-200;
 }
 .cancel-icon {
-	@apply text-2xl text-red-500 dark:text-red-700;
+	@apply text-2xl text-brandRed dark:text-brandRedDark;
 }
 .approve-icon {
 	@apply text-2xl text-green-500 dark:text-green-700;
@@ -85,11 +85,11 @@
 }
 
 #DataTables_Table_0_length > label > select {
-	@apply w-16 mx-1 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm focus:border-red-500 rounded focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700;
+	@apply w-16 mx-1 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm focus:border-brandRed rounded focus:ring-brandRed dark:focus:border-brandRedDark dark:focus:ring-brandRedDark;
 }
 
 #DataTables_Table_0_filter > label > input {
-	@apply px-5 py-2.5 text-xs sm:text-sm bg-gray-50 dark:bg-gray-800 focus:border-red-500 rounded focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700;
+	@apply px-5 py-2.5 text-xs sm:text-sm bg-gray-50 dark:bg-gray-800 focus:border-brandRed rounded focus:ring-brandRed dark:focus:border-brandRedDark dark:focus:ring-brandRedDark;
 }
 #DataTables_Table_0_filter > label {
 	@apply text-gray-800 dark:text-gray-200;
@@ -116,7 +116,7 @@
 }
 
 #DataTables_Table_0_paginate > ul > li.active {
-	@apply bg-red-500 dark:bg-red-700 text-white cursor-default hover:opacity-100 active:opacity-100;
+	@apply bg-brandRed dark:bg-brandRedDark text-white cursor-default hover:opacity-100 active:opacity-100;
 }
 #DataTables_Table_0_paginate > ul > li.disabled {
 	@apply text-gray-400 hover:opacity-100 active:opacity-100;
@@ -127,16 +127,16 @@
 }
 
 .form-input {
-	@apply block min-h-[auto] focus:!ring-red-500 w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-red-500 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 focus:outline-none focus:ring-0 focus:border-0 focus:border-red-500;
+	@apply block min-h-[auto] focus:!ring-brandRed w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-brandRed data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 focus:outline-none focus:ring-0 focus:border-0 focus:border-brandRed;
 }
 
 .form-label {
-	@apply pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-red-500 peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200;
+	@apply pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-brandRed peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200;
 }
 
 div[data-te-input-wrapper-init] > div[data-te-input-focused] > div,
 div[data-te-select-form-outline-ref] > div[data-te-input-focused] > div {
-	@apply !shadow-red-500 focus:!bg-red-500 !border-red-500;
+	@apply !shadow-brandRed focus:!bg-brandRed !border-brandRed;
 }
 
 div[data-te-select-form-outline-ref] > input[data-te-select-input-ref] {
@@ -148,7 +148,7 @@ div[data-te-select-form-outline-ref]
 	~ label[data-te-input-state-active],
 div[data-te-select-form-outline-ref] > input[data-te-input-focused] ~ span,
 div[data-te-select-form-outline-ref] > input[data-te-input-focused] ~ div {
-	@apply !text-red-500;
+	@apply !text-brandRed;
 }
 
 div[data-te-input-wrapper-init]
@@ -190,13 +190,13 @@ div[data-te-select-form-outline-ref]
 }
 
 .editor:focus-within .des {
-	@apply text-red-500 dark:text-red-700;
+	@apply text-brandRed dark:text-brandRedDark;
 }
 
 .editor:focus-within,
 .editor:focus-within .ql-container .ql-editor,
 .editor:focus-within .ql-toolbar.ql-snow {
-	@apply !border-red-500 ring-red-500 ring-1;
+	@apply !border-brandRed ring-brandRed ring-1;
 }
 
 /* 	BADGE */
@@ -205,16 +205,16 @@ div[data-te-select-form-outline-ref]
 	@apply px-2 py-1 font-semibold leading-tight text-xs text-green-700 dark:text-green-900 dark:bg-green-300 bg-green-100 rounded-sm inline-block;
 }
 .red-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-red-700 dark:text-red-900 dark:bg-red-300 bg-red-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-brandRedDark dark:text-red-900 dark:bg-red-300 bg-red-100 rounded-sm inline-block;
 }
 .yellow-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-yellow-700 dark:text-yellow-900 dark:bg-yellow-300 bg-yellow-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-brandYellowDark dark:text-yellow-900 dark:bg-yellow-300 bg-yellow-100 rounded-sm inline-block;
 }
 .gray-badge {
 	@apply px-2 py-1 font-semibold leading-tight text-xs text-gray-700 dark:text-gray-900 dark:bg-gray-300 bg-gray-100 rounded-sm inline-block;
 }
 .blue-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-blue-700 dark:text-blue-900 dark:bg-blue-300 bg-blue-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-brandBlueDark dark:text-blue-900 dark:bg-blue-300 bg-blue-100 rounded-sm inline-block;
 }
 
 /*
@@ -265,7 +265,7 @@ div[data-te-select-form-outline-ref]
 
 .input-wrapper {
 	@apply relative block h-11 border focus-within:ring-1 rounded transition-all duration-300 border-gray-300;
-	@apply dark:border-gray-600 focus-within:border-red-500 dark:focus-within:border-red-700 focus-within:ring-red-500 dark:focus-within:ring-red-700;
+	@apply dark:border-gray-600 focus-within:border-brandRed dark:focus-within:border-brandRedDark focus-within:ring-brandRed dark:focus-within:ring-brandRedDark;
 }
 
 .text-input,
@@ -280,7 +280,7 @@ div[data-te-select-form-outline-ref]
 }
 
 .peer\/input:focus ~ .text-input-label {
-	@apply -top-2.5 left-2 text-red-500 dark:text-red-700 bg-white dark:bg-gray-800 px-1 text-[12.8px];
+	@apply -top-2.5 left-2 text-brandRed dark:text-brandRedDark bg-white dark:bg-gray-800 px-1 text-[12.8px];
 }
 
 .peer\/input:not(:placeholder-shown) ~ .text-input-label,
@@ -289,11 +289,11 @@ div[data-te-select-form-outline-ref]
 }
 
 .select-input > option {
-	@apply checked:bg-red-500 dark:checked:bg-red-700 checked:text-white hover:bg-red-500 dark:bg-gray-800 hover:text-white py-3;
+	@apply checked:bg-brandRed dark:checked:bg-brandRedDark checked:text-white hover:bg-brandRed dark:bg-gray-800 hover:text-white py-3;
 }
 
 .peer\/select:focus ~ .select-input-label {
-	@apply text-red-500 dark:text-red-700;
+	@apply text-brandRed dark:text-brandRedDark;
 }
 
 .textarea-wrapper,
@@ -323,7 +323,7 @@ div[data-te-select-form-outline-ref]
 }
 
 input:checked + .slider {
-	@apply bg-red-500 dark:bg-red-700;
+	@apply bg-brandRed dark:bg-brandRedDark;
 }
 
 input:checked + .slider:before {
@@ -337,13 +337,13 @@ input:checked + .slider:before {
 */
 
 .tab-button {
-	@apply border rounded border-red-500 dark:border-red-700 text-red-500 dark:text-red-700 px-3 py-1;
-	@apply text-sm focus:ring-4 ring-red-200 dark:ring-red-500/40 hover:bg-red-500 hover:text-white;
-	@apply dark:hover:text-white dark:hover:bg-red-700 transition-all duration-300;
+	@apply border rounded border-brandRed dark:border-brandRedDark text-brandRed dark:text-brandRedDark px-3 py-1;
+	@apply text-sm focus:ring-4 ring-red-200 dark:ring-brandRed/40 hover:bg-brandRed hover:text-white;
+	@apply dark:hover:text-white dark:hover:bg-brandRedDark transition-all duration-300;
 }
 
 .tab-button-default {
-	@apply bg-red-500 dark:bg-red-700 text-white;
+	@apply bg-brandRed dark:bg-brandRedDark text-white;
 }
 
 /* TODO:
@@ -352,9 +352,9 @@ check dashboard in what to add
 */
 
 .tab-button-selected {
-	@apply bg-red-500 dark:bg-red-700 text-white dark:text-white;
+	@apply bg-brandRed dark:bg-brandRedDark text-white dark:text-white;
 }
 
 .tab-button-not-selected {
-	@apply bg-transparent text-red-500 dark:text-red-700 dark:bg-transparent;
+	@apply bg-transparent text-brandRed dark:text-brandRedDark dark:bg-transparent;
 }

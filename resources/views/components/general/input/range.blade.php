@@ -20,10 +20,10 @@ maxTrigger()">
 
     <div class="flex justify-between w-full mt-5">
         <input type="text" maxlength="6" x-on:input="minTrigger" x-model.number="minPrice"
-            class="w-[72px] text-sm rounded-lg focus:outline-none border-gray-200 focus:border-red-500 focus:ring-red-500"
+            class="w-[72px] text-sm rounded-lg focus:outline-none border-gray-200 focus:border-brandRed focus:ring-brandRed"
             name='minPrice' id="minPrice">
         <input type="text" maxlength="6" x-on:input="maxTrigger" x-model.number="maxPrice"
-            class="w-[72px] text-sm rounded-lg focus:outline-none border-gray-200 focus:border-red-500 focus:ring-red-500"
+            class="w-[72px] text-sm rounded-lg focus:outline-none border-gray-200 focus:border-brandRed focus:ring-brandRed"
             name='maxPrice' id="maxPrice">
     </div>
 </div>

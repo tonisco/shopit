@@ -55,11 +55,13 @@
                                 data-link="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}"
                                 data-deletelink="{{ route('vendor.products.variants.items.destroy', ['product' => $productId, 'variant' => $productVariant->id, 'item' => $productVariantItem->id]) }}">
                                 <a class="cursor-pointer edit-option">
-                                    <i class="w-8 h-8 text-lg text-blue-500 bi bi-pencil-square dark:text-blue-700"></i>
+                                    <i
+                                        class="w-8 h-8 text-lg text-brandBlue bi bi-pencil-square dark:text-brandBlueDark"></i>
                                 </a>
                                 @if (!$loop->first)
                                     <a class="cursor-pointer delete-option">
-                                        <i class="w-8 h-8 text-lg text-red-500 bi bi-trash-fill dark:text-red-700"></i>
+                                        <i
+                                            class="w-8 h-8 text-lg text-brandRed bi bi-trash-fill dark:text-brandRedDark"></i>
                                     </a>
                                 @endif
 
@@ -86,7 +88,8 @@
                     </div>
                 @endforeach
 
-                <button id="increase" type="button" class="text-red-500 capitalize text-end dark:text-red-700">add
+                <button id="increase" type="button"
+                    class="text-brandRed capitalize text-end dark:text-brandRedDark">add
                     option</button>
             </div>
         </div>
@@ -115,7 +118,7 @@
                     label="Qty" />
             </div>
             <div class="flex gap-4">
-                <button class="px-3 py-2 text-white bg-red-500 rounded shadow-md dark:bg-red-700 edit-item"
+                <button class="px-3 py-2 text-white bg-brandRed rounded shadow-md dark:bg-brandRedDark edit-item"
                     type="submit">Create</button>
                 <button type="reset"
                     class="px-3 py-2 bg-gray-200 shadow-md edit-cancel dark:bg-gray-900 dark:text-gray-200">Cancel</button>
@@ -196,7 +199,7 @@
                 newItem.find('.option-qty').val(qty)
 
                 let editButton = $(
-                    '<a class="cursor-pointer delete-option"><i class="w-8 h-8 text-lg text-red-500 bi bi-trash-fill dark:text-red-700"></i></a>'
+                    '<a class="cursor-pointer delete-option"><i class="w-8 h-8 text-lg text-brandRed bi bi-trash-fill dark:text-brandRedDark"></i></a>'
                 ).get(0)
 
                 newItem.find('.heading').children()[1].append(editButton)

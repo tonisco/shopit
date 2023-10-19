@@ -12,7 +12,7 @@
     <div class="flex flex-1 h-full">
         <div class="flex flex-col flex-1 overflow-x-hidden">
             <header
-                class="fixed top-0 left-0 right-0 z-10 flex items-center justify-between w-full px-4 py-2 text-white bg-red-500 dark:bg-red-700">
+                class="fixed top-0 left-0 right-0 z-10 flex items-center justify-between w-full px-4 py-2 text-white bg-brandRed dark:bg-brandRedDark">
                 <div class="block lg:hidden" x-data="toggler" @click="toggle">
                     <x-ri-menu-fill class="w-5 h-5 cursor-pointer sm:h-6 sm:w-6 " />
                     <template x-teleport="body">

@@ -18,7 +18,7 @@
                         <p class="flex items-center gap-2">
                             <x-ri-phone-fill class="w-5 h-5 text-white" /><span>{{ $vendor->phone }}</span>
                         </p>
-                        <a class="self-start px-4 py-2 mt-2 text-white capitalize transition-all duration-300 bg-red-500 rounded-full dark:bg-red-700 hover:bg-red-600"
+                        <a class="self-start px-4 py-2 mt-2 text-white capitalize transition-all duration-300 bg-brandRed rounded-full dark:bg-brandRedDark hover:bg-red-600"
                             href="{{ route('vendors-products', $vendor->id) }}">Visit
                             store</a>
                     </div>

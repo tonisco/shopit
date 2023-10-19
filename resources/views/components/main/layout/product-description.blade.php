@@ -157,7 +157,7 @@
             </div>
 
             <button type="submit"
-                class="block px-5 py-3 text-xs font-medium text-white bg-red-500 rounded dark:bg-red-700 hover:bg-red-600">
+                class="block px-5 py-3 text-xs font-medium text-white bg-brandRed rounded dark:bg-brandRedDark hover:bg-red-600">
                 Add to Cart
             </button>
         </form>

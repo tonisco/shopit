@@ -19,25 +19,27 @@
                 <p class="text-xs text-gray-500 dark:text-gray-400">({{ $product->product_reviews_count }})
                 </p>
             </div>
-            <h3 class="text-lg font-semibold text-red-500 dark:text-red-700">${{ $product->price }}</h3>
-            <button class="px-3 py-2 mt-2 text-xs text-white capitalize bg-red-500 rounded-full dark:bg-red-700">Add
+            <h3 class="text-lg font-semibold text-brandRed dark:text-brandRedDark">${{ $product->price }}</h3>
+            <button
+                class="px-3 py-2 mt-2 text-xs text-white capitalize bg-brandRed rounded-full dark:bg-brandRedDark">Add
                 to cart</button>
         </div>
     </a>
-    <p class="absolute px-2 py-1 text-xs text-white capitalize bg-red-500 rounded-full top-3 left-3 dark:bg-red-700">
+    <p
+        class="absolute px-2 py-1 text-xs text-white capitalize bg-brandRed rounded-full top-3 left-3 dark:bg-brandRedDark">
         new
     </p>
     <div class="absolute flex flex-col items-end gap-3 top-3 right-3">
-        <p class="px-2 py-1 text-xs text-white capitalize bg-blue-500 rounded-full dark:bg-blue-700">
+        <p class="px-2 py-1 text-xs text-white capitalize bg-brandBlue rounded-full dark:bg-brandBlueDark">
             -10%</p>
         <p
-            class="block p-1 text-xs text-blue-500 capitalize bg-transparent bg-white rounded-lg shadow opacity-100 cursor-pointer lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block hover:text-blue-600">
+            class="block p-1 text-xs text-brandBlue capitalize bg-transparent bg-white rounded-lg shadow opacity-100 cursor-pointer lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block hover:text-blue-600">
             <x-ri-heart-fill class="w-6 h-6" />
             <x-general.layout.modal id="{{ $product->slug }}">
                 <x-main.layout.product-description :product="$product" />
                 </x-layout.modal>
         </p>
-        <p class="block p-1 text-xs text-red-500 capitalize bg-transparent bg-white rounded-lg shadow opacity-100 cursor-pointer lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block dark:text-red-700 hover:text-red-600"
+        <p class="block p-1 text-xs text-brandRed capitalize bg-transparent bg-white rounded-lg shadow opacity-100 cursor-pointer lg:hidden lg:opacity-0 group-hover/productcard:opacity-100 group-hover/productcard:block dark:text-brandRedDark hover:text-red-600"
             data-te-toggle="modal" data-te-target="#{{ $product->slug }}" data-te-ripple-init
             data-te-ripple-color="light">
             <x-ri-eye-fill class="w-6 h-6" />

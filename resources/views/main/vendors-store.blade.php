@@ -26,14 +26,14 @@
 
                     @if ($vendor->insta_link)
                         <a href="{{ $vendor->insta_link }}" rel="noreferrer" target="_blank"
-                            class="p-2 text-gray-700 transition bg-white rounded-full hover:text-white hover:bg-red-500">
+                            class="p-2 text-gray-700 transition bg-white rounded-full hover:text-white hover:bg-brandRed">
                             <x-ri-instagram-line class="w-4 h-4" />
                         </a>
                     @endif
 
                     @if ($vendor->tw_link)
                         <a href="{{ $vendor->tw_link }}" rel="noreferrer" target="_blank"
-                            class="p-2 text-gray-700 transition bg-white rounded-full hover:text-white hover:bg-blue-500">
+                            class="p-2 text-gray-700 transition bg-white rounded-full hover:text-white hover:bg-brandBlue">
                             <x-ri-twitter-fill class="w-4 h-4" />
                         </a>
                     @endif

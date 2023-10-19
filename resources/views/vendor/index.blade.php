@@ -7,7 +7,7 @@
             <h1 class="text-3xl text-gray-800 dark:text-gray-200">Dashboard</h1>
             <form method="GET" action="{{ route('vendor.dashboard') }}">
                 <select name="p" id="p" value=""
-                    class="dark:bg-gray-800 dark:text-white focus:border-red-500 focus:ring-red-500 dark:focus:border-red-700 dark:focus:ring-red-700"
+                    class="dark:bg-gray-800 dark:text-white focus:border-brandRed focus:ring-brandRed dark:focus:border-brandRedDark dark:focus:ring-brandRedDark"
                     onchange="if(event.target.value !=='{{ $p }}')this.closest('form').submit()">
                     <option value="all">All time</option>
                     <option @if ($p === 'today') selected @endif value="today">Today</option>

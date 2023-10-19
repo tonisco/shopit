@@ -10,17 +10,17 @@
             <ul class="flex flex-wrap font-semibold text-gray-800 capitalize dark:text-gray-200">
                 <li role="presentation">
                     <a data-te-toggle="pill" data-te-target="#tab-description" data-te-nav-active role="tab"
-                        class="w-48 py-2 text-center transition-all duration-300 rounded-lg cursor-pointer hover:bg-red-500/25 dark:hover:bg-red-700/25 hover:text-red-500 dark:hover:text-red-700 data-[te-nav-active]:bg-red-500/25 dark:data-[te-nav-active]:bg-red-700/25 data-[te-nav-active]:text-red-500 dark:data-[te-nav-active]:text-red-700">
+                        class="w-48 py-2 text-center transition-all duration-300 rounded-lg cursor-pointer hover:bg-brandRed/25 dark:hover:bg-brandRedDark/25 hover:text-brandRed dark:hover:text-brandRedDark data-[te-nav-active]:bg-brandRed/25 dark:data-[te-nav-active]:bg-brandRedDark/25 data-[te-nav-active]:text-brandRed dark:data-[te-nav-active]:text-brandRedDark">
                         Description</a>
                 </li>
                 <li role="presentation">
                     <a data-te-toggle="pill" data-te-target="#tab-vendor" role="tab"
-                        class="w-48 py-2 text-center transition-all duration-300 rounded-lg cursor-pointer hover:bg-red-500/25 dark:hover:bg-red-700/25 hover:text-red-500 dark:hover:text-red-700 data-[te-nav-active]:bg-red-500/25 dark:data-[te-nav-active]:bg-red-700/25 data-[te-nav-active]:text-red-500 dark:data-[te-nav-active]:text-red-700">
+                        class="w-48 py-2 text-center transition-all duration-300 rounded-lg cursor-pointer hover:bg-brandRed/25 dark:hover:bg-brandRedDark/25 hover:text-brandRed dark:hover:text-brandRedDark data-[te-nav-active]:bg-brandRed/25 dark:data-[te-nav-active]:bg-brandRedDark/25 data-[te-nav-active]:text-brandRed dark:data-[te-nav-active]:text-brandRedDark">
                         Vendor</a>
                 </li>
                 <li role="presentation">
                     <a data-te-toggle="pill" data-te-target="#tab-reviews" role="tab"
-                        class="w-48 py-2 text-center transition-all duration-300 rounded-lg cursor-pointer hover:bg-red-500/25 dark:hover:bg-red-700/25 hover:text-red-500 dark:hover:text-red-700 data-[te-nav-active]:bg-red-500/25 dark:data-[te-nav-active]:bg-red-700/25 data-[te-nav-active]:text-red-500 dark:data-[te-nav-active]:text-red-700">
+                        class="w-48 py-2 text-center transition-all duration-300 rounded-lg cursor-pointer hover:bg-brandRed/25 dark:hover:bg-brandRedDark/25 hover:text-brandRed dark:hover:text-brandRedDark data-[te-nav-active]:bg-brandRed/25 dark:data-[te-nav-active]:bg-brandRedDark/25 data-[te-nav-active]:text-brandRed dark:data-[te-nav-active]:text-brandRedDark">
                         Reviews</a>
                 </li>
             </ul>
@@ -45,21 +45,21 @@
                         </p>
                         <div class="flex gap-6 mt-2">
                             <a href="https://facebook.com" rel="noreferrer" target="_blank"
-                                class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                                class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                                 <x-ri-facebook-circle-fill class="w-6 h-6" />
                             </a>
 
                             <a href="https://instagram.com" rel="noreferrer" target="_blank"
-                                class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                                class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                                 <x-ri-instagram-line class="w-6 h-6" />
                             </a>
 
                             <a href="https://twitter.com" rel="noreferrer" target="_blank"
-                                class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                                class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                                 <x-ri-twitter-fill class="w-6 h-6" />
                             </a>
                         </div>
-                        <a class="self-start px-4 py-2 mt-2 text-white capitalize transition-all duration-300 bg-red-500 rounded-full dark:bg-red-700 hover:bg-red-600"
+                        <a class="self-start px-4 py-2 mt-2 text-white capitalize transition-all duration-300 bg-brandRed rounded-full dark:bg-brandRedDark hover:bg-red-600"
                             href="{{ route('vendors-products', $product->vendor->id) }}">Visit
                             store</a>
 

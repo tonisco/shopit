@@ -9,5 +9,5 @@
     </span>
 
     <span
-        class="absolute inset-0 transition bg-gray-300 rounded-full dark:bg-gray-600 peer-checked:bg-red-500 dark:peer-checked:bg-red-700"></span>
+        class="absolute inset-0 transition bg-gray-300 rounded-full dark:bg-gray-600 peer-checked:bg-brandRed dark:peer-checked:bg-brandRedDark"></span>
 </label>

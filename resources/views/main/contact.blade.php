@@ -14,25 +14,26 @@
                 <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
                     <label for="fullname">Full Name</label>
                     <input id="fullname" type="text" required
-                        class="w-full border-gray-300 rounded-md focus:ring-red-500 dark:focus:ring-red-700 focus:border-red-500 dark:focus:border-red-700" />
+                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
                 </div>
                 <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
                     <label for="email">Email</label>
                     <input id="email" type="email" required
-                        class="w-full border-gray-300 rounded-md focus:ring-red-500 dark:focus:ring-red-700 focus:border-red-500 dark:focus:border-red-700" />
+                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
                 </div>
                 <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
                     <label for="subject">Subject</label>
                     <input id="subject" type="text" required
-                        class="w-full border-gray-300 rounded-md focus:ring-red-500 dark:focus:ring-red-700 focus:border-red-500 dark:focus:border-red-700" />
+                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
                 </div>
                 <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
                     <label for="message">Message</label>
                     <textarea name="message" id="message" cols="30" rows="10"
-                        class="w-full border-gray-300 rounded-md focus:ring-red-500 dark:focus:ring-red-700 focus:border-red-500 dark:focus:border-red-700"></textarea>
+                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark"></textarea>
                 </div>
 
-                <button class="self-center px-6 py-1 text-white bg-red-500 rounded-lg dark:bg-red-700">Send</button>
+                <button
+                    class="self-center px-6 py-1 text-white bg-brandRed rounded-lg dark:bg-brandRedDark">Send</button>
             </div>
         </div>
     </div>

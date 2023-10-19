@@ -15,9 +15,9 @@
                     </div>
                     <div class="flex gap-4 px-2">
                         <button
-                            class="px-3 py-1 text-sm text-white capitalize bg-red-500 rounded-lg dark:bg-red-700">filter</button>
+                            class="px-3 py-1 text-sm text-white capitalize bg-brandRed rounded-lg dark:bg-brandRedDark">filter</button>
                         <button
-                            class="px-3 py-1 text-sm text-red-500 capitalize bg-white border-2 border-red-500 rounded-lg dark:bg-red-700 dark:border-red-700">reset</button>
+                            class="px-3 py-1 text-sm text-brandRed capitalize bg-white border-2 border-brandRed rounded-lg dark:bg-brandRedDark dark:border-brandRedDark">reset</button>
 
                     </div>
                 </form>
@@ -39,7 +39,7 @@
 
                         <a href="{{ $ratings_link }}" class="flex items-center gap-2">
                             <div
-                                class="h-3 w-3 rounded-full items-center ring ring-red-500 dark:ring-red-500 @if ($rating_selected) bg-red-500 dark:bg-red-700 @endif">
+                                class="h-3 w-3 rounded-full items-center ring ring-brandRed dark:ring-brandRed @if ($rating_selected) bg-brandRed dark:bg-brandRedDark @endif">
                             </div>
                             <x-main.utils.stars :rating="$i" size="h-4 w-4" />
 

@@ -6,7 +6,7 @@
 
 @section('content')
     <x-main.layout.topnav />
-    <nav class="relative flex flex-no-wrap items-center justify-between w-full py-2 bg-red-500 shadow-md dark:bg-red-700 lg:bg-white lg:py-1 shadow-black/5 lg:dark:bg-gray-800 dark:shadow-black/10 lg:flex-wrap lg:justify-start"
+    <nav class="relative flex flex-no-wrap items-center justify-between w-full py-2 bg-brandRed shadow-md dark:bg-brandRedDark lg:bg-white lg:py-1 shadow-black/5 lg:dark:bg-gray-800 dark:shadow-black/10 lg:flex-wrap lg:justify-start"
         data-te-navbar-ref>
         <div class="container flex flex-wrap items-center justify-between flex-1 px-3 py-2 lg:py-0 lg:mx-auto max-w-7xl">
             <button

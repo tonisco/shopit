@@ -13,7 +13,7 @@
             <form action="{{ $route ?? '' }}" method="POST" class="delete-form">
                 @csrf
                 @method('DELETE')
-                <button class="px-3 py-2 text-white bg-red-500 rounded shadow-md dark:bg-red-700 delete-item"
+                <button class="px-3 py-2 text-white bg-brandRed rounded shadow-md dark:bg-brandRedDark delete-item"
                     type="submit">Delete</button>
             </form>
         </div>

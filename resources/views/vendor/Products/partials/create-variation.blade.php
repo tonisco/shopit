@@ -56,7 +56,7 @@
                     </h3>
                     @if ($index !== 1)
                         <i
-                            class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-red-700"></i>
+                            class="text-brandRed cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-brandRedDark"></i>
                     @endif
                 </div>
                 <div class="flex flex-col w-full gap-4 sm:flex-row">
@@ -96,7 +96,7 @@
         @endwhile
     @endif
 
-    <button id="increase" type="button" class="text-red-500 capitalize text-end dark:text-red-700">add
+    <button id="increase" type="button" class="text-brandRed capitalize text-end dark:text-brandRedDark">add
         option</button>
 </div>
 
@@ -152,7 +152,7 @@
             let qtyInput = newItem.find('.option_qty')
 
             newItem.find('.heading').append(
-                '<i class="text-red-500 cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-red-700" ></i>'
+                '<i class="text-brandRed cursor-pointer h-7 bi bi-trash-fill w-7 delete-icon dark:text-brandRedDark" ></i>'
             )
 
             addAttributes(title, nameInput, priceInput, qtyInput, index)

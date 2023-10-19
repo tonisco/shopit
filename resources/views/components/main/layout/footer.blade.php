@@ -12,7 +12,7 @@
                 <ul class="flex gap-6 mt-8">
                     <li>
                         <a href="https://facebook.com" rel="noreferrer" target="_blank"
-                            class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                            class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                             <span class="sr-only">Facebook</span>
 
                             <x-ri-facebook-circle-fill class="w-6 h-6" />
@@ -21,7 +21,7 @@
 
                     <li>
                         <a href="https://instagram.com" rel="noreferrer" target="_blank"
-                            class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                            class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                             <span class="sr-only">Instagram</span>
 
                             <x-ri-instagram-line class="w-6 h-6" />
@@ -30,7 +30,7 @@
 
                     <li>
                         <a href="https://twitter.com" rel="noreferrer" target="_blank"
-                            class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                            class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                             <span class="sr-only">Twitter</span>
 
                             <x-ri-twitter-fill class="w-6 h-6" />
@@ -39,7 +39,7 @@
 
                     <li>
                         <a href="https://github.com" rel="noreferrer" target="_blank"
-                            class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                            class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                             <span class="sr-only">GitHub</span>
 
                             <x-ri-github-fill class="w-6 h-6" />
@@ -48,7 +48,7 @@
 
                     <li>
                         <a href="https://dribble.com" rel="noreferrer" target="_blank"
-                            class="text-red-500 transition dark:text-red-700 hover:opacity-75">
+                            class="text-brandRed transition dark:text-brandRedDark hover:opacity-75">
                             <span class="sr-only">Dribbble</span>
 
                             <x-ri-dribbble-fill class="w-6 h-6" />

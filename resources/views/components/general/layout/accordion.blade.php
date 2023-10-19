@@ -7,14 +7,14 @@
             <h2 class="mb-1" id="{{ $category->id }}">
                 @php
                     if ($isCategory) {
-                        $text_color = 'text-red-500 dark:text-red-700';
+                        $text_color = 'text-brandRed dark:text-brandRedDark';
                     } else {
                         $text_color = 'text-gray-800 dark:text-white';
                     }
                 @endphp
 
                 <button
-                    class="group relative flex w-full items-center rounded-t-[15px] text-left text-sm {{ $text_color }}  transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none  [&:not([data-te-collapse-collapsed])]:text-red-500 dark:[&:not([data-te-collapse-collapsed])]:text-red-700"
+                    class="group relative flex w-full items-center rounded-t-[15px] text-left text-sm {{ $text_color }}  transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none  [&:not([data-te-collapse-collapsed])]:text-brandRed dark:[&:not([data-te-collapse-collapsed])]:text-brandRedDark"
                     type="button" data-te-collapse-init
                     @if (!$isCategory) data-te-collapse-collapsed @endif
                     data-te-target="#{{ Str::slug($category->name) }}">
@@ -23,7 +23,7 @@
                         {{ $category->name }}</a>
                     @if (count($category->subCategories))
                         <x-ri-arrow-up-s-line
-                            class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] text-red-500 transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:text-gray-800 motion-reduce:transition-none dark:text-red-700 dark:group-[[data-te-collapse-collapsed]]:text-gray-200" />
+                            class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] text-brandRed transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:text-gray-800 motion-reduce:transition-none dark:text-brandRedDark dark:group-[[data-te-collapse-collapsed]]:text-gray-200" />
                     @endif
                 </button>
             </h2>
@@ -37,7 +37,7 @@
                             @php
                                 $isSubCategory = request()->get('subCategory') === $subCategory->name;
                                 if ($isSubCategory) {
-                                    $text_color = 'text-red-500 dark:text-red-700';
+                                    $text_color = 'text-brandRed dark:text-brandRedDark';
                                 } else {
                                     $text_color = 'text-gray-800 dark:text-gray-200';
                                 }

@@ -38,12 +38,12 @@
 
         <div class="flex justify-between w-full text-center">
             <a href="#"
-                class="block px-3 py-2 text-sm text-red-500 capitalize transition border border-red-500 rounded-lg dark:text-red-600 dark:border-red-600 hover:ring-1 hover:ring-red-500 dark:hover:ring-red-600">
+                class="block px-3 py-2 text-sm text-brandRed capitalize transition border border-brandRed rounded-lg dark:text-red-600 dark:border-red-600 hover:ring-1 hover:ring-brandRed dark:hover:ring-red-600">
                 View cart (3)
             </a>
 
             <a href="#"
-                class="block px-3 py-2 text-sm text-white capitalize transition bg-red-500 rounded-lg dark:bg-red-700 hover:bg-red-600">
+                class="block px-3 py-2 text-sm text-white capitalize transition bg-brandRed rounded-lg dark:bg-brandRedDark hover:bg-red-600">
                 Checkout
             </a>
         </div>
