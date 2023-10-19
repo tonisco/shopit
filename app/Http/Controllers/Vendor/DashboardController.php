@@ -71,9 +71,10 @@ class DashboardController extends Controller
 			})
 			->sum('total');
 
-		$customers = User::whereHas('orders', function ($query) {
-			$query->whereHas('orderProducts', function ($q) {
-				$q->where('vendor_id', Auth::user()->vendor->id);
+		$customers = User::whereHas('orders', function ($query) use ($period) {
+			$query->whereHas('orderProducts', function ($q) use ($period) {
+				$q->where('vendor_id', Auth::user()->vendor->id)
+					->whereDate('created_at', '>', $period);
 			});
 		})->count();
 
