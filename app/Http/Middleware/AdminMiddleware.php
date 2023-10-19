@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class VendorMiddleware
+class AdminMiddleware
 {
 	/**
 	 * Handle an incoming request.
@@ -16,7 +16,7 @@ class VendorMiddleware
 	 */
 	public function handle(Request $request, Closure $next): Response
 	{
-		if ($request->user()->role !== UserRoleEnum::Vendor && isset($request->user()->vendor)) {
+		if ($request->user()->role !== UserRoleEnum::Admin && isset($request->user()->admin)) {
 			return redirect()->route('home');
 		}
 

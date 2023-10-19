@@ -6,17 +6,17 @@
 
 @section('content')
     <x-main.layout.topnav />
-    <nav class="relative flex flex-no-wrap items-center justify-between w-full py-2 bg-brandRed shadow-md dark:bg-brandRedDark lg:bg-white lg:py-1 shadow-black/5 lg:dark:bg-brandDark dark:shadow-black/10 lg:flex-wrap lg:justify-start"
+    <nav class="relative flex flex-no-wrap items-center justify-between w-full py-2 shadow-md bg-brandRed dark:bg-brandRedDark lg:bg-white lg:py-1 shadow-black/5 lg:dark:bg-brandDark dark:shadow-black/10 lg:flex-wrap lg:justify-start"
         data-te-navbar-ref>
         <div class="container flex flex-wrap items-center justify-between flex-1 px-3 py-2 lg:py-0 lg:mx-auto max-w-7xl">
             <button
-                class="block px-2 text-brandGrayDark bg-transparent border-0 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-brandLight lg:hidden"
+                class="block px-2 bg-transparent border-0 text-brandGrayDark hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-brandLight lg:hidden"
                 type="button" data-te-collapse-init data-te-target="#navbarSupportedContent1"
                 aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
                 <x-ri-menu-2-fill class="text-brandLight h-7 w-7" />
             </button>
 
-            <a href="{{ route('home') }}" class="text-brandLight cursor-pointer lg:hidden">
+            <a href="{{ route('home') }}" class="cursor-pointer text-brandLight lg:hidden">
                 <x-general.layout.logo />
             </a>
 
@@ -60,6 +60,11 @@
                         </a>
                     @elseif (auth()->user()->role === 'vendor')
                         <a href="{{ route('vendor.dashboard') }}"
+                            class="cursor-pointer text-brandDarker transition hidden lg:inline-block duration-200 hover:text-brandDark hover:ease-in-out focus:text-brandDark disabled:text-black/30 motion-reduce:transition-none dark:text-brandLight dark:hover:text-brandLight dark:focus:text-brandLight [&.active]:text-black/90 dark:[&.active]:text-brandGray">
+                            Dashboard
+                        </a>
+                    @elseif (auth()->user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}"
                             class="cursor-pointer text-brandDarker transition hidden lg:inline-block duration-200 hover:text-brandDark hover:ease-in-out focus:text-brandDark disabled:text-black/30 motion-reduce:transition-none dark:text-brandLight dark:hover:text-brandLight dark:focus:text-brandLight [&.active]:text-black/90 dark:[&.active]:text-brandGray">
                             Dashboard
                         </a>
