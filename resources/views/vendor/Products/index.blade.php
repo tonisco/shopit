@@ -8,9 +8,9 @@
         </div>
 
         <div>
-            <table style="width: 100%" class="divide-y divide-gray-200 datatable dark:divide-gray-700">
-                <thead class="bg-gray-50 dark:bg-gray-800">
-                    <tr class="text-sm text-left text-gray-500 capitalize dark:text-gray-300">
+            <table style="width: 100%" class="divide-y divide-brandLight datatable dark:divide-brandDark">
+                <thead class="bg-gray-50 dark:bg-brandDark">
+                    <tr class="text-sm text-left text-brandGrayDark capitalize dark:text-brandLight">
                         <td class="py-3.5 px-4 font-normal"> id </td>
                         <td class="py-3.5 px-4 font-normal"> image </td>
                         <td class="py-3.5 px-4 font-normal"> name </td>
@@ -23,7 +23,7 @@
                         <td class="py-3.5 px-4 font-normal"> action </td>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 table-body">
+                <tbody class="bg-white divide-y divide-brandLight dark:divide-brandDark dark:bg-brandDarker table-body">
                 </tbody>
             </table>
 
@@ -32,13 +32,13 @@
 
     <div class="check-modal modal" style="display: none">
         <div class="check-modal-content modal-content slideIn">
-            <div class="flex gap-1.5 text-xl text-gray-800 dark:text-gray-200">
+            <div class="flex gap-1.5 text-xl text-brandDark dark:text-brandLight">
                 <h3 class="check-heading"></h3>
             </div>
-            <p class="text-sm text-gray-800 dark:text-gray-200">This item won't be visible to customers</p>
+            <p class="text-sm text-brandDark dark:text-brandLight">This item won't be visible to customers</p>
             <div class="flex items-center self-end gap-2">
                 <button
-                    class="px-3 py-2 bg-gray-200 shadow-md check-cancel-button dark:bg-gray-900 dark:text-gray-200">Cancel</button>
+                    class="px-3 py-2 bg-brandLight shadow-md check-cancel-button dark:bg-brandDarker dark:text-brandLight">Cancel</button>
                 <form action="" method="POST" class="check-form">
                     @csrf
                     @method('PUT')

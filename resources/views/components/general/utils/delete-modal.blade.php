@@ -1,15 +1,15 @@
 <div class="delete-modal modal" style="display: none">
     <div class="delete-modal-content modal-content slideIn">
-        <h2 class="text-xl text-gray-800 dark:text-gray-200">Are you sure you want to delete <span
+        <h2 class="text-xl text-brandDark dark:text-brandLight">Are you sure you want to delete <span
                 class="font-semibold capitalize delete-name">{{ $item }}</span></h2>
 
         @isset($subtitle)
-            <p class="text-sm text-gray-800 dark:text-gray-200">{{ $subtitle }}</p>
+            <p class="text-sm text-brandDark dark:text-brandLight">{{ $subtitle }}</p>
         @endisset
 
         <div class="flex items-center self-end gap-2">
             <button
-                class="px-3 py-2 bg-gray-200 shadow-md delete-cancel-button dark:bg-gray-900 dark:text-gray-200">Cancel</button>
+                class="px-3 py-2 bg-brandLight shadow-md delete-cancel-button dark:bg-brandDarker dark:text-brandLight">Cancel</button>
             <form action="{{ $route ?? '' }}" method="POST" class="delete-form">
                 @csrf
                 @method('DELETE')

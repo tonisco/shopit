@@ -10,17 +10,18 @@
         <div class="flex flex-col gap-4">
 
             @foreach ($reviews as $review)
-                <div class="flex flex-col gap-2 p-4 bg-white rounded-lg shadow-lg dark:bg-gray-800 sm:max-w-[90%]">
+                <div class="flex flex-col gap-2 p-4 bg-white rounded-lg shadow-lg dark:bg-brandDark sm:max-w-[90%]">
                     <div class="flex items-center gap-4">
-                        <x-ri-user-3-fill class="w-12 h-12 text-gray-500" />
+                        <x-ri-user-3-fill class="w-12 h-12 text-brandGrayDark" />
                         <div>
-                            <h3 class="text-gray-800 dark:text-gray-200">
+                            <h3 class="text-brandDark dark:text-brandLight">
                                 {{ $review->user->first_name . ' ' . $review->user->last_name }}</h3>
-                            <p class="text-xs font-medium text-gray-500">{{ $review->updated_at->format('d-m-y h:ma') }}
+                            <p class="text-xs font-medium text-brandGrayDark">
+                                {{ $review->updated_at->format('d-m-y h:ma') }}
                             </p>
                         </div>
                     </div>
-                    <p class="text-sm font-medium text-gray-800 dark:text-gray-200">{{ $review->review }}</p>
+                    <p class="text-sm font-medium text-brandDark dark:text-brandLight">{{ $review->review }}</p>
                 </div>
             @endforeach
         </div>

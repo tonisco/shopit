@@ -3,12 +3,12 @@
     $seo_description = isset($product->seo_description) ? $product->seo_description : old('seo_description');
 @endphp
 
-<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-brandDark">
     <div>
-        <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Search engine
+        <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight">Search engine
             optimization
         </h2>
-        <p class="text-sm text-gray-500">Provide information that will help improve the snippet and
+        <p class="text-sm text-brandGrayDark">Provide information that will help improve the snippet and
             bring your product to the top of search engines.</p>
     </div>
 

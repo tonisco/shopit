@@ -4,7 +4,7 @@
             <x-vendor.layout.heading title="Profile" :crumbs="[['name' => 'dashboard', 'route' => route('vendor.dashboard')], ['name' => 'profile']]" />
         </div>
 
-        <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" x-data="selected('profile')">
+        <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-brandDark" x-data="selected('profile')">
             <div class="flex gap-x-2 flex-wrap gap-y-4">
                 <button class="tab-button tab-button-default" @click="setItemSelected('profile')"
                     :class="itemSelected === 'profile' ? 'tab-button-selected' :

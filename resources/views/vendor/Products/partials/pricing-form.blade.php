@@ -1,5 +1,5 @@
-<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md w2 dark:bg-gray-800">
-    <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Pricing</h2>
+<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md w2 dark:bg-brandDark">
+    <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight">Pricing</h2>
 
     <div class="flex flex-col w-full gap-2">
         <div class="relative" data-te-input-wrapper-init>

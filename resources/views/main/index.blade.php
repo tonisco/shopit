@@ -35,7 +35,7 @@
                             </p>
                             @if ($sliders[0]->btn_url)
                                 <a type="button" href='/{{ $sliders[0]->btn_url }}'
-                                    class="inline-block rounded-full bg-brandRed px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-brandRedDark active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-brandRedDark">
+                                    class="inline-block rounded-full bg-brandRed px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-brandLight shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-brandRedDark active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-brandRedDark">
                                     Shop Now
                                 </a>
                             @endif
@@ -60,7 +60,7 @@
                                     </p>
                                     @if ($slider->btn_url)
                                         <a type="button" href='/{{ $slider->btn_url }}'
-                                            class="inline-block rounded-full bg-brandRed px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-gray-200 shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-brandRedDark active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-brandRedDark">
+                                            class="inline-block rounded-full bg-brandRed px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white dark:text-brandLight shadow-[0_4px_9px_-4px_#ef4444] transition duration-150 ease-in-out hover:bg-red-600 hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:bg-red-600 focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] focus:outline-none focus:ring-0 active:bg-brandRedDark active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.3),0_4px_18px_0_rgba(239, 68, 68,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(239, 68, 68,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(239, 68, 68,0.2),0_4px_18px_0_rgba(239, 68, 68,0.1)] dark:bg-brandRedDark">
                                             Shop Now
                                         </a>
                                     @endif
@@ -92,7 +92,7 @@
 
             <div class="flex items-center justify-between h-16">
                 <div class="flex-1 md:flex md:items-center">
-                    <p class="block text-2xl font-medium text-gray-800 dark:text-gray-200">
+                    <p class="block text-2xl font-medium text-brandDark dark:text-brandLight">
                         Exclusive Products
                     </p>
                 </div>
@@ -100,19 +100,19 @@
                 <div class="md:flex md:items-center">
                     <nav aria-label="Global" class="hidden md:block">
                         <ul class="flex items-center gap-4 text-base">
-                            <li class="text-gray-800 transition dark:text-gray-200 hover:text-gray-500/75">
+                            <li class="text-brandDark transition dark:text-brandLight hover:text-brandGrayDark/75">
                                 New Arrival
                             </li>
 
-                            <li class="text-gray-800 transition dark:text-gray-200 hover:text-gray-500/75">
+                            <li class="text-brandDark transition dark:text-brandLight hover:text-brandGrayDark/75">
                                 Best Seller
                             </li>
 
-                            <li class="text-gray-800 transition dark:text-gray-200 hover:text-gray-500/75">
+                            <li class="text-brandDark transition dark:text-brandLight hover:text-brandGrayDark/75">
                                 Featured
                             </li>
 
-                            <li class="text-gray-800 transition dark:text-gray-200 hover:text-gray-500/75">
+                            <li class="text-brandDark transition dark:text-brandLight hover:text-brandGrayDark/75">
                                 Special Offer
                             </li>
 
@@ -123,24 +123,24 @@
                         <div class="relative block md:hidden" data-te-dropdown-ref>
                             <button type="button" id="dropdownMenuButton2" data-te-ripple-init
                                 data-te-dropdown-toggle-ref data-te-ripple-color="light"
-                                class="p-2 text-gray-600 transition bg-gray-200 rounded hover:text-gray-600/75">
+                                class="p-2 text-brandGrayDark transition bg-brandLight rounded hover:text-brandGrayDark/75">
                                 <x-ri-menu-fill class="w-5 h-5" />
                             </button>
-                            <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-gray-800 [&[data-te-dropdown-show]]:block"
+                            <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-brandDark [&[data-te-dropdown-show]]:block"
                                 aria-labelledby="dropdownMenuButton2" data-te-dropdown-menu-ref>
-                                <li class="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent whitespace-nowrap hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                <li class="block w-full px-4 py-2 text-sm font-normal text-brandDark bg-transparent whitespace-nowrap hover:bg-brandLighter active:text-brandDark active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-brandGray dark:text-brandLight dark:hover:bg-brandGrayDark"
                                     data-te-dropdown-item-ref>
                                     New Arrival
                                 </li>
-                                <li class="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent whitespace-nowrap hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                <li class="block w-full px-4 py-2 text-sm font-normal text-brandDark bg-transparent whitespace-nowrap hover:bg-brandLighter active:text-brandDark active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-brandGray dark:text-brandLight dark:hover:bg-brandGrayDark"
                                     data-te-dropdown-item-ref>
                                     Best Seller
                                 </li>
-                                <li class="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent whitespace-nowrap hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                <li class="block w-full px-4 py-2 text-sm font-normal text-brandDark bg-transparent whitespace-nowrap hover:bg-brandLighter active:text-brandDark active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-brandGray dark:text-brandLight dark:hover:bg-brandGrayDark"
                                     data-te-dropdown-item-ref>
                                     Featured
                                 </li>
-                                <li class="block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent whitespace-nowrap hover:bg-gray-100 active:text-gray-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-gray-600"
+                                <li class="block w-full px-4 py-2 text-sm font-normal text-brandDark bg-transparent whitespace-nowrap hover:bg-brandLighter active:text-brandDark active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-brandGray dark:text-brandLight dark:hover:bg-brandGrayDark"
                                     data-te-dropdown-item-ref>
                                     Special Offer
                                 </li>

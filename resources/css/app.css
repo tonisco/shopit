@@ -33,15 +33,15 @@
 }
 
 .modal-content {
-	@apply flex flex-col w-10/12 relative sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto gap-4 p-6 pt-8 bg-white dark:bg-gray-800 rounded;
+	@apply flex flex-col w-10/12 relative sm:w-3/4 md:w-2/3 lg:w-1/2 h-auto gap-4 p-6 pt-8 bg-white dark:bg-brandDark rounded;
 }
 
 .product-options {
-	@apply w-36 absolute right-0 z-10 flex flex-col bg-white overflow-hidden rounded-md shadow-xl -top-4 dark:bg-gray-700;
+	@apply w-36 absolute right-0 z-10 flex flex-col bg-white overflow-hidden rounded-md shadow-xl -top-4 dark:bg-brandDark;
 }
 
 .product-options-item {
-	@apply hover:!bg-gray-200 dark:hover:!bg-gray-600 dark:!text-white dark:!bg-gray-700 p-2 !bg-white cursor-pointer text-start;
+	@apply hover:!bg-brandLight dark:hover:!bg-brandGrayDark dark:!text-white dark:!bg-brandDark p-2 !bg-white cursor-pointer text-start;
 }
 
 .table-image {
@@ -69,7 +69,7 @@
 /* TABLE */
 
 .table-body tr td {
-	@apply p-2 sm:p-4 text-sm text-gray-800 dark:text-gray-200 dark:bg-gray-800 capitalize whitespace-nowrap;
+	@apply p-2 sm:p-4 text-sm text-brandDark dark:text-brandLight dark:bg-brandDark capitalize whitespace-nowrap;
 }
 
 #DataTables_Table_0_wrapper > div:nth-child(3) > div {
@@ -81,25 +81,25 @@
 }
 
 #DataTables_Table_0_length > label {
-	@apply text-gray-800 dark:text-gray-200;
+	@apply text-brandDark dark:text-brandLight;
 }
 
 #DataTables_Table_0_length > label > select {
-	@apply w-16 mx-1 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm focus:border-brandRed rounded focus:ring-brandRed dark:focus:border-brandRedDark dark:focus:ring-brandRedDark;
+	@apply w-16 mx-1 bg-gray-50 dark:bg-brandDark px-3 py-2 text-sm focus:border-brandRed rounded focus:ring-brandRed dark:focus:border-brandRedDark dark:focus:ring-brandRedDark;
 }
 
 #DataTables_Table_0_filter > label > input {
-	@apply px-5 py-2.5 text-xs sm:text-sm bg-gray-50 dark:bg-gray-800 focus:border-brandRed rounded focus:ring-brandRed dark:focus:border-brandRedDark dark:focus:ring-brandRedDark;
+	@apply px-5 py-2.5 text-xs sm:text-sm bg-gray-50 dark:bg-brandDark focus:border-brandRed rounded focus:ring-brandRed dark:focus:border-brandRedDark dark:focus:ring-brandRedDark;
 }
 #DataTables_Table_0_filter > label {
-	@apply text-gray-800 dark:text-gray-200;
+	@apply text-brandDark dark:text-brandLight;
 }
 #DataTables_Table_0_filter {
 	@apply my-4 md:mb-4;
 }
 
 #DataTables_Table_0_wrapper > div:nth-child(4) {
-	@apply text-gray-800 dark:text-gray-200 flex gap-2 items-end my-6 sm:flex-row flex-col text-sm justify-between;
+	@apply text-brandDark dark:text-brandLight flex gap-2 items-end my-6 sm:flex-row flex-col text-sm justify-between;
 }
 
 #DataTables_Table_0_paginate > ul {
@@ -107,7 +107,7 @@
 }
 
 #DataTables_Table_0_paginate > ul > li {
-	@apply px-3 py-1 border rounded border-gray-300 cursor-pointer dark:border-gray-800 hover:opacity-80 active:opacity-80;
+	@apply px-3 py-1 border rounded border-brandLight cursor-pointer dark:border-brandDark hover:opacity-80 active:opacity-80;
 }
 
 #DataTables_Table_0_paginate > ul > li.active > a,
@@ -119,7 +119,7 @@
 	@apply bg-brandRed dark:bg-brandRedDark text-white cursor-default hover:opacity-100 active:opacity-100;
 }
 #DataTables_Table_0_paginate > ul > li.disabled {
-	@apply text-gray-400 hover:opacity-100 active:opacity-100;
+	@apply text-brandGray hover:opacity-100 active:opacity-100;
 }
 
 .odd {
@@ -170,17 +170,17 @@ div[data-te-select-form-outline-ref]
 }
 
 .ql-editor {
-	@apply font-sans text-base dark:text-gray-200;
+	@apply font-sans text-base dark:text-brandLight;
 }
 
 .ql-toolbar.ql-snow {
-	@apply pt-4 dark:text-gray-200;
+	@apply pt-4 dark:text-brandLight;
 }
 
 .ql-snow .ql-stroke,
 .ql-snow .ql-fill,
 .ql-toolbar.ql-snow .ql-picker-label {
-	@apply dark:stroke-gray-200 dark:fill-gray-200 dark:text-gray-200;
+	@apply dark:stroke-brandLight dark:fill-brandLight dark:text-brandLight;
 }
 
 .editor,
@@ -211,7 +211,7 @@ div[data-te-select-form-outline-ref]
 	@apply px-2 py-1 font-semibold leading-tight text-xs text-brandYellowDark dark:text-yellow-900 dark:bg-yellow-300 bg-yellow-100 rounded-sm inline-block;
 }
 .gray-badge {
-	@apply px-2 py-1 font-semibold leading-tight text-xs text-gray-700 dark:text-gray-900 dark:bg-gray-300 bg-gray-100 rounded-sm inline-block;
+	@apply px-2 py-1 font-semibold leading-tight text-xs text-brandDark dark:text-brandDarker dark:bg-brandLight bg-brandLighter rounded-sm inline-block;
 }
 .blue-badge {
 	@apply px-2 py-1 font-semibold leading-tight text-xs text-brandBlueDark dark:text-blue-900 dark:bg-blue-300 bg-blue-100 rounded-sm inline-block;
@@ -264,32 +264,32 @@ div[data-te-select-form-outline-ref]
 */
 
 .input-wrapper {
-	@apply relative block h-11 border focus-within:ring-1 rounded transition-all duration-300 border-gray-300;
-	@apply dark:border-gray-600 focus-within:border-brandRed dark:focus-within:border-brandRedDark focus-within:ring-brandRed dark:focus-within:ring-brandRedDark;
+	@apply relative block h-11 border focus-within:ring-1 rounded transition-all duration-300 border-brandLight;
+	@apply dark:border-brandGrayDark focus-within:border-brandRed dark:focus-within:border-brandRedDark focus-within:ring-brandRed dark:focus-within:ring-brandRedDark;
 }
 
 .text-input,
 .select-input,
 .textarea-input {
-	@apply w-full rounded h-full text-gray-800 dark:text-gray-200 placeholder-transparent text-base border-0 focus:border-0 focus:ring-0 bg-transparent;
+	@apply w-full rounded h-full text-brandDark dark:text-brandLight placeholder-transparent text-base border-0 focus:border-0 focus:ring-0 bg-transparent;
 }
 
 .text-input-label,
 .select-input-label {
-	@apply pointer-events-none capitalize absolute left-3 transition-all duration-300 top-2 text-gray-500 dark:text-gray-400;
+	@apply pointer-events-none capitalize absolute left-3 transition-all duration-300 top-2 text-brandGrayDark dark:text-brandGray;
 }
 
 .peer\/input:focus ~ .text-input-label {
-	@apply -top-2.5 left-2 text-brandRed dark:text-brandRedDark bg-white dark:bg-gray-800 px-1 text-[12.8px];
+	@apply -top-2.5 left-2 text-brandRed dark:text-brandRedDark bg-white dark:bg-brandDark px-1 text-[12.8px];
 }
 
 .peer\/input:not(:placeholder-shown) ~ .text-input-label,
 .select-input-label {
-	@apply -top-2.5 left-2 bg-white dark:bg-gray-800 px-1 text-[12.8px];
+	@apply -top-2.5 left-2 bg-white dark:bg-brandDark px-1 text-[12.8px];
 }
 
 .select-input > option {
-	@apply checked:bg-brandRed dark:checked:bg-brandRedDark checked:text-white hover:bg-brandRed dark:bg-gray-800 hover:text-white py-3;
+	@apply checked:bg-brandRed dark:checked:bg-brandRedDark checked:text-white hover:bg-brandRed dark:bg-brandDark hover:text-white py-3;
 }
 
 .peer\/select:focus ~ .select-input-label {

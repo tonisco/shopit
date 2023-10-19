@@ -1,7 +1,7 @@
 <x-vendor.layout.main page="Products edit">
     <section class="flex flex-col flex-1 gap-8 px-6 py-8 overflow-x-hidden">
         <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
-            <h1 class="text-3xl font-semibold text-gray-800 capitalize dark:text-gray-200">Edit Product</h1>
+            <h1 class="text-3xl font-semibold text-brandDark capitalize dark:text-brandLight">Edit Product</h1>
 
             <form action="{{ route('vendor.products.destroy', $product->id) }}" method="POST">
                 @csrf

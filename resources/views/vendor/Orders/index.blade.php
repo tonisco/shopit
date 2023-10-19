@@ -4,9 +4,9 @@
             <x-vendor.layout.heading title="Orders" :crumbs="[['name' => 'dashboard', 'route' => route('vendor.dashboard')], ['name' => 'orders']]" />
         </div>
 
-        <table style="width: 100%" class="divide-y divide-gray-200 datatable dark:divide-gray-700">
-            <thead class="bg-gray-50 dark:bg-gray-800">
-                <tr class="text-sm text-left text-gray-500 capitalize dark:text-gray-400">
+        <table style="width: 100%" class="divide-y divide-brandLight datatable dark:divide-brandDark">
+            <thead class="bg-gray-50 dark:bg-brandDark">
+                <tr class="text-sm text-left text-brandGrayDark capitalize dark:text-brandGray">
                     <th class="py-3.5 px-4 font-normal"> id </th>
                     <th class="py-3.5 px-4 font-normal"> name </th>
                     <th class="py-3.5 px-4 font-normal"> items </th>
@@ -16,31 +16,31 @@
                     <th class="py-3.5 px-4 font-normal"> action </th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 table-body">
+            <tbody class="bg-white divide-y divide-brandLight dark:divide-brandDark dark:bg-brandDarker table-body">
             </tbody>
         </table>
 
         <div class="check-modal modal" style="display: none">
             <div
-                class="content w-[500px] slideIn flex max-h-[85vh] overflow-y-auto flex-col rounded-lg relative gap-4 p-4 bg-white dark:bg-gray-800">
+                class="content w-[500px] slideIn flex max-h-[85vh] overflow-y-auto flex-col rounded-lg relative gap-4 p-4 bg-white dark:bg-brandDark">
                 <div
-                    class="flex gap-1.5 justify-between items-center pb-4 border-b-2 text-gray-700 dark:text-gray-400 border-gray-200 dark:border-gray-800">
+                    class="flex gap-1.5 justify-between items-center pb-4 border-b-2 text-brandDark dark:text-brandGray border-brandLight dark:border-brandDark">
                     <h3 class="text-lg font-medium capitalize">Order details</h3>
                     <x-ri-close-fill class="h-6 cursor-pointer close-modal" />
                 </div>
-                <div class="text-sm text-gray-600 capitalize dark:text-gray-400">
-                    <p>Order Id: <span class="font-medium text-gray-800 order-id dark:text-gray-200"></span></p>
-                    <p>Customer: <span class="font-medium text-gray-800 customer-name dark:text-gray-200"></span></p>
+                <div class="text-sm text-brandGrayDark capitalize dark:text-brandGray">
+                    <p>Order Id: <span class="font-medium text-brandDark order-id dark:text-brandLight"></span></p>
+                    <p>Customer: <span class="font-medium text-brandDark customer-name dark:text-brandLight"></span></p>
                 </div>
                 <table class="table-fixed w-[468px]">
                     <thead class="border-b">
-                        <tr class="py-2 text-sm text-gray-600 capitalize dark:text-gray-400">
+                        <tr class="py-2 text-sm text-brandGrayDark capitalize dark:text-brandGray">
                             <th class="w-20 px-4 py-2 font-normal text-start">Image</th>
                             <th class="px-4 py-2 font-normal text-start">Details</th>
                             <th class="w-20 px-4 py-2 font-normal text-start">price</th>
                         </tr>
                     </thead>
-                    <tbody class="text-sm font-medium text-gray-800 capitalize text-start tbody dark:text-gray-200">
+                    <tbody class="text-sm font-medium text-brandDark capitalize text-start tbody dark:text-brandLight">
                         <tr class="border-b">
                             <th class="px-4 py-2 text-sm font-medium text-start" colspan="2">sub total</th>
                             <th class="px-4 py-2 text-sm font-medium sub-total text-start">$0</th>

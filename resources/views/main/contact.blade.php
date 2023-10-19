@@ -8,28 +8,28 @@
         </div>
         {{-- TODO: change form position on mobile view --}}
         <div class="flex justify-end w-full px-2 mx-auto max-w-7xl">
-            <div class="z-10 flex flex-col gap-4 p-8 my-20 bg-white dark:bg-gray-800 rounded-lg shadow-lg w-[450px]">
-                <h1 class="text-gray-500 dark:text-gray-400">Send us a Message</h1>
-                <h1 class="mb-5 text-4xl font-bold text-gray-800 dark:text-gray-200">Contact Us</h1>
-                <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
+            <div class="z-10 flex flex-col gap-4 p-8 my-20 bg-white dark:bg-brandDark rounded-lg shadow-lg w-[450px]">
+                <h1 class="text-brandGrayDark dark:text-brandGray">Send us a Message</h1>
+                <h1 class="mb-5 text-4xl font-bold text-brandDark dark:text-brandLight">Contact Us</h1>
+                <div class="flex flex-col items-start w-full gap-2 text-brandDark dark:text-brandLight">
                     <label for="fullname">Full Name</label>
                     <input id="fullname" type="text" required
-                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
+                        class="w-full border-brandLight rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
                 </div>
-                <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
+                <div class="flex flex-col items-start w-full gap-2 text-brandDark dark:text-brandLight">
                     <label for="email">Email</label>
                     <input id="email" type="email" required
-                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
+                        class="w-full border-brandLight rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
                 </div>
-                <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
+                <div class="flex flex-col items-start w-full gap-2 text-brandDark dark:text-brandLight">
                     <label for="subject">Subject</label>
                     <input id="subject" type="text" required
-                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
+                        class="w-full border-brandLight rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark" />
                 </div>
-                <div class="flex flex-col items-start w-full gap-2 text-gray-800 dark:text-gray-200">
+                <div class="flex flex-col items-start w-full gap-2 text-brandDark dark:text-brandLight">
                     <label for="message">Message</label>
                     <textarea name="message" id="message" cols="30" rows="10"
-                        class="w-full border-gray-300 rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark"></textarea>
+                        class="w-full border-brandLight rounded-md focus:ring-brandRed dark:focus:ring-brandRedDark focus:border-brandRed dark:focus:border-brandRedDark"></textarea>
                 </div>
 
                 <button

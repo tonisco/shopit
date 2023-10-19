@@ -1,5 +1,5 @@
-<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200"> Images</h2>
+<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-brandDark">
+    <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight"> Images</h2>
 
     <div
         class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(80px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(128px,1fr))] sm:auto-rows-[144px] auto-rows-[96px] grid-rows-[repeat(auto-fill,96px)] sm:grid-rows-[repeat(auto-fill,144px)]">

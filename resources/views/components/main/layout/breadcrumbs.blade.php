@@ -5,7 +5,7 @@
 <section id="breadcrumbs" class="w-full py-20 bg-center bg-no-repeat bg-cover"
     style="background-image:linear-gradient(0deg,rgba(0,0,0,0.65), rgba(0,0,0,.65)),url({{ asset($breadcrumb->image) }});">
     <div class="flex flex-col gap-4 px-4 mx-auto max-w-7xl">
-        <h1 class="text-3xl text-white capitalize dark:text-gray-200">{{ $heading }}</h1>
+        <h1 class="text-3xl text-white capitalize dark:text-brandLight">{{ $heading }}</h1>
         <nav class="w-full rounded-md">
             <ol class="flex list-reset">
                 @foreach ($crumbs as $crumb)

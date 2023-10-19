@@ -7,7 +7,7 @@
         <div class="flex gap-4 items-start sm:items-center sm:flex-row flex-col">
             <img src="{{ asset($vendor->image) }}" alt="{{ $vendor->name }}" class="h-52 w-48 object-cover rounded">
 
-            <div class="flex flex-col items-center text-gray-800 dark:text-gray-200 capitalize text-sm">
+            <div class="flex flex-col items-center text-brandDark dark:text-brandLight capitalize text-sm">
                 <p>Or </p>
                 <p>change Image</p>
             </div>

@@ -3,12 +3,12 @@
     $image = isset($image) ? $image : '';
 @endphp
 
-<div class="relative w-full h-full rounded-lg bg-gray-50 dark:bg-gray-900" x-data="imagePreview('{{ $image }}')">
+<div class="relative w-full h-full rounded-lg bg-gray-50 dark:bg-brandDarker" x-data="imagePreview('{{ $image }}')">
     <label for="{{ $id }}">
         <div class="w-full h-full p-2">
             <div
                 class="flex flex-col items-center justify-center w-full h-full gap-4 text-sm border-2 border-brandRed border-dashed rounded-lg cursor-pointer">
-                <x-ri-image-2-line class="w-6 h-6 text-gray-300 sm:w-8 sm:h-8 dark:text-gray-500" />
+                <x-ri-image-2-line class="w-6 h-6 text-brandLight sm:w-8 sm:h-8 dark:text-brandGrayDark" />
             </div>
         </div>
 

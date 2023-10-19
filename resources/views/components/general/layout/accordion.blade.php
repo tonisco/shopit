@@ -9,7 +9,7 @@
                     if ($isCategory) {
                         $text_color = 'text-brandRed dark:text-brandRedDark';
                     } else {
-                        $text_color = 'text-gray-800 dark:text-white';
+                        $text_color = 'text-brandDark dark:text-white';
                     }
                 @endphp
 
@@ -23,7 +23,7 @@
                         {{ $category->name }}</a>
                     @if (count($category->subCategories))
                         <x-ri-arrow-up-s-line
-                            class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] text-brandRed transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:text-gray-800 motion-reduce:transition-none dark:text-brandRedDark dark:group-[[data-te-collapse-collapsed]]:text-gray-200" />
+                            class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] text-brandRed transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:text-brandDark motion-reduce:transition-none dark:text-brandRedDark dark:group-[[data-te-collapse-collapsed]]:text-brandLight" />
                     @endif
                 </button>
             </h2>
@@ -39,7 +39,7 @@
                                 if ($isSubCategory) {
                                     $text_color = 'text-brandRed dark:text-brandRedDark';
                                 } else {
-                                    $text_color = 'text-gray-800 dark:text-gray-200';
+                                    $text_color = 'text-brandDark dark:text-brandLight';
                                 }
                             @endphp
                             <a href="{{ request()->fullUrlWithQuery(['category' => $category->name, 'subCategory' => $subCategory->name, 'page' => null]) }}"

@@ -9,10 +9,10 @@
         <div class="flex flex-col gap-8">
             <form method="POST"
                 action="{{ route('vendor.products.variants.update', ['product' => $productId, 'variant' => $productVariant->id]) }}"
-                class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-brandDark">
                 @csrf
                 @method('PUT')
-                <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant</h2>
+                <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight">Variant</h2>
 
                 <div class="flex flex-col w-full gap-2">
                     <div class="relative" data-te-input-wrapper-init>
@@ -42,12 +42,12 @@
                 </div>
             </form>
 
-            <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg shadow-md parent dark:bg-gray-800">
-                <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant Options</h2>
+            <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg shadow-md parent dark:bg-brandDark">
+                <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight">Variant Options</h2>
                 @foreach ($productVariant->productVariantItems as $productVariantItem)
                     <div class="flex flex-col gap-4 @if ($loop->first) variant-option @endif">
                         <div class="flex items-center justify-between gap-4 heading">
-                            <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
+                            <h3 class="text-sm font-medium text-brandDark capitalize dark:text-brandLight">Option
                                 {{ $loop->index + 1 }}
                             </h3>
                             <div class="flex items-center gap-2 data-item" data-name="{{ $productVariantItem->name }}"
@@ -75,7 +75,7 @@
                             <div class="flex flex-col w-full gap-2">
                                 <x-general.input.input class="option-price" id="option-price-1" readonly type="number"
                                     label="Price $" value="{{ $productVariantItem->price }}" />
-                                <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added
+                                <p class="text-xs text-brandGrayDark dark:text-brandGray">* Additional price to be added
                                     to
                                     the original
                                     product price</p>
@@ -100,15 +100,15 @@
     <div style="display: none"
         class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-end edit-modal bg-black/25">
         <form
-            class="flex flex-col h-full gap-6 p-8 pt-12 transition-all duration-300 translate-x-full bg-white edit-content dark:bg-gray-800">
-            <h1 class="text-xl font-medium text-gray-800 capitalize dark:text-gray-200">Create Variant Option</h1>
+            class="flex flex-col h-full gap-6 p-8 pt-12 transition-all duration-300 translate-x-full bg-white edit-content dark:bg-brandDark">
+            <h1 class="text-xl font-medium text-brandDark capitalize dark:text-brandLight">Create Variant Option</h1>
             <div class="flex flex-col w-full gap-2">
                 <x-general.input.input class="edit-name" name="name" id="name" label="Name" required />
             </div>
             <div class="flex flex-col w-full gap-2">
                 <x-general.input.input class="edit-price" required name="price" id="price" type="number"
                     label="Price $" />
-                <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added
+                <p class="text-xs text-brandGrayDark dark:text-brandGray">* Additional price to be added
                     to
                     the original
                     product price</p>
@@ -121,7 +121,7 @@
                 <button class="px-3 py-2 text-white bg-brandRed rounded shadow-md dark:bg-brandRedDark edit-item"
                     type="submit">Create</button>
                 <button type="reset"
-                    class="px-3 py-2 bg-gray-200 shadow-md edit-cancel dark:bg-gray-900 dark:text-gray-200">Cancel</button>
+                    class="px-3 py-2 bg-brandLight shadow-md edit-cancel dark:bg-brandDarker dark:text-brandLight">Cancel</button>
             </div>
         </form>
     </div>

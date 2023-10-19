@@ -1,5 +1,5 @@
-<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Basic Information
+<div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-brandDark">
+    <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight">Basic Information
     </h2>
 
     <div class="flex flex-col w-full gap-2">
@@ -30,7 +30,7 @@
             <textarea class="hidden" name="long_description" id="long_description" cols="30" rows="10"></textarea>
             <div id="editor" x-ref='editor'></div>
             <label
-                class="text-[13px] bg-white des transition-all duration-200 dark:bg-gray-800 p-1.5 text-gray-500 dark:text-gray-200 absolute -top-4 left-3 max-w-[90%]">Long
+                class="text-[13px] bg-white des transition-all duration-200 dark:bg-brandDark p-1.5 text-brandGrayDark dark:text-brandLight absolute -top-4 left-3 max-w-[90%]">Long
                 Description</label>
         </div>
         @error('long_description')

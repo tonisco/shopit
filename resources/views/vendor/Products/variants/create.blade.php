@@ -11,8 +11,8 @@
         <form method="POST" action="{{ route('vendor.products.variants.store', $product->id) }}"
             class="flex flex-col gap-8">
             @csrf
-            <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant</h2>
+            <div class="flex flex-col gap-8 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-brandDark">
+                <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight">Variant</h2>
 
                 <div class="flex flex-col w-full gap-2">
                     <div class="relative" data-te-input-wrapper-init>
@@ -40,12 +40,12 @@
                 </div>
             </div>
 
-            <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-                <h2 class="text-lg font-medium text-gray-800 capitalize dark:text-gray-200">Variant Options</h2>
+            <div class="flex flex-col gap-4 p-6 pb-8 bg-white rounded-lg shadow-md dark:bg-brandDark">
+                <h2 class="text-lg font-medium text-brandDark capitalize dark:text-brandLight">Variant Options</h2>
 
                 <div class="flex flex-col gap-4 variant-option">
                     <div class="flex items-center justify-between gap-4 heading">
-                        <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option 1
+                        <h3 class="text-sm font-medium text-brandDark capitalize dark:text-brandLight">Option 1
                         </h3>
                     </div>
                     <div class="flex flex-col w-full gap-4 sm:flex-row">
@@ -59,7 +59,7 @@
                         <div class="flex flex-col w-full gap-2">
                             <x-general.input.input class="option-price" required name="option-price-1"
                                 id="option-price-1" type="number" label="Price $" value="0" />
-                            <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
+                            <p class="text-xs text-brandGrayDark dark:text-brandGray">* Additional price to be added to
                                 the original
                                 product price</p>
                             @error('option-price-1')

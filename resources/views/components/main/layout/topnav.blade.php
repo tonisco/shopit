@@ -1,5 +1,5 @@
 <div class="justify-center hidden w-full py-4 bg-brandRed lg:flex dark:bg-brandRedDark">
-    <div class="flex items-center justify-between flex-1 gap-4 px-3 text-gray-200 max-w-7xl">
+    <div class="flex items-center justify-between flex-1 gap-4 px-3 text-brandLight max-w-7xl">
         <a href="{{ route('home') }}" class="cursor-pointer">
             <x-general.layout.logo />
         </a>
@@ -8,8 +8,8 @@
                 <x-general.input.search />
             </div>
             <div class="flex items-center gap-3">
-                <x-ri-customer-service-2-line class="w-8 h-8 text-gray-200" />
-                <div class="flex flex-col gap-1 text-sm text-gray-200">
+                <x-ri-customer-service-2-line class="w-8 h-8 text-brandLight" />
+                <div class="flex flex-col gap-1 text-sm text-brandLight">
                     <p>{{ $settings->email }}</p>
                     <p>{{ $settings->phone }}</p>
                 </div>
@@ -17,7 +17,7 @@
         </div>
         <div class="flex gap-4">
             <div x-data='toggler' @click="toggle"
-                class="cursor-pointer relative text-gray-200 transition duration-200 hover:text-gray-700 hover:ease-in-out focus:text-gray-700 disabled:text-black/30 motion-reduce:transition-none dark:hover:text-gray-300 dark:focus:text-gray-300 [&.active]:text-black/90 dark:[&.active]:text-gray-400">
+                class="cursor-pointer relative text-brandLight transition duration-200 hover:text-brandDark hover:ease-in-out focus:text-brandDark disabled:text-black/30 motion-reduce:transition-none dark:hover:text-brandLight dark:focus:text-brandLight [&.active]:text-black/90 dark:[&.active]:text-brandGray">
                 <x-ri-shopping-cart-line class="w-6 h-6" />
                 <span
                     class="absolute -top-2.5 dark:bg-teal-700 -right-2.5 ml-2.5 rounded-full bg-teal-500 px-1.5 py-1 text-[0.6rem] font-bold leading-none text-white">1</span>
@@ -32,7 +32,7 @@
 
 
             <a
-                class="cursor-pointer relative text-gray-200 transition duration-200 hover:text-gray-700 hover:ease-in-out focus:text-gray-700 disabled:text-black/30 motion-reduce:transition-none dark:hover:text-gray-300 dark:focus:text-gray-300 [&.active]:text-black/90 dark:[&.active]:text-gray-400">
+                class="cursor-pointer relative text-brandLight transition duration-200 hover:text-brandDark hover:ease-in-out focus:text-brandDark disabled:text-black/30 motion-reduce:transition-none dark:hover:text-brandLight dark:focus:text-brandLight [&.active]:text-black/90 dark:[&.active]:text-brandGray">
                 <x-ri-heart-line class="w-6 h-6" />
                 <span
                     class="absolute -top-2.5 -right-2.5 ml-2.5 rounded-full bg-teal-500 dark:bg-teal-700 px-1.5 py-1 text-[0.6rem] font-bold leading-none text-white">10</span>

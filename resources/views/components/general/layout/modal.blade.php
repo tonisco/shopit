@@ -4,7 +4,7 @@
     <div data-te-modal-dialog-ref
         class="relative flex items-center justify-center w-full h-full transition-all duration-300 ease-in-out opacity-0 pointer-events-none">
         <div
-            class="pointer-events-auto p-6 relative max-h-[75%] overflow-y-auto {{ $width ?? 'w-[85%] md:w-[80%] lg:w-[65%]' }} gap-6 flex flex-col rounded-md border-none bg-white dark:bg-gray-800 bg-clip-padding text-current shadow-lg outline-none">
+            class="pointer-events-auto p-6 relative max-h-[75%] overflow-y-auto {{ $width ?? 'w-[85%] md:w-[80%] lg:w-[65%]' }} gap-6 flex flex-col rounded-md border-none bg-white dark:bg-brandDark bg-clip-padding text-current shadow-lg outline-none">
 
             <button type="button"
                 class="box-content self-end p-1 bg-brandRed border-none rounded-lg dark:bg-brandRedDark hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"

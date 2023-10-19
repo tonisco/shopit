@@ -1,22 +1,22 @@
 <div class="relative h-[460px] w-full group/productcard">
     {{-- TODO: fix product card on small screens --}}
     <a href="{{ route('productsDetails', $product->id) }}"
-        class="shadow-lg hover:shadow-lg lg:shadow-none mx-auto w-full bg-white max-w-sm relative dark:bg-gray-800 cursor-pointer rounded-lg h-full overflow-hidden grid grid-rows-[65%_35%]">
+        class="shadow-lg hover:shadow-lg lg:shadow-none mx-auto w-full bg-white max-w-sm relative dark:bg-brandDark cursor-pointer rounded-lg h-full overflow-hidden grid grid-rows-[65%_35%]">
         <div class="w-full h-full overflow-hidden">
             <img src="{{ asset($product->image) }}"
                 class="object-cover w-full h-full transition-all duration-500 ease-out group-hover/productcard:scale-110"
                 alt="{{ $product->name }}">
         </div>
         <div class="flex flex-col gap-1 px-3 py-2 ">
-            <p class="text-xs text-gray-500 dark:text-gray-400">{{ $product->category->name }} @if ($product->subCategory)
+            <p class="text-xs text-brandGrayDark dark:text-brandGray">{{ $product->category->name }} @if ($product->subCategory)
                     , {{ $product->subCategory->name }}
                 @endif
             </p>
-            <p class="text-sm font-semibold text-gray-900 dark:text-gray-200">{{ $product->name }}</p>
+            <p class="text-sm font-semibold text-brandDarker dark:text-brandLight">{{ $product->name }}</p>
             <div class="flex gap-2">
                 <x-main.utils.stars :rating="$product->product_reviews_avg_rating" />
 
-                <p class="text-xs text-gray-500 dark:text-gray-400">({{ $product->product_reviews_count }})
+                <p class="text-xs text-brandGrayDark dark:text-brandGray">({{ $product->product_reviews_count }})
                 </p>
             </div>
             <h3 class="text-lg font-semibold text-brandRed dark:text-brandRedDark">${{ $product->price }}</h3>

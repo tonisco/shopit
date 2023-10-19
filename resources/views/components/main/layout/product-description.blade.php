@@ -43,22 +43,22 @@
     <div class="w-full md:w-1/2">
         <div class="flex justify-between gap-2">
             <div class="max-w-[35ch] space-y-2">
-                <h1 class="text-xl font-bold text-gray-900 sm:text-2xl dark:text-gray-200">
+                <h1 class="text-xl font-bold text-brandDarker sm:text-2xl dark:text-brandLight">
                     {{ $product->name }}
                 </h1>
 
-                <p class="text-sm text-gray-900 dark:text-gray-200">Highest Rated Product</p>
+                <p class="text-sm text-brandDarker dark:text-brandLight">Highest Rated Product</p>
 
                 <div class="flex gap-2">
                     <x-main.utils.stars :rating="$product->product_reviews_avg_rating" size="w-5 h-5" />
-                    <p class="text-gray-800 dark:text-gray-200">({{ $product->product_reviews_count }}) Reviews</p>
+                    <p class="text-brandDark dark:text-brandLight">({{ $product->product_reviews_count }}) Reviews</p>
                 </div>
             </div>
 
-            <p class="text-lg font-bold text-gray-900 dark:text-gray-200">${{ $product->price }}</p>
+            <p class="text-lg font-bold text-brandDarker dark:text-brandLight">${{ $product->price }}</p>
         </div>
 
-        <p class="mt-4 text-gray-900 dark:text-gray-200">
+        <p class="mt-4 text-brandDarker dark:text-brandLight">
             {{ $product->short_description }}
         </p>
 
@@ -149,10 +149,10 @@
             <div class="my-5">
                 <label for="quantity" class="sr-only">Qty</label>
                 <div class="flex items-center gap-2">
-                    <button class="px-4 py-2 text-white bg-gray-400 rounded-xl">-</button>
+                    <button class="px-4 py-2 text-white bg-brandGray rounded-xl">-</button>
                     <input type="number" id="quantity" min="1" value="1"
-                        class="w-12 rounded border-gray-200 py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
-                    <button class="px-4 py-2 text-white bg-gray-400 rounded-xl">+</button>
+                        class="w-12 rounded border-brandLight py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" />
+                    <button class="px-4 py-2 text-white bg-brandGray rounded-xl">+</button>
                 </div>
             </div>
 

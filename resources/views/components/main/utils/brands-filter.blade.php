@@ -1,5 +1,5 @@
-<div class="flex flex-col gap-2 p-4 bg-white border rounded-lg border-gray-300 dark:bg-gray-800">
-    <h3 class="text-lg text-gray-800 dark:text-gray-200 font-semibold">Brands</h3>
+<div class="flex flex-col gap-2 p-4 bg-white border rounded-lg border-brandLight dark:bg-brandDark">
+    <h3 class="text-lg text-brandDark dark:text-brandLight font-semibold">Brands</h3>
     @foreach ($brands as $brand)
         @php
             // check if it is part of the query string
@@ -40,7 +40,7 @@
                     <x-ri-checkbox-fill class="h-full w-full text-brandRed dark:text-brandRedDark" />
                 @endif
             </div>
-            <p class="text-gray-800 dark:text-gray-200">{{ $brand->name }}</p>
+            <p class="text-brandDark dark:text-brandLight">{{ $brand->name }}</p>
         </a>
     @endforeach
 </div>

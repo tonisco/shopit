@@ -1,5 +1,5 @@
 <div x-cloak x-show="open" class="flex flex-col gap-4">
-    <h2 class="font-medium text-gray-800 capitalize dark:text-gray-200">Variant Option</h2>
+    <h2 class="font-medium text-brandDark capitalize dark:text-brandLight">Variant Option</h2>
 
     <div class="flex flex-col w-full gap-2">
         <x-general.input.input name="variant_name" id="variant_name" label="Variant Name" ::required="open"
@@ -13,7 +13,7 @@
     @if (!old('option_name_1'))
         <div class="flex flex-col gap-4 variant-option">
             <div class="flex items-center justify-between gap-4 heading">
-                <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option 1
+                <h3 class="text-sm font-medium text-brandDark capitalize dark:text-brandLight">Option 1
                 </h3>
             </div>
             <div class="flex flex-col w-full gap-4 sm:flex-row">
@@ -27,7 +27,7 @@
                 <div class="flex flex-col w-full gap-2">
                     <x-general.input.input class="option_price" ::required="open" name="option_price_1"
                         id="option_price_1" type="number" label="Price $" value="0" />
-                    <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
+                    <p class="text-xs text-brandGrayDark dark:text-brandGray">* Additional price to be added to
                         the original
                         product price</p>
                     @error('option_price_*')
@@ -51,7 +51,7 @@
         @while (old('option_name_' . $index))
             <div class="flex flex-col gap-4 @if ($index === 1) variant-option @endif">
                 <div class="flex items-center justify-between gap-4 heading">
-                    <h3 class="text-sm font-medium text-gray-800 capitalize dark:text-gray-200">Option
+                    <h3 class="text-sm font-medium text-brandDark capitalize dark:text-brandLight">Option
                         {{ $index }}
                     </h3>
                     @if ($index !== 1)
@@ -72,7 +72,7 @@
                         <x-general.input.input class="option_price" ::required="open"
                             name="option_price_{{ $index }}" id="option_price_{{ $index }}" type="number"
                             label="Price $" value="{{ old('option_price_' . $index) }}" />
-                        <p class="text-xs text-gray-500 dark:text-gray-400">* Additional price to be added to
+                        <p class="text-xs text-brandGrayDark dark:text-brandGray">* Additional price to be added to
                             the original
                             product price</p>
                         @error('option_price_*')

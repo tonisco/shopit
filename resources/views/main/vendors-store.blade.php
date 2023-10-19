@@ -19,21 +19,21 @@
                 <div class="flex gap-2 mt-2">
                     @if ($vendor->fb_link)
                         <a href="{{ $vendor->fb_link }}" rel="noreferrer" target="_blank"
-                            class="p-2 text-gray-700 transition bg-white rounded-full hover:text-white hover:bg-sky-500">
+                            class="p-2 text-brandDark transition bg-white rounded-full hover:text-white hover:bg-sky-500">
                             <x-ri-facebook-fill class="w-4 h-4" />
                         </a>
                     @endif
 
                     @if ($vendor->insta_link)
                         <a href="{{ $vendor->insta_link }}" rel="noreferrer" target="_blank"
-                            class="p-2 text-gray-700 transition bg-white rounded-full hover:text-white hover:bg-brandRed">
+                            class="p-2 text-brandDark transition bg-white rounded-full hover:text-white hover:bg-brandRed">
                             <x-ri-instagram-line class="w-4 h-4" />
                         </a>
                     @endif
 
                     @if ($vendor->tw_link)
                         <a href="{{ $vendor->tw_link }}" rel="noreferrer" target="_blank"
-                            class="p-2 text-gray-700 transition bg-white rounded-full hover:text-white hover:bg-brandBlue">
+                            class="p-2 text-brandDark transition bg-white rounded-full hover:text-white hover:bg-brandBlue">
                             <x-ri-twitter-fill class="w-4 h-4" />
                         </a>
                     @endif

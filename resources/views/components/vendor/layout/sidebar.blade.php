@@ -1,4 +1,4 @@
-<nav class="flex flex-col h-full pt-6 text-gray-800 bg-gray-100 dark:text-gray-200 dark:bg-gray-800">
+<nav class="flex flex-col h-full pt-6 text-brandDark bg-brandLighter dark:text-brandLight dark:bg-brandDark">
     <a href="{{ route('vendor.dashboard') }}"
         class="flex items-center gap-2 px-6 py-4 transition-all cursor-pointer hover:text-white hover:bg-brandRed dark:hover:bg-brandRedDark active:text-white active:bg-brandRed active:hover:bg-brandRedDark {{ request()->routeIs('vendor.dashboard') ? 'text-white bg-brandRed dark:bg-brandRedDark' : '' }}">
         <x-ri-dashboard-line class="w-5 h-5" />

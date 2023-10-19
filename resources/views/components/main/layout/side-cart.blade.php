@@ -1,9 +1,9 @@
 @php
     $products = App\Models\Product::paginate(3);
 @endphp
-<div class="relative px-2 py-4 overflow-y-auto bg-white dark:bg-gray-800 w-80 sm:px-6 lg:px-8">
+<div class="relative px-2 py-4 overflow-y-auto bg-white dark:bg-brandDark w-80 sm:px-6 lg:px-8">
     {{-- TODO: fix close icon --}}
-    <button class="absolute text-gray-600 transition dark:text-gray-300 end-4 top-4 hover:scale-110">
+    <button class="absolute text-brandGrayDark transition dark:text-brandLight end-4 top-4 hover:scale-110">
         <x-ri-close-fill class="w-5 h-5" />
     </button>
 
@@ -13,9 +13,9 @@
                 <li class="flex items-center gap-4">
                     <img src="{{ $product->image }}" alt="" class="object-cover w-16 h-16 rounded" />
                     <div>
-                        <h3 class="text-sm text-gray-800 dark:text-gray-200">{{ $product->name }}</h3>
+                        <h3 class="text-sm text-brandDark dark:text-brandLight">{{ $product->name }}</h3>
 
-                        <dl class="my-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-400">
+                        <dl class="my-0.5 space-y-px text-[10px] text-brandGrayDark dark:text-brandGray">
                             <div>
                                 <dt class="inline">Size:</dt>
                                 <dd class="inline">XXS</dd>
@@ -30,7 +30,7 @@
                                 <dd class="inline">1</dd>
                             </div>
                         </dl>
-                        <h3 class="text-xs text-gray-800 dark:text-gray-200">${{ $product->price }}</h3>
+                        <h3 class="text-xs text-brandDark dark:text-brandLight">${{ $product->price }}</h3>
                     </div>
                 </li>
             @endforeach
