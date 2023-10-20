@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\UtilsTrait;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -10,6 +11,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+	use UtilsTrait;
+
 	public function index(Request $request)
 	{
 		$period = $this->getPeriod($request);

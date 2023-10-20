@@ -25,6 +25,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+{{-- TODO: add seo to settings database for just main pages --}}
 
 <body class="antialiased font">
     <x-general.utils.flash-message />

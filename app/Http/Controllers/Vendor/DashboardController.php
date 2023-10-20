@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\UtilsTrait;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+	use UtilsTrait;
+
 	public function index(Request $request)
 	{
 		$period = $this->getPeriod($request);
@@ -106,7 +107,6 @@ class DashboardController extends Controller
 				return $row->sum('total');
 			});
 
-
 		return view('vendor.index', compact(
 			'currentOrders',
 			'productOrdered',
@@ -121,22 +121,5 @@ class DashboardController extends Controller
 			'lowestQuantities',
 			'graphEarnings'
 		));
-	}
-
-	public function getPeriod(Request $request)
-	{
-		$p = $request->get('p');
-		$periods = [
-			'today' => Carbon::now()->today(),
-			'last_7_days' => Carbon::now()->subWeek(),
-			'last_30_days' => Carbon::now()->subMonth(),
-			'last_12_months' => Carbon::now()->subYear(),
-		];
-
-		if ($p && array_key_exists($p, $periods)) {
-			return $periods[$p];
-		} else {
-			return Carbon::now()->subDecade();
-		}
 	}
 }
