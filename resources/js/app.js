@@ -24,18 +24,14 @@ let timeout;
 
 function scrollHandle(ele) {
 	clearTimeout(timeout);
-	console.log(ele);
 
-	ele.classList.remove("scrollbar-none");
-	ele.classList.add("scrollbar-thin");
+	ele.classList.remove("scrollBar-hide");
 
 	timeout = setTimeout(() => {
-		ele.classList.remove("scrollbar-thin");
-		ele.classList.add("scrollbar-none");
+		ele.classList.add("scrollBar-hide");
 	}, 500);
 }
 
-document.querySelectorAll(".scrollB").forEach((ele) => {
-	ele.addEventListener("scroll", () => scrollHandle(ele));
-	console.log(ele);
-});
+document
+	.querySelectorAll(".bar")
+	.forEach((ele) => ele.addEventListener("scroll", () => scrollHandle(ele)));

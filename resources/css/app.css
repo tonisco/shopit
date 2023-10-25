@@ -24,6 +24,18 @@
 	}
 }
 
+.scrollBar-hide::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.scrollBar-hide::-webkit-scrollbar-thumb {
+	background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+}
+
 [x-cloak] {
 	display: none !important;
 }

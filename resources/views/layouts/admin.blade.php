@@ -16,7 +16,7 @@
                     </x-general.layout.nav-modal>
                 </template>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 ml-auto">
                 <x-fas-user-circle class="w-6 h-6 text-brandWhite sm:w-8 sm:h-8" />
                 <p class="max-w-[110px] sm:text-sm text-xs truncate">
                     {{ $admin->first_name . ' ' . $admin->last_name }}
