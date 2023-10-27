@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\OrderStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UtilsTrait;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\ProductReview;
+use App\Models\Transaction;
+use App\Models\Vendor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -20,28 +27,25 @@ class DashboardController extends Controller
 		$currentOrders = Order::whereDate('created_at', '>', $period)
 			->count();
 
-		$productOrdered = OrderProduct::whereDate('created_at', '>', $period)
-			->sum('qty');
+		$todayOrders = Order::whereDate('created_at', Carbon::today());
 
-		$pendingOrder = Order::whereDate('created_at', '>', $period)
-			->where('status', 'pending')
+		$todayEarnings = OrderProduct::whereHas('order', function ($query) {
+			$query->where('status', 'delivered');
+		})->sum('total');
+
+		$activeOrders = Order::where('status', '!=', OrderStatusEnum::Delivered)
+			->where('status', '!=', OrderStatusEnum::Cancelled)
 			->count();
 
-		$pendingProductOrdered = OrderProduct::whereDate('created_at', '>', $period)
-			->whereHas('order', function ($query) {
-				$query->where('status', 'pending');
-			})
-			->sum('qty');
+		$newOrders = Order::where('status',  OrderStatusEnum::Created)
+			->count();
 
-		$completedProductOrdered = OrderProduct::whereDate('created_at', '>', $period)
-			->whereHas('order', function ($query) {
-				$query->where('status', 'delivered');
-			})
-			->sum('qty');
-
+		$cancelledOrders = Order::whereDate('created_at', '>', $period)
+			->where('status', OrderStatusEnum::Cancelled)
+			->count();
 
 		$completedOrder = Order::whereDate('created_at', '>', $period)
-			->where('status', 'delivered')
+			->where('status', OrderStatusEnum::Delivered)
 			->count();
 
 		$earnings = OrderProduct::whereDate('created_at', '>', $period)
@@ -50,21 +54,45 @@ class DashboardController extends Controller
 			})
 			->sum('total');
 
-		$pendingEarnings = OrderProduct::whereDate('created_at', '>', $period)
+		$totalBrands = Brand::all()->count();
+
+		$totalCategories = Category::all()->count();
+
+		$totalVendors = Vendor::all()->count();
+
+		$totalReviews = ProductReview::all();
+
+		$totalReviewsCount = $totalReviews->count();
+
+		$reviewsArray = $totalReviews->toArray();
+		$reviews = array_splice($reviewsArray, 5);
+
+		// TODO: vendor request
+		// TODO: vendor user and admin activities
+
+		$activeEarnings = OrderProduct::whereDate('created_at', '>', $period)
 			->whereHas('order', function ($query) {
-				$query->where('status', 'pending');
+				$query->where('status', '!=', OrderStatusEnum::Delivered)
+					->where('status', '!=', OrderStatusEnum::Cancelled);
 			})
 			->sum('total');
 
 		$mostSold = Product::whereDate('created_at', '>', $period)
 			->withSum('orderProducts', 'qty')
+			->with('vendor')
 			->orderBy('order_products_sum_qty', 'desc')
 			->limit(5)
 			->get();
 
 
 		$lowestQuantities = Product::whereDate('created_at', '>', $period)
-			->orderBy('qty')->limit(5)->get();
+			->with('vendor')
+			->orderBy('qty')
+			->limit(5)
+			->get();
+
+		$transactions = Transaction::limit(5)->get();
+		$transactionsByDate = Transaction::whereDate('created_at', '>', $period)->limit(5)->get();
 
 		$graphEarnings = OrderProduct::all()
 			->where('created_at', '>', $period)
@@ -83,16 +111,17 @@ class DashboardController extends Controller
 
 		return view("admin.index", [
 			'currentOrders' => $currentOrders,
-			'productOrdered' => $productOrdered,
-			'pendingOrder' => $pendingOrder,
-			'pendingProductOrdered' => $pendingProductOrdered,
+			'todayOrders' => $todayOrders,
+			'todayEarnings' => $todayEarnings,
+			'activeOrders' => $activeOrders,
 			'completedOrder' => $completedOrder,
-			'completedProductOrdered' => $completedProductOrdered,
+			'cancelledOrders' => $cancelledOrders,
 			'earnings' => $earnings,
-			'pendingEarnings' => $pendingEarnings,
+			'activeEarnings' => $activeEarnings,
 			'mostSold' => $mostSold,
 			'lowestQuantities' => $lowestQuantities,
 			'graphEarnings' => $graphEarnings,
+			'totalBrands' => $totalBrands,
 		]);
 	}
 }
