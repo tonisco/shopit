@@ -37,7 +37,7 @@ class DashboardController extends Controller
 			->where('status', '!=', OrderStatusEnum::Cancelled)
 			->count();
 
-		$newOrders = Order::where('status',  OrderStatusEnum::Created)
+		$newOrders = Order::where('status',  OrderStatusEnum::New)
 			->count();
 
 		$cancelledOrders = Order::whereDate('created_at', '>', $period)

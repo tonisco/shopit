@@ -86,8 +86,8 @@
                 </div>
                 <ul x-cloak :class="open ? 'flex' : 'hidden'"
                     class="flex-col gap-1 py-1 pl-10 transition-all duration-500">
-                    <li>Pending Orders </li>
                     <li>All Orders </li>
+                    <li>New Orders </li>
                     <li>Created Orders </li>
                     <li>Processing Orders </li>
                     <li>Out For Delivery Orders </li>

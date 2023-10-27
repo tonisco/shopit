@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Vendor;
 
+use App\Enums\OrderStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\UtilsTrait;
 use App\Models\Order;
@@ -29,17 +30,17 @@ class DashboardController extends Controller
 			->where('vendor_id', Auth::user()->vendor->id)
 			->sum('qty');
 
-		$pendingOrder = Order::whereDate('created_at', '>', $period)
-			->where('status', 'pending')
+		$newOrder = Order::whereDate('created_at', '>', $period)
+			->where('status', OrderStatusEnum::New)
 			->whereHas('orderProducts', function ($query) {
 				$query->where('vendor_id', Auth::user()->vendor->id);
 			})
 			->count();
 
-		$pendingProductOrdered = OrderProduct::whereDate('created_at', '>', $period)
+		$newProductOrdered = OrderProduct::whereDate('created_at', '>', $period)
 			->where('vendor_id', Auth::user()->vendor->id)
 			->whereHas('order', function ($query) {
-				$query->where('status', 'pending');
+				$query->where('status', OrderStatusEnum::New);
 			})
 			->sum('qty');
 
@@ -68,7 +69,7 @@ class DashboardController extends Controller
 		$pendingEarnings = OrderProduct::whereDate('created_at', '>', $period)
 			->where('vendor_id', Auth::user()->vendor->id)
 			->whereHas('order', function ($query) {
-				$query->where('status', 'pending');
+				$query->where('status', OrderStatusEnum::New);
 			})
 			->sum('total');
 
@@ -107,19 +108,19 @@ class DashboardController extends Controller
 				return $row->sum('total');
 			});
 
-		return view('vendor.index', compact(
-			'currentOrders',
-			'productOrdered',
-			'pendingOrder',
-			'pendingProductOrdered',
-			'completedOrder',
-			'completedProductOrdered',
-			'earnings',
-			'pendingEarnings',
-			'customers',
-			'mostSold',
-			'lowestQuantities',
-			'graphEarnings'
-		));
+		return view('vendor.index', [
+			'currentOrders' => $currentOrders,
+			'productOrdered' => $productOrdered,
+			'newOrder' => $newOrder,
+			'newProductOrdered' => $newProductOrdered,
+			'completedOrder' => $completedOrder,
+			'completedProductOrdered' => $completedProductOrdered,
+			'earnings' => $earnings,
+			'pendingEarnings' => $pendingEarnings,
+			'customers' => $customers,
+			'mostSold' => $mostSold,
+			'lowestQuantities' => $lowestQuantities,
+			'graphEarnings' => $graphEarnings,
+		]);
 	}
 }
