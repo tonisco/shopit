@@ -13,6 +13,7 @@ use App\Models\Product;
 use App\Models\ProductReview;
 use App\Models\Transaction;
 use App\Models\Vendor;
+use App\Models\VendorRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -67,7 +68,7 @@ class DashboardController extends Controller
 		$reviewsArray = $totalReviews->toArray();
 		$reviews = array_splice($reviewsArray, 5);
 
-		// TODO: vendor request
+		$vendorRequest = VendorRequest::all()->count();
 		// TODO: vendor user and admin activities
 
 		$activeEarnings = OrderProduct::whereDate('created_at', '>', $period)
@@ -92,7 +93,6 @@ class DashboardController extends Controller
 			->get();
 
 		$transactions = Transaction::limit(5)->get();
-		$transactionsByDate = Transaction::whereDate('created_at', '>', $period)->limit(5)->get();
 
 		$graphEarnings = OrderProduct::all()
 			->where('created_at', '>', $period)
@@ -122,6 +122,13 @@ class DashboardController extends Controller
 			'lowestQuantities' => $lowestQuantities,
 			'graphEarnings' => $graphEarnings,
 			'totalBrands' => $totalBrands,
+			'newOrders' => $newOrders,
+			'totalCategories' => $totalCategories,
+			'totalVendors' => $totalVendors,
+			'totalReviewsCount' => $totalReviewsCount,
+			'reviews' => $reviews,
+			'vendorRequest' => $vendorRequest,
+			'transactions' => $transactions,
 		]);
 	}
 }
