@@ -19,6 +19,7 @@ return new class extends Migration
 			$table->string('phone');
 			$table->text('address');
 			$table->text('description');
+			$table->boolean('status');
 			$table->text('fb_link')->nullable();
 			$table->text('tw_link')->nullable();
 			$table->text('insta_link')->nullable();
